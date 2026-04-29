@@ -4,28 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recall Contacts — Find Anyone by #Hashtag | iPhone Contacts App</title>
-  <meta name="description" content="Recall Contacts is the iPhone contacts app that lets you find anyone by what you remember — a hashtag, a place, a moment. Built for dyslexic and neurodivergent minds. Free on the App Store." />
-  <meta name="keywords" content="recall contacts, contacts app, hashtag contacts, find contacts, iPhone contacts app, dyslexia contacts app, neurodivergent app, contact organizer, contact management, tag contacts, find people by hashtag" />
+  <meta name="description" content="Recall Contacts is the iPhone contacts app that lets you find anyone by what you remember — a hashtag, a place, a moment. Built for dyslexic, ADHD, and neurodivergent minds. Works brilliantly for everyone." />
+  <meta name="keywords" content="recall contacts, contacts app, hashtag contacts, find contacts, iPhone contacts app, dyslexia contacts app, neurodivergent app, ADHD contacts, contact organizer, contact management, tag contacts, find people by hashtag" />
+  <meta name="author" content="Paul Barbera" />
+  <meta name="theme-color" content="#000000" />
   <link rel="canonical" href="https://recall-contacts.com/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Recall Contacts — Find Anyone by #Hashtag" />
-  <meta property="og:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly. Free on iPhone." />
+  <meta property="og:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly." />
   <meta property="og:url" content="https://recall-contacts.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Recall Contacts — Find Anyone by #Hashtag" />
-  <meta name="twitter:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly. Free on iPhone." />
+  <meta name="twitter:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly." />
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MobileApplication",
-    "name": "Recall Contacts",
-    "operatingSystem": "iOS",
-    "applicationCategory": "UtilitiesApplication",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "url": "https://apps.apple.com/us/app/recall-contacts/id6758255331",
-    "description": "Find anyone in your contacts by hashtag, place, or context. Built for dyslexic and neurodivergent minds."
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "Recall Contacts",
+      "operatingSystem": "iOS",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://apps.apple.com/us/app/recall-contacts/id6758255331",
+      "description": "Find anyone in your contacts by hashtag, place, or context. Built for dyslexic, ADHD, and neurodivergent minds — and anyone who thinks in context, not names.",
+      "author": { "@type": "Person", "name": "Paul Barbera" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Paul Barbera",
+      "jobTitle": "Photographer & App Creator",
+      "url": "https://recall-contacts.com/",
+      "sameAs": ["https://www.instagram.com/recall_contacts/"]
+    }
+  ]
   </script>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
 
@@ -296,6 +311,35 @@
     .mobile-menu a:hover { color: #fff; }
     .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
 
+    /* ── FOCUS STYLES ──────────────────── */
+    :focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+    .carousel-btn:focus-visible,
+    .social-btn:focus-visible,
+    .nav-cta:focus-visible,
+    .btn-primary:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    /* ── SKIP NAV ──────────────────────── */
+    .skip-nav {
+      position: fixed;
+      top: -100%;
+      left: var(--frame);
+      z-index: 9999;
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .skip-nav:focus { top: var(--frame); }
+
     /* ── RESPONSIVE ────────────────────── */
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
@@ -320,6 +364,7 @@
 </head>
 <body>
 
+  <a href="#about" class="skip-nav">Skip to content</a>
   <div class="frame" aria-hidden="true"></div>
   <div class="frame-corner-bl" aria-hidden="true"></div>
   <div class="frame-corner-br" aria-hidden="true"></div>
@@ -386,17 +431,17 @@
       <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
       <div class="carousel-track-wrap">
         <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image1.png" alt="Recall Contacts — You remember the moment, Recall finds the name" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image2.png" alt="Recall Contacts — Search smarter, filter by hashtag" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image3.png" alt="Recall Contacts app screenshot 3" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image4.png" alt="Recall Contacts app screenshot 4" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image5.png" alt="Recall Contacts app screenshot 5" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image6.png" alt="Recall Contacts app screenshot 6" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image7.png" alt="Recall Contacts app screenshot 7" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image8.png" alt="Recall Contacts app screenshot 8" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image9.png" alt="Recall Contacts app screenshot 9" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image10.png" alt="Recall Contacts app screenshot 10" loading="lazy" /></div>
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image11.png" alt="Recall Contacts app screenshot 11" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image1.png" alt="Recall Contacts — contacts list with VIP, Family, Work and Parents groups, searchable by hashtag" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image2.png" alt="Recall Contacts — search smarter, filter by hashtag instead of scrolling A to Z" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image3.png" alt="Recall Contacts — moments over names, contact profile with photo, call and text buttons, and hashtag tags" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image4.png" alt="Recall Contacts — search by context not A to Z, hashtag keyboard search filtering contacts instantly" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image5.png" alt="Recall Contacts — add tags to names, contacts listed with custom hashtags like VIP, Friends, Doctor" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image6.png" alt="Recall Contacts — swipe to tag, Tinder-style contact tagging with thousands of contacts to organise" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image7.png" alt="Recall Contacts — take a selfie and add tags when meeting someone new" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image8.png" alt="Recall Contacts — quick tagging, add hashtags to any contact profile in seconds" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image9.png" alt="Recall Contacts — dyslexic friendly mode with high contrast tones and specialist spacing for neurodiverse minds" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image10.png" alt="Recall Contacts — made by one of us, built by a photographer who spent 25 years meeting people and forgetting their names" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image11.png" alt="Recall Contacts — syncs hashtags to Apple Contacts in notes field, keeping your tags in your native iPhone contacts" loading="lazy" /></div>
         </div>
       </div>
       <button class="carousel-btn next" id="nextBtn" aria-label="Next screenshot">&#8594;</button>
@@ -551,8 +596,8 @@
   <footer>
     <div class="footer-logo recall-font">#Recall</div>
     <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="mailto:paul@paulbarbera.com">Support</a>
     </div>
     <div class="footer-social">
       <!-- Instagram -->
@@ -587,14 +632,18 @@
     }, { passive: false });
 
     var touchStartY = 0;
+    var touchStartX = 0;
     window.addEventListener('touchstart', function(e) {
       touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchend', function(e) {
       if (isScrolling) return;
-      var diff = touchStartY - e.changedTouches[0].clientY;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) scrollToSection(currentIndex + 1);
+      var diffY = touchStartY - e.changedTouches[0].clientY;
+      var diffX = Math.abs(touchStartX - e.changedTouches[0].clientX);
+      // Only snap scroll if swipe is primarily vertical (not carousel swipe)
+      if (Math.abs(diffY) > 50 && Math.abs(diffY) > diffX * 1.5) {
+        if (diffY > 0) scrollToSection(currentIndex + 1);
         else scrollToSection(currentIndex - 1);
       }
     }, { passive: true });

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/paulbarbera/recall-website add index.html)",
+      "Bash(git -C /Users/paulbarbera/recall-website commit -m ' *)",
+      "Bash(git -C /Users/paulbarbera/recall-website push origin main)",
+      "Bash(git -C /Users/paulbarbera/recall-website add \"Images_app store pages\" index.html)",
+      "WebFetch(domain:www.staffex-ai.com)",
+      "Bash(git *)",
+      "Bash(ffmpeg -version)",
+      "Bash(brew list *)",
+      "Bash(curl -sI https://recall-contacts.com/)"
+    ]
+  }
+}
