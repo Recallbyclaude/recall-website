@@ -3,25 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO -->
   <title>Recall Contacts — Find Anyone by #Hashtag | iPhone Contacts App</title>
   <meta name="description" content="Recall Contacts is the iPhone contacts app that lets you find anyone by what you remember — a hashtag, a place, a moment. Built for dyslexic and neurodivergent minds. Free on the App Store." />
   <meta name="keywords" content="recall contacts, contacts app, hashtag contacts, find contacts, iPhone contacts app, dyslexia contacts app, neurodivergent app, contact organizer, contact management, tag contacts, find people by hashtag" />
   <link rel="canonical" href="https://recallbyclaude.github.io/recall-website/" />
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Recall Contacts — Find Anyone by #Hashtag" />
   <meta property="og:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly. Free on iPhone." />
   <meta property="og:url" content="https://recallbyclaude.github.io/recall-website/" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Recall Contacts — Find Anyone by #Hashtag" />
   <meta name="twitter:description" content="The contacts app built for brains like ours. Tag anyone. Search by hashtag. Find them instantly. Free on iPhone." />
-
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -34,7 +26,6 @@
     "description": "Find anyone in your contacts by hashtag, place, or context. Built for dyslexic and neurodivergent minds."
   }
   </script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
 
@@ -45,22 +36,21 @@
       --frame: 18px;
       --nav-h: 56px;
       --border: 1px solid #2a2a2a;
+      --label-color: #999;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       background: #000;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      /* leave room for the fixed frame */
       padding-top: calc(var(--frame) + var(--nav-h));
       padding-left: var(--frame);
       padding-right: var(--frame);
       padding-bottom: var(--frame);
+      overflow-x: hidden;
     }
 
-    /* ── FRAME ─────────────────────────────────── */
+    /* ── FRAME ─────────────────────────── */
     .frame {
       position: fixed;
       inset: var(--frame);
@@ -68,12 +58,11 @@
       pointer-events: none;
       z-index: 900;
     }
-    /* corner dots */
     .frame::before, .frame::after {
       content: '';
       position: absolute;
       width: 6px; height: 6px;
-      background: #444;
+      background: #333;
       border-radius: 50%;
     }
     .frame::before { top: -3px; left: -3px; }
@@ -81,17 +70,17 @@
     .frame-corner-bl, .frame-corner-br {
       position: fixed;
       width: 6px; height: 6px;
-      background: #444;
+      background: #333;
       border-radius: 50%;
       z-index: 901;
       pointer-events: none;
     }
-    .frame-corner-bl { bottom: calc(var(--frame) - 3px); left: calc(var(--frame) - 3px); }
+    .frame-corner-bl { bottom: calc(var(--frame) - 3px); left:  calc(var(--frame) - 3px); }
     .frame-corner-br { bottom: calc(var(--frame) - 3px); right: calc(var(--frame) - 3px); }
 
     .recall-font { font-family: 'Bungee Shade', cursive; }
 
-    /* ── NAV ───────────────────────────────────── */
+    /* ── NAV ───────────────────────────── */
     nav {
       position: fixed;
       top: var(--frame);
@@ -111,7 +100,7 @@
     .nav-links a {
       font-size: 11px;
       letter-spacing: 2.5px;
-      color: #666;
+      color: #999;
       text-decoration: none;
       text-transform: uppercase;
       transition: color 0.2s;
@@ -127,52 +116,69 @@
       text-decoration: none;
       text-transform: uppercase;
     }
-
-    /* hamburger — hidden on desktop */
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; transition: 0.3s; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; }
 
-    /* ── SECTIONS ──────────────────────────────── */
-    .section { border-bottom: var(--border); padding: 72px 28px; }
-    .section-label { font-size: 10px; letter-spacing: 4px; color: #555; text-transform: uppercase; margin-bottom: 14px; }
-    .section-title { font-size: 34px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 18px; line-height: 1.1; }
-    .section-body { font-size: 16px; color: #888; line-height: 1.75; max-width: 540px; }
-
-    /* ── HERO ──────────────────────────────────── */
-    .hero {
-      min-height: calc(100vh - var(--frame) - var(--nav-h));
+    /* ── SNAP SECTIONS ─────────────────── */
+    .snap-section {
+      min-height: calc(100vh - var(--frame) * 2 - var(--nav-h));
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 72px 28px;
-      border-bottom: var(--border);
+      scroll-margin-top: calc(var(--frame) + var(--nav-h));
     }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 5px; color: #444; text-transform: uppercase; margin-bottom: 24px; }
-    .hero-title { font-size: clamp(60px, 10vw, 120px); color: #fff; line-height: 0.95; margin-bottom: 36px; }
-    .hero-sub { font-size: 18px; color: #777; max-width: 460px; margin-bottom: 40px; line-height: 1.65; }
+
+    /* ── SHARED ────────────────────────── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--label-color);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+    .section-body { font-size: 16px; color: #888; line-height: 1.75; max-width: 540px; }
+
+    /* ── HERO ──────────────────────────── */
+    .hero { padding: 0 28px; border-bottom: var(--border); }
+    .hero-title { font-size: clamp(64px, 10vw, 120px); color: #fff; line-height: 0.95; margin-bottom: 28px; }
+    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; margin-bottom: 40px; line-height: 1.5; font-weight: 500; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary { background: #fff; color: #000; padding: 13px 32px; font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; display: inline-block; }
-    .btn-primary:hover { background: #e0e0e0; }
+    .btn-primary {
+      background: #fff; color: #000;
+      padding: 13px 32px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; text-decoration: none; display: inline-block;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #ddd; }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 52px; }
     .tag { border: 1px solid #2a2a2a; padding: 5px 12px; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #555; text-transform: uppercase; }
-    .tag.vip    { background: #E8C97A22; border-color: #E8C97A55; color: #E8C97A; }
-    .tag.family { background: #E8A87A22; border-color: #E8A87A55; color: #E8A87A; }
-    .tag.work   { background: #8FCA8F22; border-color: #8FCA8F55; color: #8FCA8F; }
-    .tag.parents{ background: #8FB8E822; border-color: #8FB8E855; color: #8FB8E8; }
-    .tag.white  { border-color: #444; color: #666; }
+    .tag.vip    { background: #E8C97A15; border-color: #E8C97A44; color: #E8C97A; }
+    .tag.family { background: #E8A87A15; border-color: #E8A87A44; color: #E8A87A; }
+    .tag.work   { background: #8FCA8F15; border-color: #8FCA8F44; color: #8FCA8F; }
+    .tag.parents{ background: #8FB8E815; border-color: #8FB8E844; color: #8FB8E8; }
 
-    /* ── SCREENSHOTS ───────────────────────────── */
-    .screenshots { padding: 72px 28px; border-bottom: var(--border); text-align: center; }
-    .carousel { position: relative; max-width: 300px; margin: 48px auto 0; }
+    /* ── SCREENSHOTS ───────────────────── */
+    .screenshots { padding: 0 28px; border-bottom: var(--border); align-items: center; text-align: center; }
+    .carousel { position: relative; max-width: 300px; margin: 40px auto 0; }
     .carousel-track-wrap { overflow: hidden; border-radius: 32px; border: var(--border); }
-    .carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
     .carousel-slide { min-width: 100%; }
     .carousel-slide img { width: 100%; display: block; border-radius: 32px; aspect-ratio: 9/19.5; object-fit: cover; background: #111; }
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       width: 36px; height: 36px; border-radius: 50%;
       background: #000; border: var(--border);
-      color: #888; font-size: 16px; cursor: pointer;
+      color: #999; font-size: 16px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       z-index: 2; transition: border-color 0.2s, color 0.2s;
     }
@@ -180,65 +186,80 @@
     .carousel-btn.prev { left: -52px; }
     .carousel-btn.next { right: -52px; }
     .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
-    .carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: #2a2a2a; border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
-    .carousel-dot.active { background: #fff; }
+    .carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: #2a2a2a; border: none; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+    .carousel-dot.active { background: #fff; transform: scale(1.3); }
 
-    /* ── STORY ─────────────────────────────────── */
-    .story { padding: 72px 28px; border-bottom: var(--border); }
-    .story-inner { max-width: 640px; }
-    .story-lede { font-size: 24px; font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 28px; }
-    .story-body { font-size: 16px; color: #888; line-height: 1.8; margin-bottom: 20px; }
-    .story-attr { font-size: 10px; color: #444; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
+    /* ── STORY ─────────────────────────── */
+    .story { padding: 0 28px; border-bottom: var(--border); }
+    .story-inner { max-width: 660px; }
+    .story-headline {
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 28px;
+      line-height: 1.15;
+    }
+    .story-lede { font-size: 22px; color: #ccc; line-height: 1.5; margin-bottom: 28px; font-weight: 500; }
+    .story-body { font-size: 19px; color: #999; line-height: 1.8; margin-bottom: 22px; }
+    .story-attr { font-size: 11px; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
     details.story-dropdown { margin-top: 32px; border-top: var(--border); padding-top: 24px; }
-    details.story-dropdown summary { font-size: 10px; letter-spacing: 3px; color: #555; text-transform: uppercase; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; }
+    details.story-dropdown summary {
+      font-size: 10px; letter-spacing: 3px; color: var(--label-color);
+      text-transform: uppercase; cursor: pointer; list-style: none;
+      display: flex; align-items: center; gap: 10px; user-select: none;
+    }
     details.story-dropdown summary::-webkit-details-marker { display: none; }
-    details.story-dropdown summary::after { content: '+'; font-size: 16px; color: #333; }
+    details.story-dropdown summary::after { content: '+'; font-size: 16px; color: #444; }
     details.story-dropdown[open] summary::after { content: '−'; }
-    details.story-dropdown summary:hover { color: #aaa; }
+    details.story-dropdown summary:hover { color: #fff; }
     .story-full { padding-top: 28px; }
 
-    /* ── FEATURES ──────────────────────────────── */
+    /* ── FEATURES ──────────────────────── */
+    .features-section { padding: 0 28px; border-bottom: var(--border); }
     .features { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; }
-    .feature { padding: 32px 28px; border-top: var(--border); border-right: var(--border); }
+    .feature { padding: 32px 24px; border-top: var(--border); border-right: var(--border); }
     .feature:nth-child(even) { border-right: none; }
     .feature-num { font-size: 10px; letter-spacing: 3px; color: #333; margin-bottom: 14px; }
     .feature-title { font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
     .feature-desc { font-size: 13px; color: #666; line-height: 1.65; }
 
-    /* ── DEMO ──────────────────────────────────── */
-    .demo-wrap { background: #080808; border: var(--border); padding: 24px; margin-top: 40px; }
-    .demo-search { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid #2a2a2a; margin-bottom: 20px; }
+    /* ── DEMO ──────────────────────────── */
+    .demo-section { padding: 0 28px; border-bottom: var(--border); }
+    .demo-wrap { background: #060606; border: var(--border); padding: 24px; margin-top: 40px; }
+    .demo-search { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid #222; margin-bottom: 20px; }
     .demo-search span { color: #444; font-size: 14px; }
     .demo-search input { background: none; border: none; outline: none; color: #fff; font-size: 14px; flex: 1; min-width: 0; letter-spacing: 1px; }
     .demo-filter-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-    .demo-contacts { display: flex; flex-direction: column; gap: 0; }
+    .demo-contacts { display: flex; flex-direction: column; }
     .contact { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: var(--border); }
     .contact:last-child { border-bottom: none; }
-    .contact-avatar { width: 40px; height: 40px; border-radius: 50%; background: #1a1a1a; border: var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #555; }
+    .contact-avatar { width: 40px; height: 40px; border-radius: 50%; background: #111; border: var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #555; }
     .contact-name { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; }
     .contact-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .ctag { border: 1px solid #1e1e1e; padding: 2px 7px; font-size: 10px; letter-spacing: 1px; color: #555; text-transform: uppercase; }
     .ctag.vip { background: #E8C97A11; border-color: #E8C97A44; color: #E8C97A; }
 
-    /* ── QUOTE ─────────────────────────────────── */
-    .quote { padding: 80px 28px; border-bottom: var(--border); }
+    /* ── QUOTE ─────────────────────────── */
+    .quote { padding: 0 28px; border-bottom: var(--border); }
     .quote-text { font-size: clamp(20px, 3vw, 30px); font-weight: 700; color: #fff; line-height: 1.45; max-width: 680px; margin-bottom: 20px; }
-    .quote-attr { font-size: 10px; color: #444; letter-spacing: 3px; text-transform: uppercase; }
+    .quote-attr { font-size: 10px; color: #555; letter-spacing: 3px; text-transform: uppercase; }
 
-    /* ── VIDEO ─────────────────────────────────── */
-    .video-section { padding: 72px 28px; border-bottom: var(--border); }
+    /* ── VIDEO ─────────────────────────── */
+    .video-section { padding: 0 28px; border-bottom: var(--border); }
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 800px; border: var(--border); margin-top: 40px; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-    /* ── SIGNUP ────────────────────────────────── */
-    .signup { padding: 72px 28px; border-bottom: var(--border); }
+    /* ── SIGNUP ────────────────────────── */
+    .signup { padding: 0 28px; border-bottom: var(--border); }
     .signup-inner { max-width: 480px; }
-    .signup h2 { font-size: 28px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 10px; line-height: 1.1; }
+    .signup h2 { font-size: 28px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
     .signup p { font-size: 15px; color: #666; margin-bottom: 32px; line-height: 1.6; }
 
-    /* ── FOOTER ────────────────────────────────── */
+    /* ── FOOTER ────────────────────────── */
     footer {
-      padding: 36px 28px;
+      padding: 32px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -247,17 +268,16 @@
     }
     .footer-logo { font-size: 18px; color: #333; }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 10px; letter-spacing: 2px; color: #333; text-decoration: none; text-transform: uppercase; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: #444; text-decoration: none; text-transform: uppercase; }
     .footer-links a:hover { color: #fff; }
-    .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: inline-block; }
+    .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
 
-    /* ── MOBILE MENU ───────────────────────────── */
+    /* ── MOBILE MENU ───────────────────── */
     .mobile-menu {
       display: none;
       position: fixed;
       top: calc(var(--frame) + var(--nav-h));
-      left: var(--frame);
-      right: var(--frame);
+      left: var(--frame); right: var(--frame);
       background: #000;
       border-bottom: var(--border);
       border-left: var(--border);
@@ -268,50 +288,38 @@
       gap: 20px;
     }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #666; text-decoration: none; text-transform: uppercase; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
     .mobile-menu a:hover { color: #fff; }
-    .mobile-menu .nav-cta { color: #000 !important; margin-top: 8px; display: inline-block; width: fit-content; }
+    .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
 
-    /* ── RESPONSIVE ────────────────────────────── */
+    /* ── RESPONSIVE ────────────────────── */
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
-
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-
+      .hero { padding: 0 20px; }
       .hero-title { font-size: 52px; }
-      .hero-sub { font-size: 16px; }
-
-      .section { padding: 52px 20px; }
+      .hero-sub { font-size: 17px; }
+      .screenshots, .story, .features-section, .demo-section, .quote, .video-section, .signup { padding: 0 20px; }
       .section-title { font-size: 26px; }
-      .screenshots { padding: 52px 20px; }
-      .story { padding: 52px 20px; }
-      .quote { padding: 52px 20px; }
-      .video-section { padding: 52px 20px; }
-      .signup { padding: 52px 20px; }
-      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
-
       .features { grid-template-columns: 1fr; }
-      .feature { border-right: none; }
-      .feature:nth-child(even) { border-right: none; }
-
+      .feature { border-right: none !important; }
       .carousel { max-width: 240px; }
-      .carousel-btn.prev { left: -44px; }
-      .carousel-btn.next { right: -44px; }
-      .carousel-btn { width: 32px; height: 32px; font-size: 14px; }
-
-      .quote-text { font-size: 20px; }
+      .carousel-btn.prev { left: -42px; }
+      .carousel-btn.next { right: -42px; }
+      .story-headline { font-size: 22px; }
+      .story-lede { font-size: 18px; }
+      .story-body { font-size: 16px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Fixed frame border -->
   <div class="frame" aria-hidden="true"></div>
   <div class="frame-corner-bl" aria-hidden="true"></div>
   <div class="frame-corner-br" aria-hidden="true"></div>
 
-  <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo recall-font">#Recall</a>
     <div class="nav-links">
@@ -326,7 +334,6 @@
     </button>
   </nav>
 
-  <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#screenshots" class="mobile-link">Screenshots</a>
     <a href="#story" class="mobile-link">Story</a>
@@ -336,29 +343,28 @@
   </div>
 
   <!-- 1. HERO -->
-  <div class="hero">
-    <div class="hero-eyebrow">Recall Contacts — Free on iPhone</div>
+  <div class="hero snap-section">
     <h1 class="hero-title recall-font">#Recall</h1>
-    <p class="hero-sub">The contacts app built for brains like ours. Find anyone by what you remember — not how to spell their name.</p>
+    <p class="hero-sub">You remember the context. Recall finds the name.</p>
     <div class="hero-actions">
-      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download Free</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download from the App Store</a>
     </div>
     <div class="hero-tags">
       <span class="tag vip">VIP</span>
       <span class="tag family">FAMILY</span>
       <span class="tag work">WORK</span>
       <span class="tag parents">PARENTS</span>
-      <span class="tag white">#NYC</span>
-      <span class="tag white">#2024</span>
-      <span class="tag white">#PHOTOGRAPHER</span>
-      <span class="tag white">#TOKYO</span>
+      <span class="tag">#NYC</span>
+      <span class="tag">#2024</span>
+      <span class="tag">#PHOTOGRAPHER</span>
+      <span class="tag">#TOKYO</span>
     </div>
   </div>
 
   <!-- 2. SCREENSHOTS -->
-  <div class="screenshots" id="screenshots">
-    <div class="section-label">App screenshots</div>
-    <div class="section-title">See every screen</div>
+  <div class="screenshots snap-section" id="screenshots">
+    <div class="section-label">App Screenshots</div>
+    <div class="section-title">This is how your address book should work.</div>
     <div class="carousel" id="carousel" aria-label="App screenshot carousel">
       <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
       <div class="carousel-track-wrap">
@@ -382,13 +388,13 @@
   </div>
 
   <!-- 3. STORY -->
-  <div class="story" id="story">
+  <div class="story snap-section" id="story">
     <div class="story-inner">
       <div class="section-label">The story behind Recall</div>
+      <h2 class="story-headline">A workaround that became an app.</h2>
       <p class="story-lede">25 years as a photographer. 4,000+ contacts. And I couldn't spell half their names.</p>
       <p class="story-body">I'm dyslexic, and pretty sure I have ADHD. Names don't stick the way faces do. For most of my career I quietly struggled to find people — not because I forgot them, but because I couldn't spell them.</p>
       <p class="story-body">So I invented a workaround: hashtags. Instead of a name I'd misspell and never find again, I'd tag people by context — <em>#yellowjacket #startupfounder #dogstory.</em> My brain runs on context, not convention. It worked.</p>
-      <p class="story-body">But getting data in and back out again was always slow and clunky. For years I thought: this should be an app.</p>
       <p class="story-body">With Jason at Laan Labs and Claude Code, Recall is finally that app.</p>
       <div class="story-attr">— Paul Barbera, creator of Recall Contacts</div>
       <details class="story-dropdown">
@@ -406,10 +412,10 @@
   </div>
 
   <!-- 4. THE PROBLEM -->
-  <div class="section" id="features">
+  <div class="features-section snap-section" id="features">
     <div class="section-label">The problem</div>
-    <h2 class="section-title">You remember everything<br>except the spelling</h2>
-    <p class="section-body">You know exactly who they are. Where you met them. What they do. But their name? Buried somewhere you can't reach. Recall is built for that moment — search by context, not by spelling.</p>
+    <h2 class="section-title">You remember the context.<br>You just can't spell the name.</h2>
+    <p class="section-body">You know exactly who they are. Where you met them. What they do. The name is the only thing your contacts app needs — and the one thing you can't give it. Recall is built for that gap.</p>
     <div class="features">
       <div class="feature">
         <div class="feature-num">01</div>
@@ -435,7 +441,7 @@
   </div>
 
   <!-- 5. SEE IT IN ACTION -->
-  <div class="section" id="demo">
+  <div class="demo-section snap-section" id="demo">
     <div class="section-label">See it in action</div>
     <h2 class="section-title">Find anyone, instantly</h2>
     <div class="demo-wrap">
@@ -445,8 +451,8 @@
       </div>
       <div class="demo-filter-tags">
         <span class="tag vip">VIP</span>
-        <span class="tag white">#TOKYO</span>
-        <span class="tag white">#PHOTOGRAPHER</span>
+        <span class="tag">#TOKYO</span>
+        <span class="tag">#PHOTOGRAPHER</span>
       </div>
       <div class="demo-contacts">
         <div class="contact">
@@ -477,13 +483,13 @@
   </div>
 
   <!-- 6. QUOTE -->
-  <div class="quote">
-    <p class="quote-text">"I built this because I needed it. 25 years as a photographer, 4,000+ contacts — and I couldn't spell half their names."</p>
+  <div class="quote snap-section" id="quote">
+    <p class="quote-text">"I built this because I needed it — 25 years of faces, half the names. My problem. Maybe yours too."</p>
     <div class="quote-attr">— Paul Barbera, creator of Recall Contacts</div>
   </div>
 
   <!-- 7. VIDEO -->
-  <div class="video-section" id="how-it-works">
+  <div class="video-section snap-section" id="how-it-works">
     <div class="section-label">How it works</div>
     <h2 class="section-title">See Recall in action</h2>
     <p class="section-body">Watch how Recall Contacts lets you find anyone by hashtag, context, or group — no spelling required.</p>
@@ -498,8 +504,8 @@
     </div>
   </div>
 
-  <!-- 8. EMAIL SIGNUP -->
-  <div class="signup" id="signup">
+  <!-- 8. SIGNUP -->
+  <div class="signup snap-section" id="signup">
     <div class="signup-inner">
       <div class="section-label">Stay in the loop</div>
       <h2>Get early updates</h2>
@@ -508,7 +514,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-logo recall-font">#Recall</div>
     <div class="footer-links">
@@ -519,61 +524,115 @@
   </footer>
 
   <script>
-    /* Carousel */
-    (function () {
-      var track = document.getElementById('carouselTrack');
-      var dotsContainer = document.getElementById('carouselDots');
-      var slides = track.querySelectorAll('.carousel-slide');
-      var total = slides.length;
-      var current = 0;
+    /* ── FULL-PAGE SNAP SCROLL ─── */
+    var sections = Array.from(document.querySelectorAll('.snap-section'));
+    var currentIndex = 0;
+    var isScrolling = false;
 
-      slides.forEach(function(_, i) {
-        var dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
-        dot.addEventListener('click', function() { goTo(i); });
-        dotsContainer.appendChild(dot);
-      });
+    function scrollToSection(index) {
+      if (index < 0 || index >= sections.length) return;
+      currentIndex = index;
+      isScrolling = true;
+      sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function() { isScrolling = false; }, 900);
+    }
 
-      function goTo(index) {
-        current = (index + total) % total;
-        track.style.transform = 'translateX(-' + current * 100 + '%)';
-        dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
-          d.classList.toggle('active', i === current);
-        });
+    window.addEventListener('wheel', function(e) {
+      if (isScrolling) return;
+      e.preventDefault();
+      if (e.deltaY > 0) scrollToSection(currentIndex + 1);
+      else scrollToSection(currentIndex - 1);
+    }, { passive: false });
+
+    var touchStartY = 0;
+    window.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    window.addEventListener('touchend', function(e) {
+      if (isScrolling) return;
+      var diff = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) scrollToSection(currentIndex + 1);
+        else scrollToSection(currentIndex - 1);
       }
+    }, { passive: true });
 
-      document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
-      document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+    /* Intercept nav anchor clicks */
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var targetId = link.getAttribute('href').slice(1);
+        if (!targetId) return;
+        var targetIndex = sections.findIndex(function(s) { return s.id === targetId; });
+        if (targetIndex !== -1) {
+          e.preventDefault();
+          scrollToSection(targetIndex);
+        }
+      });
+    });
 
-      var startX = 0;
-      var wrap = track.parentElement;
-      wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', function(e) {
-        var diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-      });
+    /* ── CAROUSEL ─── */
+    var track = document.getElementById('carouselTrack');
+    var dotsContainer = document.getElementById('carouselDots');
+    var slides = track.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+    var current = 0;
+    var autoSlideInterval = null;
 
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') goTo(current - 1);
-        if (e.key === 'ArrowRight') goTo(current + 1);
-      });
-    })();
+    slides.forEach(function(_, i) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+      dot.addEventListener('click', function() { goTo(i); });
+      dotsContainer.appendChild(dot);
+    });
 
-    /* Mobile hamburger */
-    (function () {
-      var btn = document.getElementById('hamburger');
-      var menu = document.getElementById('mobileMenu');
-      btn.addEventListener('click', function() {
-        menu.classList.toggle('open');
+    function goTo(index) {
+      current = (index + total) % total;
+      track.style.transform = 'translateX(-' + current * 100 + '%)';
+      dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
       });
-      menu.querySelectorAll('.mobile-link').forEach(function(link) {
-        link.addEventListener('click', function() { menu.classList.remove('open'); });
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+    document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+    /* Swipe on carousel */
+    var carouselStartX = 0;
+    var wrap = track.parentElement;
+    wrap.addEventListener('touchstart', function(e) { carouselStartX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', function(e) {
+      var diff = carouselStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+
+    /* Auto-slide when screenshots section is in view */
+    var screenshotsEl = document.getElementById('screenshots');
+    var slideObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          if (!autoSlideInterval) {
+            autoSlideInterval = setInterval(function() { goTo(current + 1); }, 3000);
+          }
+        } else {
+          clearInterval(autoSlideInterval);
+          autoSlideInterval = null;
+        }
       });
-    })();
+    }, { threshold: 0.5 });
+    slideObserver.observe(screenshotsEl);
+
+    /* ── HAMBURGER ─── */
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
+      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
   </script>
 
-  <!-- Flodesk email signup -->
   <script>
   (function(w, d, t, h, s, n) {
     w.FlodeskObject = n;
