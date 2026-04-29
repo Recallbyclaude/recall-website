@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://recallbyclaude.github.io/recall-website/sitemap.xml
+Sitemap: https://recall-contacts.com/sitemap.xml
