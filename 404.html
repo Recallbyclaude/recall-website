@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Recall Contacts</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --frame: 18px; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 32px;
+      text-align: center;
+    }
+    .frame {
+      position: fixed;
+      inset: var(--frame);
+      border: 1px solid #2a2a2a;
+      pointer-events: none;
+      z-index: 900;
+    }
+    .label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: clamp(80px, 18vw, 160px);
+      font-weight: 900;
+      color: #111;
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+    }
+    p {
+      font-size: 16px;
+      color: #666;
+      max-width: 380px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .btn {
+      background: #fff;
+      color: #000;
+      padding: 13px 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover { background: #ddd; }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 52px;
+    }
+    .tag {
+      border: 1px solid #1a1a1a;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    @media (max-width: 480px) { :root { --frame: 10px; } }
+  </style>
+</head>
+<body>
+  <div class="frame" aria-hidden="true"></div>
+
+  <div class="label">404 — Page not found</div>
+  <h1>#Lost</h1>
+  <p>This page doesn't exist — but your contacts are exactly where you left them.</p>
+  <a href="/" class="btn">Back to Recall</a>
+
+  <div class="tags">
+    <span class="tag">#NYC</span>
+    <span class="tag">#Eastwood</span>
+    <span class="tag">#crazyhat</span>
+    <span class="tag">#VIP</span>
+    <span class="tag">#FAMILY</span>
+  </div>
+</body>
+</html>
