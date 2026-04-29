@@ -88,8 +88,18 @@
     /* STORY */
     .story { padding: 64px 32px; border-bottom: 1px solid #222; }
     .story-inner { max-width: 680px; }
+    .story-lede { font-size: 22px; font-weight: 700; color: #fff; line-height: 1.5; margin-bottom: 24px; }
     .story-body { font-size: 17px; color: #ccc; line-height: 1.8; margin-bottom: 20px; }
-    .story-attr { font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+    .story-attr { font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
+
+    details.story-dropdown { margin-top: 32px; border-top: 1px solid #222; padding-top: 24px; }
+    details.story-dropdown summary { font-size: 12px; letter-spacing: 3px; color: #666; text-transform: uppercase; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; }
+    details.story-dropdown summary::-webkit-details-marker { display: none; }
+    details.story-dropdown summary::after { content: '+'; font-size: 18px; color: #444; transition: transform 0.2s; }
+    details.story-dropdown[open] summary::after { content: '−'; }
+    details.story-dropdown summary:hover { color: #aaa; }
+    .story-full { padding-top: 28px; }
+    .story-full .story-body:last-child { margin-bottom: 0; }
 
     /* QUOTE */
     .quote { padding: 56px 32px; text-align: center; border-bottom: 1px solid #222; }
@@ -125,6 +135,7 @@
       .quote-text { font-size: 20px; }
 
       .story { padding: 40px 20px; }
+      .story-lede { font-size: 18px; }
       .story-body { font-size: 15px; }
 
       footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -222,15 +233,34 @@
     </div>
   </section>
 
-  <!-- STORY SECTION — waiting for Paul's full story -->
-  <div class="story">
+  <div class="story" id="story">
     <div class="story-inner">
       <div class="section-label">The story behind Recall</div>
-      <h2 class="section-title" style="font-size:28px; margin-bottom:24px;">Built because I needed it</h2>
-      <p class="story-body">"I built this because I needed it. 25 years as a photographer, 4,000+ contacts — and I couldn't spell half their names."</p>
-      <p class="story-body">As someone who thinks in images and moments rather than names and spellings, every contacts app felt like it was designed for someone else. I know exactly who someone is — where we met, what they wore, what they were working on — but the moment I try to search for them, I hit a wall.</p>
-      <p class="story-body">Recall was born from that frustration. A contacts app that works the way memory actually works.</p>
+      <h2 class="section-title" style="font-size:28px; margin-bottom:24px;">Made by one of us.<br>Built for brains like ours.</h2>
+
+      <p class="story-lede">25 years as a photographer. 4,000+ contacts. And I couldn't spell half their names.</p>
+
+      <p class="story-body">I'm dyslexic, and pretty sure I have ADHD. Names don't stick the way faces do. For most of my career I quietly struggled to find people — not because I forgot them, but because I couldn't spell them.</p>
+
+      <p class="story-body">So I invented a workaround: hashtags. Instead of a name I'd misspell and never find again, I'd tag people by context — <em>#yellowjacket #startupfounder #dogstory.</em> My brain runs on context, not convention. It worked.</p>
+
+      <p class="story-body">But getting data in and back out again was always slow and clunky. For years I thought: this should be an app.</p>
+
+      <p class="story-body">With Jason at Laan Labs and Claude Code, Recall is finally that app.</p>
+
       <div class="story-attr">— Paul Barbera, creator of Recall Contacts</div>
+
+      <details class="story-dropdown">
+        <summary>Read the full story</summary>
+        <div class="story-full">
+          <p class="story-body">For years, I quietly struggled to remember names. Not people — never people. Just the letters supposed to pin them down.</p>
+          <p class="story-body">I'm a photographer. 25 years of meeting people — shoots, events, studios, industry rooms — and for most of that time, blanking on names. I'm dyslexic, and pretty sure I have ADHD. Names don't stick the way faces do.</p>
+          <p class="story-body">So I invented a workaround: hashtags. Instead of a name I'd misspell and never find again, I'd tag people by context — <em>#yellowjacket #startupfounder #dogstory.</em> My brain runs on context, not convention. It worked.</p>
+          <p class="story-body">But getting data in and back out again was always slow and clunky. For years I thought: this should be an app. Something that works the way memory actually works — not how apps expect you to remember.</p>
+          <p class="story-body">With Jason at Laan Labs and Claude Code, Recall is finally that app. A contacts app built by someone who needed it. Built for everyone whose brain works the same way.</p>
+          <p class="story-body" style="color:#fff; font-weight:700;">Made by one of us. Built for brains like ours.</p>
+        </div>
+      </details>
     </div>
   </div>
 
