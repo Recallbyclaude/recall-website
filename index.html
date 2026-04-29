@@ -113,6 +113,50 @@
     .footer-links a { font-size: 12px; letter-spacing: 2px; color: #555; text-decoration: none; text-transform: uppercase; }
     .app-badge { background: #fff; color: #000; padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: none; text-decoration: none; display: inline-block; }
 
+    /* SCREENSHOTS CAROUSEL */
+    .screenshots { padding: 64px 32px; border-bottom: 1px solid #222; text-align: center; overflow: hidden; }
+    .screenshots .section-label { margin-bottom: 12px; }
+    .screenshots h2 { font-size: 36px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 48px; line-height: 1.1; }
+
+    .carousel { position: relative; max-width: 320px; margin: 0 auto; }
+    .carousel-track-wrap { overflow: hidden; border-radius: 36px; }
+    .carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+    .carousel-slide { min-width: 100%; }
+    .carousel-slide img {
+      width: 100%; display: block; border-radius: 36px;
+      aspect-ratio: 9/19.5;
+      object-fit: cover;
+      background: #1a1a1a;
+    }
+    .carousel-slide .placeholder {
+      width: 100%; aspect-ratio: 9/19.5; background: #111;
+      border-radius: 36px; border: 1px solid #2a2a2a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    }
+    .placeholder-icon { font-size: 36px; opacity: 0.2; }
+    .placeholder-label { font-size: 11px; letter-spacing: 3px; color: #444; text-transform: uppercase; }
+
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #000; border: 1px solid #333;
+      color: #fff; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2; transition: border-color 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .carousel-btn:hover { background: #111; border-color: #666; }
+    .carousel-btn.prev { left: -56px; }
+    .carousel-btn.next { right: -56px; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #333; border: none; cursor: pointer; padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active { background: #fff; transform: scale(1.3); }
+
     /* EMAIL SIGNUP */
     .signup { padding: 64px 32px; border-bottom: 1px solid #222; text-align: center; }
     .signup-inner { max-width: 520px; margin: 0 auto; }
@@ -147,6 +191,12 @@
 
       footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
       .signup { padding: 40px 20px; }
+      .screenshots { padding: 40px 20px; }
+      .screenshots h2 { font-size: 26px; margin-bottom: 36px; }
+      .carousel { max-width: 260px; }
+      .carousel-btn.prev { left: -44px; }
+      .carousel-btn.next { right: -44px; }
+      .carousel-btn { width: 34px; height: 34px; font-size: 15px; }
     }
   </style>
 </head>
@@ -241,6 +291,56 @@
     </div>
   </section>
 
+  <div class="screenshots" id="screenshots">
+    <div class="section-label">App screenshots</div>
+    <h2>See every screen</h2>
+    <div class="carousel" id="carousel" aria-label="App screenshot carousel">
+      <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="carousel-slide">
+            <div class="placeholder">
+              <div class="placeholder-icon">📱</div>
+              <div class="placeholder-label">Screenshot 1</div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="placeholder">
+              <div class="placeholder-icon">📱</div>
+              <div class="placeholder-label">Screenshot 2</div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="placeholder">
+              <div class="placeholder-icon">📱</div>
+              <div class="placeholder-label">Screenshot 3</div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="placeholder">
+              <div class="placeholder-icon">📱</div>
+              <div class="placeholder-label">Screenshot 4</div>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <div class="placeholder">
+              <div class="placeholder-icon">📱</div>
+              <div class="placeholder-label">Screenshot 5</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button class="carousel-btn next" id="nextBtn" aria-label="Next screenshot">&#8594;</button>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </div>
+
   <div class="story" id="story">
     <div class="story-inner">
       <div class="section-label">The story behind Recall</div>
@@ -294,6 +394,51 @@
     </div>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="app-badge">App Store</a>
   </footer>
+  <script>
+    (function () {
+      var track = document.getElementById('carouselTrack');
+      var dotsContainer = document.getElementById('carouselDots');
+      var slides = track.querySelectorAll('.carousel-slide');
+      var total = slides.length;
+      var current = 0;
+
+      // Build dots
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to screenshot ' + (i + 1));
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsContainer.appendChild(dot);
+      });
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = 'translateX(-' + current * 100 + '%)';
+        dotsContainer.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+      document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+      // Swipe support
+      var startX = 0;
+      var wrap = track.parentElement;
+      wrap.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+      });
+
+      // Keyboard
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') goTo(current - 1);
+        if (e.key === 'ArrowRight') goTo(current + 1);
+      });
+    })();
+  </script>
+
   <!-- Flodesk email signup -->
   <script>
   (function(w, d, t, h, s, n) {
