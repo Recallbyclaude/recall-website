@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recall — Find anyone by #hashtag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    .recall-font { font-family: 'Bungee Shade', cursive; }
 
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 32px; border-bottom: 1px solid #222; }
+    .nav-logo { font-size: 26px; color: #fff; line-height: 1; }
+    .nav-cta { background: #fff; color: #000; padding: 8px 20px; font-size: 13px; font-weight: 700; letter-spacing: 2px; border: none; cursor: pointer; text-transform: uppercase; }
+
+    .hero { padding: 64px 32px 48px; text-align: center; border-bottom: 1px solid #222; }
+    .hero-title { font-size: 80px; color: #fff; line-height: 1; margin-bottom: 28px; }
+    .hero-sub { font-size: 18px; color: #aaa; max-width: 480px; margin: 0 auto 36px; line-height: 1.6; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 36px; }
+    .tag { border: 1.5px solid #fff; padding: 6px 14px; font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #fff; text-transform: uppercase; }
+    .tag.vip { background: #E8C97A; border-color: #E8C97A; color: #3a2e00; }
+    .tag.family { background: #E8A87A; border-color: #E8A87A; color: #3a1800; }
+    .tag.work { background: #8FCA8F; border-color: #8FCA8F; color: #0a2a0a; }
+    .tag.parents { background: #8FB8E8; border-color: #8FB8E8; color: #0a1a3a; }
+    .hero-cta { background: #fff; color: #000; padding: 14px 36px; font-size: 14px; font-weight: 700; letter-spacing: 3px; border: none; cursor: pointer; text-transform: uppercase; display: inline-block; }
+
+    section { padding: 56px 32px; border-bottom: 1px solid #222; }
+    .section-label { font-size: 11px; letter-spacing: 4px; color: #666; text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-size: 36px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 16px; line-height: 1.1; }
+    .section-body { font-size: 16px; color: #aaa; line-height: 1.7; max-width: 560px; }
+
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #222; margin-top: 40px; }
+    .feature { background: #000; padding: 32px; }
+    .feature-num { font-size: 11px; letter-spacing: 3px; color: #555; margin-bottom: 12px; }
+    .feature-title { font-size: 18px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .feature-desc { font-size: 14px; color: #888; line-height: 1.6; }
+
+    .demo { background: #111; border: 1px solid #333; border-radius: 4px; padding: 24px; margin-top: 40px; }
+    .demo-search { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1.5px solid #fff; margin-bottom: 20px; }
+    .demo-search span { color: #666; font-size: 15px; }
+    .demo-search input { background: none; border: none; outline: none; color: #fff; font-size: 15px; flex: 1; letter-spacing: 1px; }
+    .demo-contacts { display: flex; flex-direction: column; gap: 16px; }
+    .contact { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid #222; }
+    .contact-avatar { width: 44px; height: 44px; border-radius: 50%; background: #333; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #aaa; }
+    .contact-name { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .contact-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ctag { border: 1px solid #444; padding: 3px 8px; font-size: 11px; letter-spacing: 1px; color: #aaa; text-transform: uppercase; }
+    .ctag.vip { background: #E8C97A22; border-color: #E8C97A66; color: #E8C97A; }
+
+    .quote { padding: 56px 32px; text-align: center; border-bottom: 1px solid #222; }
+    .quote-text { font-size: 28px; font-weight: 700; color: #fff; line-height: 1.4; max-width: 600px; margin: 0 auto 16px; }
+    .quote-attr { font-size: 13px; color: #555; letter-spacing: 2px; text-transform: uppercase; }
+
+    footer { padding: 32px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 20px; color: #fff; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; letter-spacing: 2px; color: #555; text-decoration: none; text-transform: uppercase; }
+    .app-badge { background: #fff; color: #000; padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: none; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo recall-font">#Recall</div>
+    <button class="nav-cta">Get the App</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-title recall-font">#Recall</div>
+    <p class="hero-sub">The contacts app built for brains like ours. Find anyone by what you remember — not how to spell their name.</p>
+    <div class="hero-tags">
+      <span class="tag vip">VIP</span>
+      <span class="tag family">FAMILY</span>
+      <span class="tag work">WORK</span>
+      <span class="tag parents">PARENTS</span>
+      <span class="tag">#NYC</span>
+      <span class="tag">#2024</span>
+      <span class="tag">#PHOTOGRAPHER</span>
+      <span class="tag">#TOKYO</span>
+    </div>
+    <button class="hero-cta">Download Free</button>
+  </div>
+
+  <section>
+    <div class="section-label">The problem</div>
+    <div class="section-title">You remember everything<br>except the spelling</div>
+    <p class="section-body">You know exactly who they are. Where you met them. What they do. But their name? Buried somewhere you can't reach. Recall is built for that moment.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Search by #hashtag</div>
+        <p class="feature-desc">Tag anyone with context. Search #tokyo, #2023, #designer and find them instantly.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-num">02</div>
+        <div class="feature-title">Smart groups</div>
+        <p class="feature-desc">VIP, Family, Work, Parents — colour-coded groups that filter your world instantly.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Swipe to tag</div>
+        <p class="feature-desc">Tinder-style tagging. Swipe right to save, left to revisit later.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-num">04</div>
+        <div class="feature-title">Built for neurodivergent minds</div>
+        <p class="feature-desc">Dyslexic-friendly mode. Designed around how you actually think.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">See it in action</div>
+    <div class="section-title">Find anyone, instantly</div>
+    <div class="demo">
+      <div class="demo-search">
+        <span>#</span>
+        <input value="tokyo photographer" readonly />
+      </div>
+      <div class="hero-tags" style="justify-content:flex-start; margin-bottom:20px;">
+        <span class="tag vip">VIP</span>
+        <span class="tag">#TOKYO</span>
+        <span class="tag">#PHOTOGRAPHER</span>
+      </div>
+      <div class="demo-contacts">
+        <div class="contact">
+          <div class="contact-avatar">AK</div>
+          <div>
+            <div class="contact-name">Aanya Kim</div>
+            <div class="contact-tags">
+              <span class="ctag">#TOKYO</span>
+              <span class="ctag">#PHOTOGRAPHER</span>
+              <span class="ctag">#2023</span>
+              <span class="ctag vip">#VIP_</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact">
+          <div class="contact-avatar">RS</div>
+          <div>
+            <div class="contact-name">Ruangsak A.</div>
+            <div class="contact-tags">
+              <span class="ctag">#TOKYO</span>
+              <span class="ctag">#ARTIST</span>
+              <span class="ctag">#2022</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote">
+    <p class="quote-text">"I built this because I needed it. 25 years as a photographer, 4,000+ contacts — and I couldn't spell half their names."</p>
+    <div class="quote-attr">— Paul, creator of Recall</div>
+  </div>
+
+  <footer>
+    <div class="footer-logo recall-font">#Recall</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Support</a>
+    </div>
+    <button class="app-badge">App Store</button>
+  </footer>
+</body>
+</html>
