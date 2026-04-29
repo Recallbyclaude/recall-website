@@ -150,6 +150,14 @@
     }
     .carousel-dot.active { background: #fff; transform: scale(1.3); }
 
+    /* VIDEO */
+    .video-section { padding: 64px 32px; border-bottom: 1px solid #222; }
+    .video-section .section-label { margin-bottom: 12px; }
+    .video-section h2 { font-size: 36px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 12px; line-height: 1.1; }
+    .video-section p { font-size: 16px; color: #aaa; margin-bottom: 36px; line-height: 1.6; max-width: 560px; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 800px; border: 1px solid #222; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
     /* EMAIL SIGNUP */
     .signup { padding: 64px 32px; border-bottom: 1px solid #222; text-align: center; }
     .signup-inner { max-width: 520px; margin: 0 auto; }
@@ -183,6 +191,8 @@
       .story-body { font-size: 15px; }
 
       footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .video-section { padding: 40px 20px; }
+      .video-section h2 { font-size: 26px; }
       .signup { padding: 40px 20px; }
       .screenshots { padding: 40px 20px; }
       .screenshots h2 { font-size: 26px; margin-bottom: 36px; }
@@ -351,7 +361,23 @@
     <div class="quote-attr">— Paul, creator of Recall</div>
   </div>
 
-  <!-- 7. EMAIL SIGNUP -->
+  <!-- 7. VIDEO -->
+  <div class="video-section" id="how-it-works">
+    <div class="section-label">How it works</div>
+    <h2>See Recall in action</h2>
+    <p>Watch how Recall Contacts lets you find anyone by hashtag, context, or group — no spelling required.</p>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/-Nk6mW6faGE"
+        title="Recall Contacts — How it works"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- 8. EMAIL SIGNUP -->
   <div class="signup" id="signup">
     <div class="signup-inner">
       <div class="section-label">Stay in the loop</div>
