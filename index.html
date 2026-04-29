@@ -131,9 +131,17 @@
       color: #999;
       text-decoration: none;
       text-transform: uppercase;
-      transition: color 0.2s;
+      transition: color 0.2s, border-color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
+    .nav-links a:not(.nav-cta) {
+      border: 1px solid transparent;
+      padding: 5px 10px;
+    }
+    .nav-links a:not(.nav-cta).active {
+      border-color: #fff;
+      color: #fff;
+    }
     .nav-cta {
       background: #fff;
       color: #000 !important;
@@ -629,11 +637,20 @@
     var currentIndex = 0;
     var isScrolling = false;
 
+    function updateActiveNav(index) {
+      var sectionId = sections[index] ? sections[index].id : '';
+      document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(function(link) {
+        var href = link.getAttribute('href');
+        link.classList.toggle('active', href === '#' + sectionId);
+      });
+    }
+
     function scrollToSection(index) {
       if (index < 0 || index >= sections.length) return;
       currentIndex = index;
       isScrolling = true;
       sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateActiveNav(index);
       setTimeout(function() { isScrolling = false; }, 900);
     }
 
