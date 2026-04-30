@@ -54,7 +54,9 @@
   </script>
 
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
 
   <style>
@@ -361,6 +363,24 @@
     }
     .skip-nav:focus { top: var(--frame); }
 
+    /* ── DESKTOP TAB MODE ─────────────────── */
+    @media (min-width: 721px) {
+      body { overflow: hidden; }
+      .snap-section {
+        display: none;
+        min-height: unset;
+        height: calc(100vh - var(--frame) * 2 - var(--nav-h));
+        overflow-y: auto;
+      }
+      .snap-section.desktop-active { display: flex; }
+      .signup.snap-section {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px;
+      }
+      .signup footer { margin-top: auto; }
+    }
+
     /* ── RESPONSIVE ────────────────────── */
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
@@ -398,7 +418,7 @@
       <a href="#story">Story</a>
       <a href="#how-it-works">How it works</a>
       <a href="#signup">Stay updated</a>
-      <a href="/blog/">Blog</a>
+      <a href="/blog/">Articles</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -576,33 +596,16 @@
   <!-- 7. VIDEO -->
   <div class="video-section snap-section" id="how-it-works">
     <div class="section-label">How it works</div>
-    <h2 class="section-title">See Recall in action</h2>
-    <p class="section-body">Watch how Recall Contacts lets you find anyone by hashtag, context, or group — no spelling required.</p>
-    <div class="video-wrap">
+    <h2 class="section-title">How I carry it</h2>
+    <p class="section-body">A real look at how Recall fits into daily life — how I carry it, use it, and why it actually works.</p>
+    <div class="video-wrap" style="max-width:380px; padding-bottom:177.78%;">
       <iframe
-        src="https://www.youtube.com/embed/-Nk6mW6faGE"
+        src="https://www.youtube.com/embed/wXPbl4qCyiU"
         title="Recall Contacts — How it works"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
         loading="lazy">
       </iframe>
-    </div>
-  </div>
-
-  <!-- 7b. APP DEMO VIDEO -->
-  <div class="video-section snap-section" id="app-demo">
-    <div class="section-label">App demo</div>
-    <h2 class="section-title">The app, up close.</h2>
-    <p class="section-body">A closer look at how Recall works inside the app — searching, tagging, and finding contacts the way your brain already works.</p>
-    <div class="video-wrap" style="max-width:380px;">
-      <video
-        src="recall-demo.mp4"
-        controls
-        playsinline
-        preload="metadata"
-        style="width:100%; display:block; border-radius:4px;"
-        aria-label="Recall Contacts app demo video">
-      </video>
     </div>
   </div>
 
@@ -614,9 +617,7 @@
       <p>New features, tips for dyslexic and neurodivergent users, and occasional notes from Paul.</p>
       <div id="fd-form-69f0b24abef402d800447a4b"></div>
     </div>
-  </div>
-
-  <footer>
+    <footer>
     <div class="footer-logo recall-font">#Recall</div>
     <div class="footer-links">
       <a href="/privacy.html">Privacy</a>
@@ -632,38 +633,65 @@
       </a>
     </div>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="footer-cta">App Store</a>
-  </footer>
+    </footer>
+  </div>
 
   <script>
-    /* ── FULL-PAGE SNAP SCROLL ─── */
+    /* ── NAVIGATION ─── */
     var sections = Array.from(document.querySelectorAll('.snap-section'));
     var currentIndex = 0;
     var isScrolling = false;
 
+    function isDesktop() {
+      return window.matchMedia('(min-width: 721px)').matches;
+    }
+
     function updateActiveNav(index) {
-      var sectionId = sections[index] ? sections[index].id : '';
-      document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(function(link) {
-        var href = link.getAttribute('href');
-        link.classList.toggle('active', href === '#' + sectionId);
+      var navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+      var navIds = Array.from(navLinks).map(function(l) {
+        var h = l.getAttribute('href');
+        return (h && h.startsWith('#') && h.length > 1) ? h.slice(1) : '';
+      });
+      var activeId = '';
+      for (var i = index; i >= 0; i--) {
+        var sid = sections[i] ? sections[i].id : '';
+        if (navIds.indexOf(sid) !== -1) { activeId = sid; break; }
+      }
+      navLinks.forEach(function(link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
       });
     }
 
-    function scrollToSection(index) {
+    function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
       currentIndex = index;
-      isScrolling = true;
-      sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-      updateActiveNav(index);
-      setTimeout(function() { isScrolling = false; }, 900);
+      if (isDesktop()) {
+        sections.forEach(function(s) { s.classList.remove('desktop-active'); });
+        sections[index].classList.add('desktop-active');
+        updateActiveNav(index);
+        isScrolling = true;
+        setTimeout(function() { isScrolling = false; }, 350);
+      } else {
+        isScrolling = true;
+        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        updateActiveNav(index);
+        setTimeout(function() { isScrolling = false; }, 900);
+      }
     }
 
+    /* Initialize desktop: show first section */
+    if (isDesktop()) goToSection(0);
+
+    /* Desktop: wheel navigates between tabs */
     window.addEventListener('wheel', function(e) {
-      if (isScrolling) return;
+      if (!isDesktop()) return;
       e.preventDefault();
-      if (e.deltaY > 0) scrollToSection(currentIndex + 1);
-      else scrollToSection(currentIndex - 1);
+      if (isScrolling) return;
+      if (e.deltaY > 0) goToSection(currentIndex + 1);
+      else goToSection(currentIndex - 1);
     }, { passive: false });
 
+    /* Desktop: touch swipe navigates between tabs */
     var touchStartY = 0;
     var touchStartX = 0;
     window.addEventListener('touchstart', function(e) {
@@ -671,27 +699,40 @@
       touchStartX = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchend', function(e) {
-      if (!window.matchMedia('(min-width: 721px)').matches) return;
+      if (!isDesktop()) return;
       if (isScrolling) return;
       var diffY = touchStartY - e.changedTouches[0].clientY;
       var diffX = Math.abs(touchStartX - e.changedTouches[0].clientX);
       if (Math.abs(diffY) > 50 && Math.abs(diffY) > diffX * 1.5) {
-        if (diffY > 0) scrollToSection(currentIndex + 1);
-        else scrollToSection(currentIndex - 1);
+        if (diffY > 0) goToSection(currentIndex + 1);
+        else goToSection(currentIndex - 1);
       }
     }, { passive: true });
 
-    /* Intercept nav anchor clicks */
+    /* Nav anchor clicks */
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
       link.addEventListener('click', function(e) {
         var targetId = link.getAttribute('href').slice(1);
-        if (!targetId) return;
+        if (!targetId) {
+          if (isDesktop()) { e.preventDefault(); goToSection(0); }
+          return;
+        }
         var targetIndex = sections.findIndex(function(s) { return s.id === targetId; });
         if (targetIndex !== -1) {
           e.preventDefault();
-          scrollToSection(targetIndex);
+          goToSection(targetIndex);
         }
       });
+    });
+
+    /* Handle resize between mobile ↔ desktop */
+    window.addEventListener('resize', function() {
+      if (isDesktop()) {
+        sections.forEach(function(s) { s.classList.remove('desktop-active'); });
+        sections[currentIndex].classList.add('desktop-active');
+      } else {
+        sections.forEach(function(s) { s.classList.remove('desktop-active'); });
+      }
     });
 
     /* ── CAROUSEL ─── */
