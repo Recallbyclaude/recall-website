@@ -671,10 +671,10 @@
       touchStartX = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchend', function(e) {
+      if (!window.matchMedia('(min-width: 721px)').matches) return;
       if (isScrolling) return;
       var diffY = touchStartY - e.changedTouches[0].clientY;
       var diffX = Math.abs(touchStartX - e.changedTouches[0].clientX);
-      // Only snap scroll if swipe is primarily vertical (not carousel swipe)
       if (Math.abs(diffY) > 50 && Math.abs(diffY) > diffX * 1.5) {
         if (diffY > 0) scrollToSection(currentIndex + 1);
         else scrollToSection(currentIndex - 1);
