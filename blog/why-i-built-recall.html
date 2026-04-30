@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why I built Recall: 25 years of faces, half the names — Recall Contacts</title>
+  <meta name="description" content="I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app." />
+  <meta name="author" content="Paul Barbera" />
+  <link rel="canonical" href="https://recall-contacts.com/blog/why-i-built-recall.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Why I built Recall: 25 years of faces, half the names" />
+  <meta property="og:description" content="I'm dyslexic. Names don't stick the way faces do. For most of my career I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app." />
+  <meta property="og:url" content="https://recall-contacts.com/blog/why-i-built-recall.html" />
+  <meta property="og:image" content="https://recall-contacts.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:author" content="Paul Barbera" />
+  <meta property="article:published_time" content="2026-04-29" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why I built Recall: 25 years of faces, half the names" />
+  <meta name="twitter:description" content="I'm dyslexic. Names don't stick the way faces do. For most of my career I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app." />
+  <meta name="twitter:image" content="https://recall-contacts.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why I built Recall: 25 years of faces, half the names",
+    "description": "I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them.",
+    "author": { "@type": "Person", "name": "Paul Barbera" },
+    "datePublished": "2026-04-29",
+    "url": "https://recall-contacts.com/blog/why-i-built-recall.html",
+    "publisher": { "@type": "Organization", "name": "Recall Contacts", "url": "https://recall-contacts.com" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-29KJDLZTQ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29KJDLZTQ1');
+  </script>
+
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --frame: 18px;
+      --nav-h: 56px;
+      --border: 1px solid #2a2a2a;
+      --label-color: #999;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding-top: calc(var(--frame) + var(--nav-h) + 60px);
+      padding-left: var(--frame);
+      padding-right: var(--frame);
+      padding-bottom: 80px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── FRAME ─────────────────────────── */
+    .frame {
+      position: fixed;
+      inset: var(--frame);
+      border: var(--border);
+      pointer-events: none;
+      z-index: 900;
+    }
+    .frame::before, .frame::after {
+      content: '';
+      position: absolute;
+      width: 6px; height: 6px;
+      background: #333;
+      border-radius: 50%;
+    }
+    .frame::before { top: -3px; left: -3px; }
+    .frame::after  { top: -3px; right: -3px; }
+    .frame-corner-bl, .frame-corner-br {
+      position: fixed;
+      width: 6px; height: 6px;
+      background: #333;
+      border-radius: 50%;
+      z-index: 901;
+      pointer-events: none;
+    }
+    .frame-corner-bl { bottom: calc(var(--frame) - 3px); left:  calc(var(--frame) - 3px); }
+    .frame-corner-br { bottom: calc(var(--frame) - 3px); right: calc(var(--frame) - 3px); }
+
+    .recall-font { font-family: 'Bungee Shade', cursive; }
+
+    /* ── NAV ───────────────────────────── */
+    nav {
+      position: fixed;
+      top: var(--frame);
+      left: var(--frame);
+      right: var(--frame);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: #000;
+      border-bottom: var(--border);
+      z-index: 800;
+    }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      color: #999;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:not(.nav-cta) {
+      border: 1px solid transparent;
+      padding: 5px 10px;
+    }
+    .nav-links a.active {
+      border-color: #fff;
+      color: #fff;
+    }
+    .nav-cta {
+      background: #fff;
+      color: #000 !important;
+      padding: 7px 18px;
+      font-size: 11px !important;
+      font-weight: 700;
+      letter-spacing: 2px !important;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; }
+
+    /* ── MOBILE MENU ───────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame); right: var(--frame);
+      background: #000;
+      border-bottom: var(--border);
+      border-left: var(--border);
+      border-right: var(--border);
+      z-index: 799;
+      flex-direction: column;
+      padding: 24px 28px;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
+
+    /* ── ARTICLE ───────────────────────── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .article-back {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+    .article-back:hover { color: #fff; }
+
+    .article-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--label-color);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .article-byline {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: var(--border);
+    }
+
+    .article-lede {
+      font-size: 22px;
+      color: #ccc;
+      line-height: 1.55;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .article-body {
+      font-size: 18px;
+      color: #888;
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+
+    .article-body em { color: #bbb; font-style: italic; }
+    .article-body strong { color: #fff; font-weight: 700; }
+
+    .article-divider {
+      border: none;
+      border-top: var(--border);
+      margin: 48px 0;
+    }
+
+    .article-pullquote {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      border-left: 2px solid #333;
+      padding-left: 28px;
+      margin: 48px 0;
+    }
+
+    /* ── CTA BLOCK ─────────────────────── */
+    .article-cta {
+      border: var(--border);
+      padding: 36px 32px;
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .article-cta-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #444;
+      text-transform: uppercase;
+    }
+    .article-cta-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .article-cta-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .btn-primary {
+      background: #fff;
+      color: #000;
+      padding: 13px 32px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      align-self: flex-start;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-primary:hover { background: #ddd; }
+
+    /* ── FOOTER ────────────────────────── */
+    footer {
+      max-width: 680px;
+      margin: 60px auto 0;
+      padding: 32px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: var(--border);
+    }
+    .footer-logo { font-size: 18px; color: #333; }
+    .footer-links { display: flex; gap: 24px; align-items: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: #444; text-decoration: none; text-transform: uppercase; }
+    .footer-links a:hover { color: #fff; }
+    .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+
+    /* ── FOCUS ─────────────────────────── */
+    :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    /* ── RESPONSIVE ────────────────────── */
+    @media (max-width: 720px) {
+      :root { --frame: 10px; --nav-h: 52px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .article-wrap { padding: 0 20px; }
+      .article-lede { font-size: 18px; }
+      .article-body { font-size: 16px; }
+      .article-cta { padding: 28px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame" aria-hidden="true"></div>
+  <div class="frame-corner-bl" aria-hidden="true"></div>
+  <div class="frame-corner-br" aria-hidden="true"></div>
+
+  <nav>
+    <a href="/" class="nav-logo recall-font">#Recall</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#screenshots">Screenshots</a>
+      <a href="/#story">Story</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#about">About</a>
+    <a href="/#screenshots">Screenshots</a>
+    <a href="/#story">Story</a>
+    <a href="/#how-it-works">How it works</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+  </div>
+
+  <article class="article-wrap">
+
+    <a href="/blog/" class="article-back">← All articles</a>
+
+    <div class="article-label">Story</div>
+    <h1 class="article-title">Why I built Recall:<br>25 years of faces,<br>half the names</h1>
+    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 4 min read</div>
+
+    <p class="article-lede">I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them.</p>
+
+    <p class="article-body">Twenty-five years. Thousands of shoots, events, studios, industry rooms. I met people constantly — and for most of that time I had no reliable way to find them again. Not because I forgot who they were. I remembered everything. The job, the city, the hat they were wearing. The name was the only thing my contacts app needed, and the one thing I couldn't reliably give it.</p>
+
+    <p class="article-body">Searching by spelling when you're dyslexic is an exercise in frustration. I'd type what I thought a name sounded like, get nothing, try three variations, give up. The person existed. My memory of them was vivid. The gap was just letters on a screen.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">So I invented a workaround. Instead of relying on spelling, I started tagging people in the Notes field of their contact — context that would actually stick. <em>#NYC. #Eastwood. #crazyhat. #2019. #photographer.</em></p>
+
+    <p class="article-body">My brain runs on context, not convention. I remember where I met someone, what they do, the thing that made them memorable. So I built a tagging system around that — not their name, but the handful of words I actually associated with them.</p>
+
+    <p class="article-body">It worked. Surprisingly well. I'd search a hashtag, find the person instantly, and wonder why this wasn't just how contacts apps worked.</p>
+
+    <div class="article-pullquote">"The person existed. My memory of them was vivid. The gap was just letters on a screen."</div>
+
+    <p class="article-body">For years, though, it was slow and clunky. Adding tags meant opening the native Contacts app, finding the Notes field, typing raw hashtags, saving. Getting them back out meant searching freetext and hoping the results made sense. I kept thinking: this should be a proper app. One that makes tagging fast, searching instant, and works the way memory actually works.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">I'm not a developer. I had the idea, the use case, and 25 years of living the problem. What I didn't have was the ability to build it myself.</p>
+
+    <p class="article-body">That changed when I started working with Jason at Laan Labs, and with Claude Code as my co-builder. The three of us — a photographer, a developer, and an AI assistant — built Recall Contacts from scratch. The first version took shape faster than I expected. The hard part wasn't the code. It was resisting the temptation to over-engineer it. Keep it simple. Make the thing work the way memory works.</p>
+
+    <p class="article-body">The result is an app that reads the hashtags already sitting in your Apple Contacts Notes fields, lets you add and edit them without leaving the app, and gives you instant search by tag. It syncs back to Apple Contacts natively — no new database, no lock-in. Your tags live where your contacts already live.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">I built it because I needed it. But the more I've talked about it, the more I've realised the audience is much wider than dyslexic photographers with 4,000 contacts.</p>
+
+    <p class="article-body">Anyone who thinks in context rather than convention. Anyone who meets a lot of people and wants a better way to remember them. Anyone who's ever stared at a search bar and had no idea how to even start. Recall works brilliantly for everyone — but it was built by someone who needed it to.</p>
+
+    <p class="article-body"><strong>Made by one of us. Built for brains like ours.</strong></p>
+
+    <div class="article-cta">
+      <div class="article-cta-label">Try it free</div>
+      <div class="article-cta-title">Recall Contacts — for iPhone</div>
+      <p class="article-cta-desc">Tag anyone. Search by hashtag. Find them instantly. Works with your existing Apple Contacts — no migration required.</p>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
+      <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; text-decoration:none; margin-top:4px; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#444'">Buy me a coffee ☕</a>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="footer-logo recall-font">#Recall</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="mailto:paul@paulbarbera.com">Support</a>
+      <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener">Buy me a coffee</a>
+    </div>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="footer-cta">App Store</a>
+  </footer>
+
+  <script>
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
+  </script>
+
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
+
+</body>
+</html>
