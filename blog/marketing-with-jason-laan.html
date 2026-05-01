@@ -62,9 +62,23 @@
       --label-color: #999;
     }
 
+    @keyframes gradientDrift {
+      0%, 100% { background-position: 100% 100%; }
+      50%       { background-position: 0% 0%; }
+    }
+
     body {
       background-color: #000;
-      background-image: radial-gradient(ellipse at bottom right, rgba(255, 178, 138, 0.13) 0%, transparent 1000%);
+      background-image: linear-gradient(
+        to top left,
+        rgba(232, 168, 122, 0.22),
+        rgba(232, 201, 122, 0.20),
+        rgba(143, 202, 143, 0.20),
+        rgba(143, 184, 232, 0.20),
+        rgba(200, 168, 232, 0.20)
+      );
+      background-size: 400% 400%;
+      animation: gradientDrift 25s ease infinite;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       padding-top: calc(var(--frame) + var(--nav-h) + 60px);
