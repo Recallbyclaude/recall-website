@@ -247,9 +247,7 @@
     }
 
     /* ── SHARE ─────────────────────────── */
-    .article-share {
-      margin-bottom: 48px;
-    }
+    .article-share { margin-bottom: 48px; }
     .btn-share {
       display: inline-flex;
       align-items: center;
@@ -285,6 +283,15 @@
 
     .article-body em { color: #bbb; font-style: italic; }
     .article-body strong { color: #fff; font-weight: 700; }
+
+    .article-body sup a {
+      color: #444;
+      font-size: 11px;
+      text-decoration: none;
+      line-height: 0;
+      vertical-align: super;
+    }
+    .article-body sup a:hover { color: #888; }
 
     .article-divider {
       border: none;
@@ -348,11 +355,47 @@
     }
     .article-profile-workaround strong { color: #777; font-style: normal; font-weight: 700; }
 
+    /* ── REFERENCES ────────────────────── */
+    .article-references {
+      border-top: var(--border);
+      margin-top: 64px;
+      padding-top: 40px;
+      margin-bottom: 8px;
+    }
+    .article-references-head {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #333;
+      margin-bottom: 24px;
+    }
+    .article-references ol {
+      list-style: none;
+      counter-reset: ref-counter;
+      padding: 0;
+    }
+    .article-references li {
+      counter-increment: ref-counter;
+      font-size: 12px;
+      color: #3a3a3a;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      padding-left: 28px;
+      position: relative;
+    }
+    .article-references li::before {
+      content: counter(ref-counter) ".";
+      position: absolute;
+      left: 0;
+      color: #333;
+      font-weight: 700;
+    }
+
     /* ── CTA BLOCK ─────────────────────── */
     .article-cta {
       border: var(--border);
       padding: 36px 32px;
-      margin-top: 64px;
+      margin-top: 48px;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -467,7 +510,7 @@
 
     <div class="article-label">Dyslexia · Neurodivergent · Workarounds</div>
     <h1 class="article-title">The Dyslexic Mind:<br>The Workaround<br>Is the Genius</h1>
-    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 7 min read</div>
+    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 9 min read</div>
 
     <div class="article-share">
       <button class="btn-share" onclick="shareArticle()">
@@ -486,44 +529,68 @@
 
     <div class="article-pullquote">"Dyslexic people don't find the shortcut. They build a different road entirely — and sometimes that road turns out to be the highway everyone else eventually wants."</div>
 
+    <h2 class="article-section-head">The name problem</h2>
+
+    <p class="article-body">One of the most specific and least talked-about difficulties of dyslexia is this: forgetting names. Not from inattention. Not from not caring. From a documented neurological process called word retrieval difficulty — the inability to access a word you know is there.<sup><a href="#ref-1" id="back-1">[1]</a></sup></p>
+
+    <p class="article-body">The Yale Center for Dyslexia and Creativity lists "difficulty remembering names of people and places" and persistent "tip of the tongue" moments as recognized signs of dyslexia across all age groups — including adults who have otherwise learned to compensate in most areas of life.<sup><a href="#ref-2" id="back-2">[2]</a></sup></p>
+
+    <p class="article-body">What dyslexics often retain — and retain well — is context. Where they met someone. What that person does. The conversation they had. The setting. The feeling. The face, often, though research on this is more nuanced than the popular myth suggests.<sup><a href="#ref-3" id="back-3">[3]</a></sup> The name is the part that slips. The arbitrary label attached to a person, disconnected from everything else that makes them memorable.</p>
+
+    <p class="article-body">I built Recall around exactly that gap. You search for people the way a dyslexic brain actually stores them — by context, by tag, by memory trace. Not by the name you've probably already lost.</p>
+
     <h2 class="article-section-head">The science of the workaround</h2>
 
-    <p class="article-body">Research from the Yale Center for Dyslexia and Creativity has consistently found that dyslexic individuals demonstrate elevated ability in big-picture thinking, pattern recognition, spatial reasoning, and narrative comprehension. These aren't consolation prizes. They are, in many professional contexts, the skills that matter most.</p>
+    <p class="article-body">Research from the Yale Center for Dyslexia and Creativity has consistently found that dyslexic individuals demonstrate elevated ability in big-picture thinking, pattern recognition, spatial reasoning, and narrative comprehension. These aren't consolation prizes. They are, in many professional contexts, the skills that matter most.<sup><a href="#ref-2" id="back-2b">[2]</a></sup></p>
 
-    <p class="article-body">What drives them? Necessity. When the standard path is blocked, the brain routes around it — and in doing so, it exercises cognitive muscles that others leave dormant. The dyslexic child who can't decode text quickly learns to read the room, read people, read situations. The student who can't take notes fast enough learns to identify what actually matters. The professional who struggles with written communication learns to speak with clarity and precision that cuts through noise.</p>
+    <p class="article-body">A 2003 study of 300 business leaders found that 40% were dyslexic — roughly four times the rate in the general population. Professor Julie Logan of Cass Business School found that 35% of successful entrepreneurs in the US had dyslexia, and that dyslexic entrepreneurs were more likely to start multiple ventures, grow them faster, and rate themselves as stronger communicators than their non-dyslexic peers.<sup><a href="#ref-4" id="back-4">[4]</a></sup></p>
 
-    <p class="article-body"><em>The workaround becomes the skill. The detour becomes the destination.</em></p>
+    <p class="article-body">A 2022 peer-reviewed study published in Frontiers in Psychology found that people with dyslexia may struggle not just to retrieve specific information, but also to recall the context in which it was learned — compounding the difficulty and pushing the brain to develop alternative retrieval strategies.<sup><a href="#ref-5" id="back-5">[5]</a></sup> <em>The workaround becomes the skill. The detour becomes the destination.</em></p>
 
-    <h2 class="article-section-head">Three people who built their genius on the detour</h2>
+    <h2 class="article-section-head">Five people who built their genius on the detour</h2>
 
     <div class="article-profile">
       <div class="article-profile-name">Richard Branson</div>
       <div class="article-profile-role">Founder, Virgin Group &nbsp;·&nbsp; Diagnosed dyslexic</div>
       <p class="article-profile-body">Branson failed academically and left school at 16. His headmaster famously told him he would either end up in prison or become a millionaire. What the headmaster missed was that Branson had already developed something school couldn't teach: an ability to spot what other people wanted before they knew they wanted it, and to surround himself with people who filled his gaps. He built Virgin by delegating everything he couldn't do well and leading with everything he could — charm, boldness, and an instinct for human experience over spreadsheet logic.</p>
-      <p class="article-profile-workaround"><strong>The workaround:</strong> Can't absorb dense business plans — so he simplified everything to a single question: "Is this good for customers?" Built an empire on clarity over complexity.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Can't absorb dense business plans — so he simplified everything to one question: "Is this good for customers?" Built an empire on clarity over complexity.</p>
     </div>
 
     <div class="article-profile">
       <div class="article-profile-name">Steve Jobs</div>
       <div class="article-profile-role">Co-founder, Apple &nbsp;·&nbsp; Reported significant reading difficulties</div>
-      <p class="article-profile-body">Jobs struggled through conventional education and dropped out of Reed College after one semester. But he stayed on campus — and famously, he sat in on a calligraphy class that would eventually shape the typography of the Macintosh. His inability to follow a straight line through school led him to absorb things laterally, making connections between design, technology, and human feeling that trained engineers couldn't see. He didn't build products. He built experiences. That instinct came from a mind that had always had to find another way to understand the world.</p>
-      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't retain what didn't interest him — so he became obsessively focused on the things that did. Depth over breadth became a design philosophy.</p>
+      <p class="article-profile-body">Jobs dropped out of Reed College after one semester — but stayed on campus and sat in on a calligraphy class that would eventually shape the typography of the Macintosh. His inability to follow a straight line through school led him to absorb things laterally, making connections between design, technology, and human feeling that trained engineers couldn't see. He didn't build products. He built experiences.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't retain what didn't interest him — so he became obsessively focused on what did. Depth over breadth became a design philosophy.</p>
     </div>
 
     <div class="article-profile">
       <div class="article-profile-name">Agatha Christie</div>
-      <div class="article-profile-role">Author, 66 detective novels &nbsp;·&nbsp; Described herself as dyslexic</div>
-      <p class="article-profile-body">Christie wrote about her struggles with reading and spelling throughout her life, describing herself as "an unsuccessful schoolgirl." Her books are full of grammatical workarounds — she avoided the constructions she couldn't get right and developed a voice that was spare, precise, and absolutely her own. She couldn't describe a room at length, so she learned to reveal character through a single object. She couldn't write in flowing prose, so she wrote in tight, punchy dialogue. Every limitation forced an innovation. She became the best-selling fiction writer of all time.</p>
-      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't write elaborate scene descriptions — so she mastered implication and detail. The constraint created one of the most distinctive literary voices of the 20th century.</p>
+      <div class="article-profile-role">Author, 66 detective novels &nbsp;·&nbsp; Self-described dyslexic</div>
+      <p class="article-profile-body">Christie described herself as "an unsuccessful schoolgirl" and wrote about her struggles with spelling throughout her life. Her constraints forced innovation: she avoided constructions she couldn't get right, wrote in spare dialogue rather than flowing prose, and revealed character through a single telling detail rather than long description. She became the best-selling fiction writer of all time.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't write elaborate scene descriptions — so she mastered implication. The constraint created one of the most distinctive literary voices of the 20th century.</p>
+    </div>
+
+    <div class="article-profile">
+      <div class="article-profile-name">Cliff Weitzman</div>
+      <div class="article-profile-role">Founder & CEO, Speechify &nbsp;·&nbsp; Forbes 30 Under 30, 2017</div>
+      <p class="article-profile-body">Diagnosed with dyslexia young, Weitzman built Speechify — the world's leading text-to-speech app — because he needed it himself. He couldn't read easily, so he built a way to listen instead. Over 50 million people now use it. The workaround was the product. In 2025, Apple awarded Speechify its prestigious Design Award at WWDC.<sup><a href="#ref-6" id="back-6">[6]</a></sup></p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Can't read fast enough — so he built an app to listen instead. Then realized 50 million people needed the same thing.</p>
+    </div>
+
+    <div class="article-profile">
+      <div class="article-profile-name">Daymond John</div>
+      <div class="article-profile-role">Founder, FUBU &nbsp;·&nbsp; Shark Tank investor &nbsp;·&nbsp; Diagnosed dyslexic in adulthood</div>
+      <p class="article-profile-body">John struggled with reading and spelling throughout school. Rather than fight his weak points, he worked to be exceptional at what he was already good at — visual thinking, creativity, and reading people. He mapped entire business plans in his head rather than on paper, and built FUBU into a cultural institution.<sup><a href="#ref-7" id="back-7">[7]</a></sup></p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Can't easily process written plans — so he visualized everything. Turned a mental map into a business model.</p>
     </div>
 
     <h2 class="article-section-head">The thesaurus in your head</h2>
 
-    <p class="article-body">I think about my own version of this constantly. For as long as I can remember, I've carried an internal thesaurus — not because I'm a lover of language, but because I needed one to survive the simplest written exchanges. Can't spell "necessary"? Find a word you can spell. <em>Essential. Required. Critical.</em> Pick the one that fits and move on.</p>
+    <p class="article-body">I think about my own version of this constantly. For as long as I can remember, I've carried an internal thesaurus — not because I'm a lover of language, but because I needed one to survive. Can't spell "necessary"? Find a word you can spell. <em>Essential. Required. Critical.</em> Pick the one that fits and move on.</p>
 
     <p class="article-body">What I didn't realize until much later is that this habit had made me better at something: finding the word that was actually more precise. The synonym I reached for in desperation was often cleaner than the word I couldn't spell. The workaround improved the work.</p>
 
-    <p class="article-body">That same instinct — reach for another way in, always — is embedded in every design decision I made in Recall. Contacts apps are built around names. Names are the thing dyslexic people often can't reliably hold onto. So we built around context instead. Who is this person? Where did I meet them? What do they do? Tag them with what you remember, and the name will find you.</p>
+    <p class="article-body">That same instinct — reach for another way in, always — is embedded in every design decision I made in Recall. Contacts apps are built around names. Names are the thing dyslexic people often can't reliably retrieve.<sup><a href="#ref-1" id="back-1b">[1]</a></sup> So we built around context instead. Who is this person? Where did I meet them? What do they do? Tag them with what you remember, and the name will find you.</p>
 
     <p class="article-body">It's not a workaround. It's a better road.</p>
 
@@ -539,10 +606,23 @@
 
     <p class="article-body"><strong>Made by Paul. One of us.</strong></p>
 
+    <div class="article-references">
+      <div class="article-references-head">References</div>
+      <ol>
+        <li id="ref-1">Good Sensory Learning. "Dyslexia and Memory — Improving Your Memory for Names." goodsensorylearning.com, 2021. Word retrieval difficulty as a documented characteristic of dyslexia.</li>
+        <li id="ref-2">Yale Center for Dyslexia and Creativity. "Signs of Dyslexia." dyslexia.yale.edu. Includes difficulty remembering names of people and places, and "tip of the tongue" retrieval failures, across all age groups.</li>
+        <li id="ref-3">Sigurdardottir et al., cited in: "Holistic Processing of Faces and Words Predicts Reading Accuracy and Speed in Dyslexic Readers." NCBI / PMC, 2021. Notes that face memory in dyslexia is more complex than commonly assumed, linked to shared neural processing with word recognition.</li>
+        <li id="ref-4">Logan, J. (Cass Business School). Cited in: LDRFA. "Famous Dyslexic Entrepreneurs." ldrfa.org, 2022. Study of 300 business leaders; 40% dyslexic. US entrepreneur rate 35% vs 15% in general population.</li>
+        <li id="ref-5">Obidziński, M. & Nieznański, M. "Context and Target Recollection for Words and Pictures in Young Adults with Developmental Dyslexia." Frontiers in Psychology, Vol. 13, 2022. DOI: 10.3389/fpsyg.2022.993384</li>
+        <li id="ref-6">Speechify. "Cliff Weitzman." speechify.com. Forbes 30 Under 30, 2017. Apple Design Award, WWDC 2025.</li>
+        <li id="ref-7">Lexercise. "Famous Dyslexics: Business and Entrepreneurship." lexercise.com, 2025. On Daymond John's visual business planning approach.</li>
+      </ol>
+    </div>
+
     <div class="article-cta">
-      <div class="article-cta-label">Try it free</div>
+      <div class="article-cta-label">On the App Store</div>
       <div class="article-cta-title">Recall Contacts — for iPhone</div>
-      <p class="article-cta-desc">A contacts app built by a dyslexic person, for anyone who remembers faces and forgets names. Find people by context, not by spelling.</p>
+      <p class="article-cta-desc">Built by a dyslexic person, for anyone who remembers everything about someone except their name. Find people by context, not by spelling. $1.99.</p>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
       <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; text-decoration:none; margin-top:4px; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#444'">Buy me a coffee ☕</a>
     </div>
