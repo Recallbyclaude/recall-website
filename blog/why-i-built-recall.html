@@ -241,10 +241,30 @@
       letter-spacing: 3px;
       color: #444;
       text-transform: uppercase;
-      margin-bottom: 56px;
-      padding-bottom: 32px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: var(--border);
     }
+
+    /* ── SHARE ─────────────────────────── */
+    .article-share { margin-bottom: 48px; }
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      background: none;
+      border: 1px solid #2a2a2a;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .btn-share:hover { color: #fff; border-color: #555; }
+    .btn-share svg { width: 13px; height: 13px; flex-shrink: 0; }
 
     .article-lede {
       font-size: 22px;
@@ -399,6 +419,13 @@
     <h1 class="article-title">Why I built Recall:<br>25 years of faces,<br>half the names</h1>
     <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 4 min read</div>
 
+    <div class="article-share">
+      <button class="btn-share" onclick="shareArticle()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+
     <p class="article-lede">I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them.</p>
 
     <p class="article-body">Twenty-five years. Thousands of shoots, events, studios, industry rooms. I met people constantly — and for most of that time I had no reliable way to find them again. Not because I forgot who they were. I remembered everything. The job, the city, the hat they were wearing. The name was the only thing my contacts app needed, and the one thing I couldn't reliably give it.</p>
@@ -462,6 +489,16 @@
     mobileMenu.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
     });
+
+    function shareArticle() {
+      var url = window.location.href;
+      var title = 'Why I built Recall: 25 years of faces, half the names';
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).catch(function(){});
+      } else {
+        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+      }
+    }
   </script>
 
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>

@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What the man behind Face Swap told me about getting Recall noticed — Recall Contacts</title>
-  <meta name="description" content="Jason Laan co-founded Laan Labs and built multiple #1 App Store hits including Face Swap Live. I asked him to take an honest look at how I'm marketing Recall — and tell me what I should be doing differently." />
+  <title>The Dyslexic Mind: The Workaround Is the Genius — Recall Contacts</title>
+  <meta name="description" content="Dyslexic people don't find ways around their obstacles. They build entirely new roads — and those roads often lead somewhere the rest of the world hasn't been yet." />
   <meta name="author" content="Paul Barbera" />
-  <link rel="canonical" href="https://recall-contacts.com/blog/marketing-with-jason-laan.html" />
+  <link rel="canonical" href="https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="What the man behind Face Swap told me about getting Recall noticed" />
-  <meta property="og:description" content="Jason Laan has built some of the most downloaded apps in App Store history. I asked him to take an honest look at how I'm marketing Recall — and tell me what I should be doing differently." />
-  <meta property="og:url" content="https://recall-contacts.com/blog/marketing-with-jason-laan.html" />
+  <meta property="og:title" content="The Dyslexic Mind: The Workaround Is the Genius" />
+  <meta property="og:description" content="Dyslexic people don't find ways around their obstacles. They build entirely new roads — and those roads often lead somewhere the rest of the world hasn't been yet." />
+  <meta property="og:url" content="https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html" />
   <meta property="og:image" content="https://recall-contacts.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -20,19 +20,19 @@
   <meta property="article:published_time" content="2026-04-30" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="What the man behind Face Swap told me about getting Recall noticed" />
-  <meta name="twitter:description" content="Jason Laan has built some of the most downloaded apps in App Store history. I asked him to take an honest look at how I'm marketing Recall." />
+  <meta name="twitter:title" content="The Dyslexic Mind: The Workaround Is the Genius" />
+  <meta name="twitter:description" content="Dyslexic people don't find ways around their obstacles. They build entirely new roads — and those roads often lead somewhere the rest of the world hasn't been yet." />
   <meta name="twitter:image" content="https://recall-contacts.com/og-image.png" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "What the man behind Face Swap told me about getting Recall noticed",
-    "description": "Jason Laan co-founded Laan Labs and built multiple #1 App Store hits including Face Swap Live. I asked him to take an honest look at how I'm marketing Recall.",
+    "headline": "The Dyslexic Mind: The Workaround Is the Genius",
+    "description": "Dyslexic people don't find ways around their obstacles. They build entirely new roads — and those roads often lead somewhere the rest of the world hasn't been yet.",
     "author": { "@type": "Person", "name": "Paul Barbera" },
     "datePublished": "2026-04-30",
-    "url": "https://recall-contacts.com/blog/marketing-with-jason-laan.html",
+    "url": "https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html",
     "publisher": { "@type": "Organization", "name": "Recall Contacts", "url": "https://recall-contacts.com" }
   }
   </script>
@@ -247,7 +247,9 @@
     }
 
     /* ── SHARE ─────────────────────────── */
-    .article-share { margin-bottom: 48px; }
+    .article-share {
+      margin-bottom: 48px;
+    }
     .btn-share {
       display: inline-flex;
       align-items: center;
@@ -300,21 +302,51 @@
       margin: 48px 0;
     }
 
-    /* ── VIDEO ─────────────────────────── */
-    .article-video {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
+    .article-section-head {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 56px 0 28px;
+    }
+
+    /* ── PROFILE CARDS ─────────────────── */
+    .article-profile {
       border: var(--border);
-      margin: 0 0 48px;
+      padding: 28px 28px 24px;
+      margin-bottom: 16px;
     }
-    .article-video iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
+    .article-profile-name {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 4px;
     }
+    .article-profile-role {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .article-profile-body {
+      font-size: 16px;
+      color: #888;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .article-profile-workaround {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .article-profile-workaround strong { color: #777; font-style: normal; font-weight: 700; }
 
     /* ── CTA BLOCK ─────────────────────── */
     .article-cta {
@@ -391,6 +423,8 @@
       .article-wrap { padding: 0 20px; }
       .article-lede { font-size: 18px; }
       .article-body { font-size: 16px; }
+      .article-profile { padding: 20px; }
+      .article-profile-body { font-size: 15px; }
       .article-cta { padding: 28px 20px; }
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
     }
@@ -431,9 +465,9 @@
 
     <a href="/blog/" class="article-back">← All articles</a>
 
-    <div class="article-label">Marketing</div>
-    <h1 class="article-title">What the man behind Face Swap told me about getting Recall noticed</h1>
-    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min watch</div>
+    <div class="article-label">Dyslexia · Neurodivergent · Workarounds</div>
+    <h1 class="article-title">The Dyslexic Mind:<br>The Workaround<br>Is the Genius</h1>
+    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 7 min read</div>
 
     <div class="article-share">
       <button class="btn-share" onclick="shareArticle()">
@@ -442,44 +476,73 @@
       </button>
     </div>
 
-    <div class="article-video">
-      <iframe
-        src="https://www.youtube.com/embed/SpWg67BaXWA"
-        title="Marketing Recall with the Man Behind Face Swap | Jason Laan"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
+    <p class="article-lede">Dyslexic people don't find ways around their obstacles. They build entirely new roads — and those roads often lead somewhere the rest of the world hasn't been yet.</p>
+
+    <p class="article-body">Here is something that took me decades to understand about myself: every time I struggled, I was also inventing. I just didn't recognize it as invention at the time. I thought I was compensating. I thought I was getting by. What I was actually doing was building a toolkit that most people never need — because most people never hit the wall.</p>
+
+    <p class="article-body">Take spelling. I can't spell. I never could. But rather than stumble over a word I couldn't get right, I learned to swap it — instantly, instinctively — for a word I could. I became a walking thesaurus. Not because I loved language, but because I had to find another way in. That habit, that constant lateral reach for the alternative route, quietly shaped how I think about everything.</p>
+
+    <p class="article-body">That's where Recall came from. Not from a product brief. Not from market research. From thirty years of finding alternative ways to navigate a world that wasn't designed for a brain like mine.</p>
+
+    <div class="article-pullquote">"Dyslexic people don't find the shortcut. They build a different road entirely — and sometimes that road turns out to be the highway everyone else eventually wants."</div>
+
+    <h2 class="article-section-head">The science of the workaround</h2>
+
+    <p class="article-body">Research from the Yale Center for Dyslexia and Creativity has consistently found that dyslexic individuals demonstrate elevated ability in big-picture thinking, pattern recognition, spatial reasoning, and narrative comprehension. These aren't consolation prizes. They are, in many professional contexts, the skills that matter most.</p>
+
+    <p class="article-body">What drives them? Necessity. When the standard path is blocked, the brain routes around it — and in doing so, it exercises cognitive muscles that others leave dormant. The dyslexic child who can't decode text quickly learns to read the room, read people, read situations. The student who can't take notes fast enough learns to identify what actually matters. The professional who struggles with written communication learns to speak with clarity and precision that cuts through noise.</p>
+
+    <p class="article-body"><em>The workaround becomes the skill. The detour becomes the destination.</em></p>
+
+    <h2 class="article-section-head">Three people who built their genius on the detour</h2>
+
+    <div class="article-profile">
+      <div class="article-profile-name">Richard Branson</div>
+      <div class="article-profile-role">Founder, Virgin Group &nbsp;·&nbsp; Diagnosed dyslexic</div>
+      <p class="article-profile-body">Branson failed academically and left school at 16. His headmaster famously told him he would either end up in prison or become a millionaire. What the headmaster missed was that Branson had already developed something school couldn't teach: an ability to spot what other people wanted before they knew they wanted it, and to surround himself with people who filled his gaps. He built Virgin by delegating everything he couldn't do well and leading with everything he could — charm, boldness, and an instinct for human experience over spreadsheet logic.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Can't absorb dense business plans — so he simplified everything to a single question: "Is this good for customers?" Built an empire on clarity over complexity.</p>
     </div>
 
-    <p class="article-lede">Jason Laan has built some of the most downloaded apps in App Store history. I asked him to take an honest look at how I'm marketing Recall — and tell me what I should be doing differently.</p>
+    <div class="article-profile">
+      <div class="article-profile-name">Steve Jobs</div>
+      <div class="article-profile-role">Co-founder, Apple &nbsp;·&nbsp; Reported significant reading difficulties</div>
+      <p class="article-profile-body">Jobs struggled through conventional education and dropped out of Reed College after one semester. But he stayed on campus — and famously, he sat in on a calligraphy class that would eventually shape the typography of the Macintosh. His inability to follow a straight line through school led him to absorb things laterally, making connections between design, technology, and human feeling that trained engineers couldn't see. He didn't build products. He built experiences. That instinct came from a mind that had always had to find another way to understand the world.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't retain what didn't interest him — so he became obsessively focused on the things that did. Depth over breadth became a design philosophy.</p>
+    </div>
 
-    <p class="article-body">Jason is co-founder of Laan Labs, a boutique app studio with nearly twenty years in the game. You've almost certainly used one of their apps. <em>Face Swap Live</em> was the original live face-swapping app — a global phenomenon, a genuine #1 hit. <em>Tap DJ</em> brought professional mixing to iPhone with their signature GyroScratch™ technology. Brothers Christopher and Jason built what most indie founders only dream about: a small team that consistently makes apps people actually want, at scale.</p>
+    <div class="article-profile">
+      <div class="article-profile-name">Agatha Christie</div>
+      <div class="article-profile-role">Author, 66 detective novels &nbsp;·&nbsp; Described herself as dyslexic</div>
+      <p class="article-profile-body">Christie wrote about her struggles with reading and spelling throughout her life, describing herself as "an unsuccessful schoolgirl." Her books are full of grammatical workarounds — she avoided the constructions she couldn't get right and developed a voice that was spare, precise, and absolutely her own. She couldn't describe a room at length, so she learned to reveal character through a single object. She couldn't write in flowing prose, so she wrote in tight, punchy dialogue. Every limitation forced an innovation. She became the best-selling fiction writer of all time.</p>
+      <p class="article-profile-workaround"><strong>The workaround:</strong> Couldn't write elaborate scene descriptions — so she mastered implication and detail. The constraint created one of the most distinctive literary voices of the 20th century.</p>
+    </div>
 
-    <p class="article-body">Jason has also been part of building Recall from the start — so he knows the app, the idea, and the problem it solves. That makes his take here different from generic App Store marketing advice. He's not guessing at what Recall is or who it's for. He knows.</p>
+    <h2 class="article-section-head">The thesaurus in your head</h2>
 
-    <hr class="article-divider" />
+    <p class="article-body">I think about my own version of this constantly. For as long as I can remember, I've carried an internal thesaurus — not because I'm a lover of language, but because I needed one to survive the simplest written exchanges. Can't spell "necessary"? Find a word you can spell. <em>Essential. Required. Critical.</em> Pick the one that fits and move on.</p>
 
-    <p class="article-body">What I wanted from this conversation was the unvarnished version. Not a pep talk. The honest answer to: what am I not doing? Where are the gaps? What would someone with two or three App Store number ones do differently?</p>
+    <p class="article-body">What I didn't realize until much later is that this habit had made me better at something: finding the word that was actually more precise. The synonym I reached for in desperation was often cleaner than the word I couldn't spell. The workaround improved the work.</p>
 
-    <p class="article-body">Six minutes in, and I had a list. Some of it confirmed what I already suspected. Some of it I hadn't thought about at all. That's the value of sitting down with someone who's actually done it — not the theory, the real thing.</p>
+    <p class="article-body">That same instinct — reach for another way in, always — is embedded in every design decision I made in Recall. Contacts apps are built around names. Names are the thing dyslexic people often can't reliably hold onto. So we built around context instead. Who is this person? Where did I meet them? What do they do? Tag them with what you remember, and the name will find you.</p>
 
-    <div class="article-pullquote">"He knows what it takes to cut through the noise — and he wasn't shy about telling me where the gaps were."</div>
+    <p class="article-body">It's not a workaround. It's a better road.</p>
 
-    <p class="article-body">One of the things that came through clearly: getting a good app discovered is a completely separate skill from building one. The product being good isn't enough. It never was. The App Store is crowded in a way that rewards clarity, consistency, and showing up in the right places — not just quality alone.</p>
+    <div class="article-pullquote">"The word I reached for in desperation was often more precise than the one I couldn't spell. The detour improved the destination."</div>
 
-    <p class="article-body">Jason's advice is grounded in nearly twenty years of watching what works and what doesn't. He's not selling a course. He's someone who's been in the game long enough to have seen every trend come and go — and knows which fundamentals actually hold.</p>
+    <h2 class="article-section-head">What this means for all of us</h2>
 
-    <hr class="article-divider" />
+    <p class="article-body">Dyslexia is still framed, in most schools and many workplaces, as a deficit. Something to be accommodated, managed, worked around. And yes — there are real daily difficulties. I'm not here to romanticize the frustration of a brain that fights you on the basics.</p>
 
-    <p class="article-body">Watch the full conversation above. Whether you're an indie dev trying to figure out App Store marketing, a founder wondering how apps actually get discovered, or just curious what goes on behind the scenes — there's a lot here worth your six minutes.</p>
+    <p class="article-body">But the research, and the biographies, and the lived experience of millions of people tell a different story too. The brain that can't go straight learns to go wide. It learns to see from angles. It learns to question whether the obvious path is actually the right one. It builds tools — personal, private, idiosyncratic tools — that nobody else thought to build, because nobody else needed them.</p>
 
-    <p class="article-body"><strong>Jason doesn't deal in vague advice. Neither do I.</strong></p>
+    <p class="article-body">Those tools have a way of turning out to be useful for everyone.</p>
+
+    <p class="article-body"><strong>Made by Paul. One of us.</strong></p>
 
     <div class="article-cta">
       <div class="article-cta-label">Try it free</div>
       <div class="article-cta-title">Recall Contacts — for iPhone</div>
-      <p class="article-cta-desc">Tag anyone. Search by hashtag. Find them instantly. Works with your existing Apple Contacts — no migration required.</p>
+      <p class="article-cta-desc">A contacts app built by a dyslexic person, for anyone who remembers faces and forgets names. Find people by context, not by spelling.</p>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
       <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; text-decoration:none; margin-top:4px; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#444'">Buy me a coffee ☕</a>
     </div>
@@ -508,7 +571,7 @@
 
     function shareArticle() {
       var url = window.location.href;
-      var title = 'What the man behind Face Swap told me about getting Recall noticed';
+      var title = 'The Dyslexic Mind: The Workaround Is the Genius';
       if (navigator.share) {
         navigator.share({ title: title, url: url }).catch(function(){});
       } else {
