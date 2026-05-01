@@ -71,7 +71,7 @@
 
     body {
       background-color: #000;
-      background-image: radial-gradient(ellipse at 50% 50%, rgba(255, 178, 138, 0.13) 0%, transparent 26%);
+      background-image: radial-gradient(ellipse at bottom right, rgba(255, 178, 138, 0.13) 0%, transparent 400%);
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       padding-top: calc(var(--frame) + var(--nav-h));
@@ -388,7 +388,7 @@
     /* ── RESPONSIVE ────────────────────── */
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
-      body { background-image: radial-gradient(ellipse at 50% 40%, rgba(255, 178, 138, 0.13) 0%, transparent 60%); }
+      body { background-image: radial-gradient(ellipse at bottom right, rgba(255, 178, 138, 0.13) 0%, transparent 700%); }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .hero { padding: 0 20px; }
@@ -667,10 +667,10 @@
       });
     }
 
-    var glowSizes = ['26%','32%','38%','44%','49%','53%','57%','61%','65%'];
+    var glowSizes = ['400%','455%','510%','565%','620%','670%','720%','775%','840%'];
     function updateGlow(index) {
       var size = glowSizes[Math.min(index, glowSizes.length - 1)];
-      document.body.style.backgroundImage = 'radial-gradient(ellipse at 50% 50%, rgba(255, 178, 138, 0.13) 0%, transparent ' + size + ')';
+      document.body.style.backgroundImage = 'radial-gradient(ellipse at bottom right, rgba(255, 178, 138, 0.13) 0%, transparent ' + size + ')';
     }
 
     function goToSection(index) {
