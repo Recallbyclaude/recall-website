@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Articles — Recall Contacts</title>
-  <meta name="description" content="Articles from Paul Barbera — creator of Recall Contacts. On building apps, dyslexia, photography, and designing for the way memory actually works." />
+  <title>Meet the Team — Recall Contacts</title>
+  <meta name="description" content="Recall Contacts was built by photographer Paul Barbera and app veteran Jason Laan. Two people. One problem. An app that actually works the way memory does." />
   <meta name="author" content="Paul Barbera" />
-  <link rel="canonical" href="https://recall-contacts.com/blog/" />
+  <link rel="canonical" href="https://recall-contacts.com/team.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Articles — Recall Contacts" />
-  <meta property="og:description" content="Articles from Paul Barbera — creator of Recall Contacts." />
-  <meta property="og:url" content="https://recall-contacts.com/blog/" />
+  <meta property="og:title" content="Meet the Team — Recall Contacts" />
+  <meta property="og:description" content="Recall Contacts was built by photographer Paul Barbera and app veteran Jason Laan." />
+  <meta property="og:url" content="https://recall-contacts.com/team.html" />
   <meta property="og:image" content="https://recall-contacts.com/og-image.png" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Articles — Recall Contacts" />
-  <meta name="twitter:description" content="Articles from Paul Barbera — creator of Recall Contacts." />
+  <meta name="twitter:title" content="Meet the Team — Recall Contacts" />
+  <meta name="twitter:description" content="Recall Contacts was built by photographer Paul Barbera and app veteran Jason Laan." />
   <meta name="twitter:image" content="https://recall-contacts.com/og-image.png" />
 
   <!-- Google Analytics -->
@@ -97,6 +99,18 @@
     .frame-corner-bl { bottom: calc(var(--frame) - 3px); left:  calc(var(--frame) - 3px); }
     .frame-corner-br { bottom: calc(var(--frame) - 3px); right: calc(var(--frame) - 3px); }
 
+    /* ── INNER BG ──────────────────────── */
+    .inner-bg {
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame);
+      right: var(--frame);
+      bottom: var(--frame);
+      background: #000;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .recall-font { font-family: 'Bungee Shade', cursive; }
 
     /* ── NAV ───────────────────────────── */
@@ -125,14 +139,8 @@
       transition: color 0.2s, border-color 0.2s;
     }
     .nav-links a:hover { color: #fff; }
-    .nav-links a:not(.nav-cta) {
-      border: 1px solid transparent;
-      padding: 5px 10px;
-    }
-    .nav-links a.active {
-      border-color: #fff;
-      color: #fff;
-    }
+    .nav-links a:not(.nav-cta) { border: 1px solid transparent; padding: 5px 10px; }
+    .nav-links a.active { border-color: #fff; color: #fff; }
     .nav-cta {
       background: #fff;
       color: #000 !important;
@@ -164,23 +172,10 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
     .mobile-menu a:hover { color: #fff; }
-    .mobile-menu a.active { color: #fff; }
     .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
 
-    /* ── INNER BG ──────────────────────── */
-    .inner-bg {
-      position: fixed;
-      top: calc(var(--frame) + var(--nav-h));
-      left: var(--frame);
-      right: var(--frame);
-      bottom: var(--frame);
-      background: #000;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* ── PAGE CONTENT ──────────────────── */
-    .page-inner {
+    /* ── PAGE ──────────────────────────── */
+    .page-wrap {
       max-width: 780px;
       margin: 0 auto;
       padding: 0 28px;
@@ -206,80 +201,95 @@
       line-height: 1.1;
     }
 
-    /* ── ARTICLE LIST ──────────────────── */
-    .article-list { display: flex; flex-direction: column; }
+    /* ── TEAM PHOTO ────────────────────── */
+    .team-photo {
+      width: 100%;
+      display: block;
+      border: var(--border);
+      margin-bottom: 56px;
+      object-fit: cover;
+      max-height: 540px;
+    }
 
-    .article-item {
+    /* ── BIOS ──────────────────────────── */
+    .bios {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 0 40px;
-      padding: 36px 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
       border-top: var(--border);
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s;
-    }
-    .article-item:last-child { border-bottom: var(--border); }
-    .article-item:hover .article-title { color: #bbb; }
-    .article-item:hover .article-read { color: #fff; }
-
-    .article-meta {
-      padding-top: 4px;
-    }
-    .article-date {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: #444;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-    .article-tag {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: #333;
-      text-transform: uppercase;
-      margin-top: 6px;
     }
 
-    .article-body {}
-    .article-title {
-      font-size: 20px;
+    .bio {
+      padding: 40px 32px 40px 0;
+      border-bottom: var(--border);
+    }
+
+    .bio:last-child {
+      padding-left: 32px;
+      padding-right: 0;
+      border-left: var(--border);
+    }
+
+    .bio-name {
+      font-size: 18px;
       font-weight: 900;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: 12px;
-      line-height: 1.2;
-      transition: color 0.2s;
+      margin-bottom: 6px;
     }
-    .article-excerpt {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.7;
-      max-width: 520px;
-      margin-bottom: 16px;
-    }
-    .article-read {
+
+    .bio-title {
       font-size: 10px;
       letter-spacing: 3px;
-      color: #444;
+      color: #555;
       text-transform: uppercase;
-      transition: color 0.2s;
+      margin-bottom: 24px;
     }
+
+    .bio-body {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.8;
+    }
+
+    .bio-body strong { color: #ccc; font-weight: 600; }
+
+    /* ── CTA ───────────────────────────── */
+    .page-cta {
+      margin-top: 64px;
+      border: var(--border);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .page-cta-label { font-size: 10px; letter-spacing: 4px; color: #444; text-transform: uppercase; }
+    .page-cta-title { font-size: 20px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+    .page-cta-desc { font-size: 14px; color: #666; line-height: 1.6; max-width: 420px; }
+    .btn-primary {
+      background: #fff; color: #000;
+      padding: 13px 32px;
+      font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; text-decoration: none;
+      display: inline-block; align-self: flex-start;
+      transition: background 0.2s; margin-top: 8px;
+    }
+    .btn-primary:hover { background: #ddd; }
 
     /* ── FOOTER ────────────────────────── */
     footer {
       max-width: 780px;
       margin: 60px auto 0;
       padding: 32px 28px;
-      position: relative;
-      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
       border-top: var(--border);
+      position: relative;
+      z-index: 1;
     }
     .footer-logo { font-size: 18px; color: #333; }
     .footer-links { display: flex; gap: 24px; align-items: center; }
@@ -287,18 +297,18 @@
     .footer-links a:hover { color: #fff; }
     .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
 
-    /* ── FOCUS ─────────────────────────── */
     :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
-    /* ── RESPONSIVE ────────────────────── */
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .page-inner { padding: 0 20px; }
+      .page-wrap { padding: 0 20px; }
       .page-title { font-size: 30px; }
-      .article-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
-      .article-title { font-size: 17px; }
+      .bios { grid-template-columns: 1fr; }
+      .bio { padding: 32px 0; border-left: none !important; }
+      .bio:last-child { padding-left: 0; border-left: none; border-top: var(--border); }
+      .page-cta { padding: 28px 20px; }
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -317,7 +327,8 @@
       <a href="/#screenshots">Screenshots</a>
       <a href="/#story">Story</a>
       <a href="/#how-it-works">How it works</a>
-      <a href="/blog/" class="active">Articles</a>
+      <a href="/blog/">Articles</a>
+      <a href="/team.html" class="active">Team</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -330,41 +341,46 @@
     <a href="/#screenshots">Screenshots</a>
     <a href="/#story">Story</a>
     <a href="/#how-it-works">How it works</a>
-    <a href="/blog/" class="active">Blog</a>
+    <a href="/blog/">Articles</a>
+    <a href="/team.html">Team</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
-  <div class="page-inner">
-    <div class="page-label">From the creator</div>
-    <h1 class="page-title">Articles</h1>
+  <div class="page-wrap">
 
-    <div class="article-list">
+    <div class="page-label">The people behind it</div>
+    <h1 class="page-title">Meet the team</h1>
 
-      <a href="/blog/marketing-with-jason-laan.html" class="article-item">
-        <div class="article-meta">
-          <div class="article-date">Apr 2026</div>
-          <div class="article-tag">#Marketing</div>
-        </div>
-        <div class="article-body">
-          <div class="article-title">What the man behind Face Swap told me about getting Recall noticed</div>
-          <p class="article-excerpt">Jason Laan co-founded Laan Labs and built multiple #1 App Store hits including Face Swap Live. I asked him to take an honest look at how I'm marketing Recall — and tell me what I should be doing differently.</p>
-          <div class="article-read">Watch & read →</div>
-        </div>
-      </a>
+    <img
+      src="/team-photo.jpg"
+      alt="Jason Laan and Paul Barbera at a ramen bar in New York"
+      class="team-photo"
+      loading="eager"
+    />
 
-      <a href="/blog/why-i-built-recall.html" class="article-item">
-        <div class="article-meta">
-          <div class="article-date">Apr 2026</div>
-          <div class="article-tag">#Story</div>
-        </div>
-        <div class="article-body">
-          <div class="article-title">Why I built Recall: 25 years of faces, half the names</div>
-          <p class="article-excerpt">I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app.</p>
-          <div class="article-read">Read →</div>
-        </div>
-      </a>
+    <div class="bios">
+
+      <div class="bio">
+        <div class="bio-name">Jason Laan</div>
+        <div class="bio-title">Co-founder, Laan Labs</div>
+        <p class="bio-body">Jason is co-founder of <strong>Laan Labs</strong>, a boutique app studio he built with his brother Christopher over nearly two decades. In that time they've shipped some of the most downloaded apps in App Store history — including <strong>Face Swap Live</strong>, the original live face-swapping app and a global #1 hit, and <strong>Tap DJ</strong>, a professional mixing app built around their signature GyroScratch™ technology. Jason knows what it takes to build apps people actually want, and he brought that experience to Recall from day one.</p>
+      </div>
+
+      <div class="bio">
+        <div class="bio-name">Paul Barbera</div>
+        <div class="bio-title">Creator, Recall Contacts</div>
+        <p class="bio-body">Paul is a photographer with <strong>25 years</strong> of editorial, commercial, and documentary work behind him. His portraits and stories have appeared across mainstream media — spanning fashion, music, culture, and the human faces that connect them all. Dyslexic, probably ADHD, and perpetually surrounded by people he could picture but couldn't spell — Paul built Recall because he needed it. The result is an app designed for the way real memory works, by someone who spent a career living the problem.</p>
+      </div>
 
     </div>
+
+    <div class="page-cta">
+      <div class="page-cta-label">Try it free</div>
+      <div class="page-cta-title">Recall Contacts — for iPhone</div>
+      <p class="page-cta-desc">Tag anyone. Search by hashtag. Find them instantly. Works with your existing Apple Contacts — no migration required.</p>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
+    </div>
+
   </div>
 
   <footer>

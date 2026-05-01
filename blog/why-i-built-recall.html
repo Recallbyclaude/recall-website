@@ -71,11 +71,10 @@
       background-color: #000;
       background-image: linear-gradient(
         to top left,
-        rgba(232, 168, 122, 0.50),
-        rgba(232, 201, 122, 0.45),
-        rgba(143, 202, 143, 0.45),
-        rgba(143, 184, 232, 0.45),
-        rgba(200, 168, 232, 0.45)
+        #E8A87A,
+        #E8C97A,
+        #8FCA8F,
+        #8FB8E8
       );
       background-size: 400% 400%;
       animation: gradientDrift 60s ease infinite;
@@ -186,11 +185,25 @@
     .mobile-menu a:hover { color: #fff; }
     .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
 
+    /* ── INNER BG ──────────────────────── */
+    .inner-bg {
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame);
+      right: var(--frame);
+      bottom: var(--frame);
+      background: #000;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* ── ARTICLE ───────────────────────── */
     .article-wrap {
       max-width: 680px;
       margin: 0 auto;
       padding: 0 28px;
+      position: relative;
+      z-index: 1;
     }
 
     .article-back {
@@ -316,6 +329,8 @@
       max-width: 680px;
       margin: 60px auto 0;
       padding: 32px 28px;
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -350,6 +365,7 @@
   <div class="frame" aria-hidden="true"></div>
   <div class="frame-corner-bl" aria-hidden="true"></div>
   <div class="frame-corner-br" aria-hidden="true"></div>
+  <div class="inner-bg" aria-hidden="true"></div>
 
   <nav>
     <a href="/" class="nav-logo recall-font">#Recall</a>
