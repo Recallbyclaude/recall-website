@@ -317,18 +317,49 @@
 
     /* ── SIGNUP ────────────────────────── */
     .signup { padding: 0 28px; border-bottom: var(--border); }
-    .signup-inner { max-width: 340px; }
-    .signup h2 { font-size: 20px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .signup-inner { max-width: 380px; }
+    .signup h2 {
+      font-size: 28px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+      background: linear-gradient(to top left, #E8A87A, #E8C97A, #8FCA8F, #8FB8E8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
     .signup p { font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.7; }
-    .signup-socials { margin-top: 36px; padding-top: 28px; border-top: var(--border); display: flex; flex-direction: column; gap: 16px; }
+
+    /* email form */
+    .signup-form { margin-bottom: 0; }
+    .signup-form-row { display: flex; }
+    .signup-input {
+      flex: 1; padding: 11px 14px;
+      background: #111; border: 1px solid #2a2a2a; border-right: none;
+      color: #fff; font-size: 13px; font-family: inherit; outline: none;
+    }
+    .signup-input::placeholder { color: #333; }
+    .signup-input:focus { border-color: #555; }
+    .signup-submit {
+      background: #fff; color: #000; border: none;
+      padding: 11px 20px; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+      font-family: inherit; transition: background 0.2s; white-space: nowrap;
+    }
+    .signup-submit:hover { background: #ddd; }
+    .signup-thanks { display: none; font-size: 12px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; }
+
+    .signup-links { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .signup-extra-link {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: #444; text-decoration: none; transition: color 0.2s;
+    }
+    .signup-extra-link:hover { color: #fff; }
+
+    .signup-socials { margin-top: 32px; padding-top: 28px; border-top: var(--border); display: flex; flex-direction: column; gap: 18px; }
     .signup-social-link {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 14px;
       text-decoration: none; color: #555;
       font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
       transition: color 0.2s;
     }
     .signup-social-link:hover { color: #fff; }
-    .signup-social-link svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+    .signup-social-link svg { width: 26px; height: 26px; fill: currentColor; flex-shrink: 0; }
 
     /* ── FOOTER ────────────────────────── */
     footer {
@@ -453,7 +484,7 @@
       <a href="#screenshots">Screenshots</a>
       <a href="#story">Story</a>
       <a href="#how-it-works">How it works</a>
-      <a href="#signup">Stay updated</a>
+      <a href="#signup">Connect</a>
       <a href="/blog/">Articles</a>
       <a href="/team.html">Team</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
@@ -468,7 +499,7 @@
     <a href="#screenshots" class="mobile-link">Screenshots</a>
     <a href="#story" class="mobile-link">Story</a>
     <a href="#how-it-works" class="mobile-link">How it works</a>
-    <a href="#signup" class="mobile-link">Stay updated</a>
+    <a href="#signup" class="mobile-link">Connect</a>
     <a href="/blog/" class="mobile-link">Articles</a>
     <a href="/team.html" class="mobile-link">Team</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
@@ -650,10 +681,22 @@
   <!-- 8. SIGNUP -->
   <div class="signup snap-section" id="signup">
     <div class="signup-inner">
-      <div class="section-label">Stay in the loop</div>
-      <h2>Get early updates</h2>
+      <div class="section-label">Connect</div>
+      <h2>Keep in the loop</h2>
       <p>New features, tips, and occasional notes from Paul.</p>
-      <div id="fd-form-69f0b24abef402d800447a4b"></div>
+
+      <form class="signup-form" id="contactForm" action="https://formspree.io/paul@paulbarbera.com" method="POST">
+        <div class="signup-form-row">
+          <input type="email" name="email" class="signup-input" placeholder="Your email" required autocomplete="email" />
+          <button type="submit" class="signup-submit">Subscribe</button>
+        </div>
+        <div class="signup-thanks" id="signupThanks">Got it — thanks.</div>
+      </form>
+
+      <div class="signup-links">
+        <a href="https://form.typeform.com/to/rFbsBae0" target="_blank" rel="noopener" class="signup-extra-link">Give feedback →</a>
+        <a href="https://paulbarbera.com" target="_blank" rel="noopener" class="signup-extra-link">paulbarbera.com →</a>
+      </div>
 
       <div class="signup-socials">
         <a href="https://www.youtube.com/@Recall-Contacts" target="_blank" rel="noopener" class="signup-social-link" aria-label="Recall Contacts on YouTube">
@@ -848,23 +891,23 @@
   </script>
 
   <script>
-  (function(w, d, t, h, s, n) {
-    w.FlodeskObject = n;
-    var fn = function() { (w[n].q = w[n].q || []).push(arguments); };
-    w[n] = w[n] || fn;
-    var f = d.getElementsByTagName(t)[0];
-    var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
-    var sm = d.createElement(t); sm.async = true; sm.type = 'module';
-    sm.src = h + s + '.mjs' + v; f.parentNode.insertBefore(sm, f);
-    var sn = d.createElement(t); sn.async = true; sn.noModule = true;
-    sn.src = h + s + '.js' + v; f.parentNode.insertBefore(sn, f);
-  })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
-  </script>
-  <script>
-    window.fd('form', {
-      formId: '69f0b24abef402d800447a4b',
-      containerEl: '#fd-form-69f0b24abef402d800447a4b'
-    });
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = new FormData(contactForm);
+        fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(function(r) {
+          if (r.ok) {
+            contactForm.style.display = 'none';
+            document.getElementById('signupThanks').style.display = 'block';
+          }
+        });
+      });
+    }
   </script>
 
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
