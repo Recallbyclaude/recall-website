@@ -139,15 +139,7 @@
       border-bottom: var(--border);
       z-index: 800;
     }
-    .nav-logo {
-      font-size: 22px;
-      line-height: 1;
-      text-decoration: none;
-      background: linear-gradient(to top left, #E8A87A, #E8C97A, #8FCA8F, #8FB8E8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; }
     .nav-links { display: flex; align-items: center; gap: 28px; }
     .nav-links a {
       font-size: 11px;
@@ -210,7 +202,15 @@
 
     /* ── HERO ──────────────────────────── */
     .hero { padding: 0 28px; border-bottom: var(--border); }
-    .hero-title { font-size: clamp(64px, 10vw, 120px); color: #fff; line-height: 0.95; margin-bottom: 28px; }
+    .hero-title {
+      font-size: clamp(64px, 10vw, 120px);
+      line-height: 0.95;
+      margin-bottom: 28px;
+      background: linear-gradient(to top left, #E8A87A, #E8C97A, #8FCA8F, #8FB8E8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; margin-bottom: 40px; line-height: 1.5; font-weight: 500; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
     .btn-primary {
