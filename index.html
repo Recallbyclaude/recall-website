@@ -201,7 +201,9 @@
     .section-body { font-size: 16px; color: #888; line-height: 1.75; max-width: 540px; }
 
     /* ── HERO ──────────────────────────── */
-    .hero { padding: 0 28px; border-bottom: var(--border); }
+    .hero { position: relative; overflow: hidden; border-bottom: var(--border); }
+    .tag-cloud { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .hero-inner { position: relative; z-index: 2; padding: 0 28px; }
     .hero-title {
       font-size: clamp(64px, 10vw, 120px);
       line-height: 0.95;
@@ -211,24 +213,22 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; margin-bottom: 40px; line-height: 1.5; font-weight: 500; min-height: 1.5em; }
+    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; line-height: 1.5; font-weight: 500; min-height: 1.5em; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     .tw-cursor { animation: blink 1s step-start infinite; color: #555; font-weight: 300; margin-left: 1px; }
-    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .btn-primary {
-      background: #fff; color: #000;
-      padding: 13px 32px;
-      font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; text-decoration: none; display: inline-block;
-      transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #ddd; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 52px; }
     .tag { border: 1px solid #2a2a2a; padding: 5px 12px; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #555; text-transform: uppercase; }
-    .tag.vip    { background: #E8C97A15; border-color: #E8C97A44; color: #E8C97A; }
-    .tag.family { background: #E8A87A15; border-color: #E8A87A44; color: #E8A87A; }
-    .tag.work   { background: #8FCA8F15; border-color: #8FCA8F44; color: #8FCA8F; }
-    .tag.parents{ background: #8FB8E815; border-color: #8FB8E844; color: #8FB8E8; }
+    .tag.vip     { background: #E8C97A15; border-color: #E8C97A44; color: #E8C97A; }
+    .tag.family  { background: #E8A87A15; border-color: #E8A87A44; color: #E8A87A; }
+    .tag.work    { background: #8FCA8F15; border-color: #8FCA8F44; color: #8FCA8F; }
+    .tag.parents { background: #8FB8E815; border-color: #8FB8E844; color: #8FB8E8; }
+    .tag.friends { background: #C78FE815; border-color: #C78FE844; color: #C78FE8; }
+    .tag-float {
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      white-space: nowrap;
+      user-select: none;
+    }
 
     /* ── SCREENSHOTS ───────────────────── */
     .screenshots { padding: 0 28px; border-bottom: var(--border); align-items: center; text-align: center; }
@@ -508,17 +508,10 @@
 
   <!-- 1. HERO -->
   <div class="hero snap-section">
-    <h1 class="hero-title recall-font">#Recall</h1>
-    <p class="hero-sub" aria-live="polite"><span id="typewriter-text"></span><span class="tw-cursor" aria-hidden="true">|</span></p>
-    <div class="hero-tags">
-      <span class="tag vip">VIP</span>
-      <span class="tag family">FAMILY</span>
-      <span class="tag work">WORK</span>
-      <span class="tag parents">PARENTS</span>
-      <span class="tag">#NYC</span>
-      <span class="tag">#2024</span>
-      <span class="tag">#PHOTOGRAPHER</span>
-      <span class="tag">#TOKYO</span>
+    <div class="tag-cloud" id="tagCloud" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <h1 class="hero-title recall-font">#Recall</h1>
+      <p class="hero-sub" aria-live="polite"><span id="typewriter-text"></span><span class="tw-cursor" aria-hidden="true">|</span></p>
     </div>
   </div>
 
@@ -815,7 +808,8 @@
   </script>
 
   <script>
-    (function() {
+    /* ── TYPEWRITER ─── */
+    window.addEventListener('DOMContentLoaded', function() {
       var quotes = [
         "Stop scrolling A to Z. Search #tokyo instead.",
         "Tag people the way your brain already works.",
@@ -824,6 +818,7 @@
         "You remember the context. Recall finds the name."
       ];
       var el = document.getElementById('typewriter-text');
+      if (!el) return;
       var qi = 0, ci = 0, deleting = false;
 
       function tick() {
@@ -831,27 +826,94 @@
         if (!deleting) {
           ci++;
           el.textContent = q.slice(0, ci);
-          if (ci === q.length) {
-            deleting = true;
-            setTimeout(tick, 2400);
-            return;
-          }
+          if (ci === q.length) { deleting = true; setTimeout(tick, 2400); return; }
           setTimeout(tick, 52);
         } else {
           ci--;
           el.textContent = q.slice(0, ci);
-          if (ci === 0) {
-            deleting = false;
-            qi = (qi + 1) % quotes.length;
-            setTimeout(tick, 350);
-            return;
-          }
+          if (ci === 0) { deleting = false; qi = (qi + 1) % quotes.length; setTimeout(tick, 380); return; }
           setTimeout(tick, 28);
         }
       }
+      setTimeout(tick, 900);
+    });
 
-      setTimeout(tick, 600);
-    })();
+    /* ── TAG CLOUD ─── */
+    window.addEventListener('DOMContentLoaded', function() {
+      var cloud = document.getElementById('tagCloud');
+      if (!cloud) return;
+
+      var colored = [
+        { text: 'VIP',     cls: 'vip' },
+        { text: 'FAMILY',  cls: 'family' },
+        { text: 'WORK',    cls: 'work' },
+        { text: 'PARENTS', cls: 'parents' },
+        { text: 'FRIENDS', cls: 'friends' }
+      ];
+
+      var plain = [
+        'NYC','TOKYO','LONDON','PARIS','SYDNEY','MIAMI','LA','CHICAGO','BARCELONA','BERLIN',
+        'AMSTERDAM','DUBAI','SINGAPORE','TORONTO','MELBOURNE','ROME','HONG KONG','BANGKOK',
+        'SEOUL','NAIROBI','CAPE TOWN','MADRID','LISBON','PRAGUE','VIENNA','STOCKHOLM',
+        'OSLO','COPENHAGEN','ISTANBUL','ATHENS','MUMBAI','DELHI','SHANGHAI','BEIJING',
+        'PHOTOGRAPHER','DESIGNER','ARCHITECT','CHEF','JOURNALIST','LAWYER','DOCTOR',
+        'TEACHER','ENGINEER','ARTIST','MUSICIAN','FILMMAKER','WRITER','STYLIST',
+        'PRODUCER','DIRECTOR','CONSULTANT','DEVELOPER','THERAPIST','NURSE','DENTIST',
+        'PUBLICIST','AGENT','EDITOR','CURATOR','GALLERIST','SOMMELIER','TRAINER',
+        'PILOT','SURGEON','ACCOUNTANT','BANKER','BROKER','COACH','PHOTOGRAPHER',
+        'EASTWOOD','NOBU','CHATEAU','CIPRIANI','BALTHAZAR','LOULOU','CHILTERN',
+        'SOHO HOUSE','GROUCHO','ANNABELS','CLARIDGES','SKETCH','ELECTRIC','NIGHTJAR',
+        'RONNIES','BERGHAIN','FABRIC','DRAGON','CHILTERN FIREHOUSE','NERO',
+        '2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025',
+        'WEDDING','BIRTHDAY','CONFERENCE','SUMMIT','FESTIVAL','OPENING','GALLERY',
+        'LAUNCH','DINNER','DRINKS','ROOFTOP','STUDIO','BEACH','AIRPORT','HOTEL',
+        'MARATHON','GYM','YOGA','SCHOOL','STARTUP','BRAND','PODCAST','FASHION',
+        'TECH','FINANCE','SPORT','TRAVEL','FOOD','MUSIC','ART','MEDIA','FILM',
+        'NEIGHBOUR','MENTOR','CLIENT','INVESTOR','FOUNDER','CEO','CREATIVE',
+        'FLATMATE','COLLEAGUE','CONNECTOR','EX','BOSS','DATE',
+        'IBIZA','MYKONOS','TULUM','BALI','MALDIVES','AMALFI','CANNES',
+        'GLASTONBURY','COACHELLA','SXSW','DAVOS','FRIEZE','ART BASEL'
+      ];
+
+      function spawn() {
+        var isColored = Math.random() < 0.12;
+        var item = isColored
+          ? colored[Math.floor(Math.random() * colored.length)]
+          : { text: plain[Math.floor(Math.random() * plain.length)], cls: null };
+
+        var el = document.createElement('span');
+        el.className = 'tag tag-float' + (item.cls ? ' ' + item.cls : '');
+        el.textContent = item.cls ? item.text : '#' + item.text;
+
+        var x = 2 + Math.random() * 90;
+        var y = 2 + Math.random() * 90;
+        el.style.left = x + '%';
+        el.style.top  = y + '%';
+
+        var maxOp = item.cls
+          ? (0.55 + Math.random() * 0.3)
+          : (0.12 + Math.random() * 0.22);
+        cloud.appendChild(el);
+
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() { el.style.opacity = maxOp; });
+        });
+
+        var life = 3200 + Math.random() * 5000;
+        setTimeout(function() {
+          el.style.opacity = 0;
+          setTimeout(function() { el.parentNode && el.parentNode.removeChild(el); }, 800);
+        }, life);
+      }
+
+      for (var i = 0; i < 22; i++) {
+        setTimeout(spawn, Math.random() * 2500);
+      }
+      (function loop() {
+        spawn();
+        setTimeout(loop, 280 + Math.random() * 340);
+      })();
+    });
   </script>
 
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
