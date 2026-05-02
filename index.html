@@ -252,10 +252,10 @@
     .carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: #2a2a2a; border: none; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
     .carousel-dot.active { background: #fff; transform: scale(1.3); }
 
-    /* ── STORY ─────────────────────────── */
-    .story { padding: 0 28px; border-bottom: var(--border); }
-    .story-inner { max-width: 660px; }
-    .story-headline {
+    /* ── ABOUT ─────────────────────────── */
+    .about { padding: 0 28px; border-bottom: var(--border); }
+    .about-inner { max-width: 660px; }
+    .about-headline {
       font-size: 30px;
       font-weight: 900;
       letter-spacing: 1px;
@@ -264,20 +264,9 @@
       margin-bottom: 28px;
       line-height: 1.15;
     }
-    .story-lede { font-size: 22px; color: #ccc; line-height: 1.5; margin-bottom: 28px; font-weight: 500; }
-    .story-body { font-size: 19px; color: #999; line-height: 1.8; margin-bottom: 22px; }
-    .story-attr { font-size: 11px; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
-    details.story-dropdown { margin-top: 32px; border-top: var(--border); padding-top: 24px; }
-    details.story-dropdown summary {
-      font-size: 10px; letter-spacing: 3px; color: var(--label-color);
-      text-transform: uppercase; cursor: pointer; list-style: none;
-      display: flex; align-items: center; gap: 10px; user-select: none;
-    }
-    details.story-dropdown summary::-webkit-details-marker { display: none; }
-    details.story-dropdown summary::after { content: '+'; font-size: 16px; color: #444; }
-    details.story-dropdown[open] summary::after { content: '−'; }
-    details.story-dropdown summary:hover { color: #fff; }
-    .story-full { padding-top: 28px; }
+    .about-lede { font-size: 22px; color: #ccc; line-height: 1.5; margin-bottom: 28px; font-weight: 500; }
+    .about-body { font-size: 19px; color: #999; line-height: 1.8; margin-bottom: 22px; }
+    .about-attr { font-size: 11px; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
 
     /* ── FEATURES ──────────────────────── */
     .features-section { padding: 0 28px; border-bottom: var(--border); }
@@ -473,15 +462,14 @@
       .hero-inner { padding: 0 20px; }
       .hero-title { font-size: 52px; }
       .hero-sub { font-size: 17px; }
-      .screenshots, .story, .features-section, .demo-section, .quote, .video-section, .signup { padding: 0 20px; }
+      .about, .screenshots, .video-section, .signup { padding: 0 20px; }
       .section-title { font-size: 26px; }
-      .features { grid-template-columns: 1fr; }
-      .feature { border-right: none !important; }
+      .about-headline { font-size: 22px; }
+      .about-lede { font-size: 18px; }
+      .about-body { font-size: 16px; }
       .carousel { max-width: 240px; }
       .carousel-btn.prev { left: -42px; }
       .carousel-btn.next { right: -42px; }
-      .story-headline { font-size: 22px; }
-      .story-lede { font-size: 18px; }
       .story-body { font-size: 16px; }
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
     }
@@ -528,14 +516,14 @@
   </div>
 
   <!-- 2. ABOUT -->
-  <div class="story snap-section" id="about">
-    <div class="story-inner">
+  <div class="about snap-section" id="about">
+    <div class="about-inner">
       <div class="section-label">About</div>
-      <h2 class="story-headline">Your contacts app,<br>rebuilt around memory.</h2>
-      <p class="story-lede">Recall Contacts is an iPhone app that lets you find anyone in your contacts by what you remember — not how their name is spelled.</p>
-      <p class="story-body">Tag people by context. <em>#NYC #Eastwood #crazyhat.</em> Search by hashtag and find them instantly. No spelling required.</p>
-      <p class="story-body">Smart colour-coded groups. Swipe-to-tag for rapid organising. A dyslexic-friendly mode. Your tags sync back to Apple Contacts — your data stays yours.</p>
-      <p class="story-attr">Built by Paul Barbera, because he needed it himself.</p>
+      <h2 class="about-headline">Your contacts app,<br>rebuilt around memory.</h2>
+      <p class="about-lede">Recall Contacts is an iPhone app that lets you find anyone in your contacts by what you remember — not how their name is spelled.</p>
+      <p class="about-body">Tag people by context. <em>#NYC #Eastwood #crazyhat.</em> Search by hashtag and find them instantly. No spelling required.</p>
+      <p class="about-body">Smart colour-coded groups. Swipe-to-tag for rapid organising. A dyslexic-friendly mode. Your tags sync back to Apple Contacts — your data stays yours.</p>
+      <p class="about-attr">Built by Paul Barbera, because he needed it himself.</p>
     </div>
   </div>
 
@@ -877,6 +865,8 @@
         'OSLO','COPENHAGEN','ISTANBUL','ATHENS','MUMBAI','DELHI','SHANGHAI','BEIJING',
         'IBIZA','MYKONOS','TULUM','BALI','AMALFI','CANNES','MARRAKECH','RIO','HAVANA',
         'REYKJAVIK','EDINBURGH','DUBLIN','MONTREAL','BUENOS AIRES','LAGOS','BEIRUT',
+        'KYOTO','FLORENCE','VENICE','LISBON','PORTO','SEVILLE','VALENCIA','MILAN',
+        'BRUGES','GHENT','TALLINN','VILNIUS','WARSAW','BUDAPEST','ZAGREB','SPLIT',
         /* years */
         '2009','2010','2011','2012','2013','2014','2015','2016',
         '2017','2018','2019','2020','2021','2022','2023','2024','2025','2026',
@@ -885,33 +875,47 @@
         'ARTIST','MUSICIAN','FILMMAKER','WRITER','STYLIST','PRODUCER','DIRECTOR',
         'DEVELOPER','THERAPIST','DENTIST','EDITOR','CURATOR','TRAINER','PILOT',
         'SURGEON','ACCOUNTANT','BROKER','COACH','NURSE','GALLERIST','SOMMELIER',
+        'FLORIST','TAILOR','VINTNER','BARISTA','TATTOOIST','DJ','SCULPTOR',
+        'ILLUSTRATOR','ANIMATOR','SOUND ENGINEER','CASTING DIRECTOR','PUBLICIST',
         /* venues */
         'EASTWOOD','NOBU','CHATEAU','CIPRIANI','BALTHAZAR','LOULOU','CHILTERN',
         'SOHO HOUSE','GROUCHO','ANNABELS','CLARIDGES','SKETCH','NIGHTJAR',
         'BERGHAIN','FABRIC','DRAGON','NERO','CHILTERN FIREHOUSE','RONNIES',
+        'HARRY\'S BAR','THE IVY','LOCANDA','RIVER CAFE','ELECTRIC','RONNIE\'S',
         /* context */
         'WEDDING','BIRTHDAY','FESTIVAL','OPENING','GALLERY','DINNER','DRINKS',
         'ROOFTOP','STUDIO','BEACH','HOTEL','GYM','YOGA','STARTUP','PODCAST',
         'FASHION','TECH','SPORT','TRAVEL','MUSIC','ART','FILM','SUMMIT',
         'GLASTONBURY','COACHELLA','DAVOS','FRIEZE','ART BASEL','SXSW',
-        'MENTOR','INVESTOR','FOUNDER','CEO','COLLEAGUE','FLATMATE','DATE'
+        'MENTOR','INVESTOR','FOUNDER','CEO','COLLEAGUE','FLATMATE','DATE',
+        'HIKING','SURFING','SKIING','MARATHON','CYCLING','BOXING','PILATES',
+        'SCHOOL RUN','BOOK CLUB','WINE TASTING','COOKING CLASS','OPEN MIC',
+        'HOUSE PARTY','AFTER PARTY','FLAT WHITE','LATE NIGHT','EARLY MORNING'
       ];
 
+      /* active: currently visible. cooling: recently faded, on cooldown. */
       var active = {};
+      var cooling = {};
+
+      function available(key) { return !active[key] && !cooling[key]; }
+
+      function startCooldown(key, ms) {
+        cooling[key] = true;
+        setTimeout(function() { delete cooling[key]; }, ms);
+      }
 
       function spawn() {
-        var isColored = Math.random() < 0.22;
-        var pool, item, key;
+        var tryColored = Math.random() < 0.25;
+        var item, key;
 
-        if (isColored) {
-          var avail = colored.filter(function(c) { return !active[c.text]; });
-          if (!avail.length) isColored = false;
-          else item = avail[Math.floor(Math.random() * avail.length)];
+        if (tryColored) {
+          var ca = colored.filter(function(c) { return available(c.text); });
+          if (ca.length) item = ca[Math.floor(Math.random() * ca.length)];
         }
-        if (!isColored) {
-          var avail2 = plain.filter(function(t) { return !active['#' + t]; });
-          if (!avail2.length) return;
-          item = { text: avail2[Math.floor(Math.random() * avail2.length)], cls: null };
+        if (!item) {
+          var pa = plain.filter(function(t) { return available('#' + t); });
+          if (!pa.length) return;
+          item = { text: pa[Math.floor(Math.random() * pa.length)], cls: null };
         }
 
         key = item.cls ? item.text : '#' + item.text;
@@ -929,22 +933,23 @@
         el.style.left = x + '%';
         el.style.top  = y + '%';
 
-        var maxOp = item.cls ? (0.6 + Math.random() * 0.3) : (0.18 + Math.random() * 0.28);
+        var maxOp = item.cls ? (0.65 + Math.random() * 0.25) : (0.18 + Math.random() * 0.28);
         cloud.appendChild(el);
         requestAnimationFrame(function() {
           requestAnimationFrame(function() { el.style.opacity = maxOp; });
         });
 
-        var life = 3200 + Math.random() * 5000;
+        var life = 3500 + Math.random() * 4500;
         setTimeout(function() {
           el.style.opacity = 0;
           delete active[key];
+          startCooldown(key, item.cls ? 18000 : 9000);
           setTimeout(function() { el.parentNode && el.parentNode.removeChild(el); }, 800);
         }, life);
       }
 
       for (var i = 0; i < 22; i++) setTimeout(spawn, Math.random() * 2200);
-      (function loop() { spawn(); setTimeout(loop, 290 + Math.random() * 320); })();
+      (function loop() { spawn(); setTimeout(loop, 300 + Math.random() * 300); })();
     });
   </script>
 
