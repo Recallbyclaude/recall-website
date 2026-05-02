@@ -211,7 +211,9 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; margin-bottom: 40px; line-height: 1.5; font-weight: 500; }
+    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; margin-bottom: 40px; line-height: 1.5; font-weight: 500; min-height: 1.5em; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .tw-cursor { animation: blink 1s step-start infinite; color: #555; font-weight: 300; margin-left: 1px; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
     .btn-primary {
       background: #fff; color: #000;
@@ -507,7 +509,7 @@
   <!-- 1. HERO -->
   <div class="hero snap-section">
     <h1 class="hero-title recall-font">#Recall</h1>
-    <p class="hero-sub">You remember the context. Recall finds the name.</p>
+    <p class="hero-sub" aria-live="polite"><span id="typewriter-text"></span><span class="tw-cursor" aria-hidden="true">|</span></p>
     <div class="hero-tags">
       <span class="tag vip">VIP</span>
       <span class="tag family">FAMILY</span>
@@ -810,6 +812,46 @@
         });
       });
     }
+  </script>
+
+  <script>
+    (function() {
+      var quotes = [
+        "Stop scrolling A to Z. Search #tokyo instead.",
+        "Tag people the way your brain already works.",
+        "#NYC. #Eastwood. #crazyhat. Found.",
+        "Your contacts app, rebuilt around memory.",
+        "You remember the context. Recall finds the name."
+      ];
+      var el = document.getElementById('typewriter-text');
+      var qi = 0, ci = 0, deleting = false;
+
+      function tick() {
+        var q = quotes[qi];
+        if (!deleting) {
+          ci++;
+          el.textContent = q.slice(0, ci);
+          if (ci === q.length) {
+            deleting = true;
+            setTimeout(tick, 2400);
+            return;
+          }
+          setTimeout(tick, 52);
+        } else {
+          ci--;
+          el.textContent = q.slice(0, ci);
+          if (ci === 0) {
+            deleting = false;
+            qi = (qi + 1) % quotes.length;
+            setTimeout(tick, 350);
+            return;
+          }
+          setTimeout(tick, 28);
+        }
+      }
+
+      setTimeout(tick, 600);
+    })();
   </script>
 
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
