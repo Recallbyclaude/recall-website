@@ -344,25 +344,25 @@
     .signup-submit:hover { background: #ddd; }
     .signup-thanks { display: none; font-size: 12px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; }
 
-    .signup-links { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
-    .signup-extra-desc { font-size: 13px; color: #555; line-height: 1.7; }
-    .signup-extra-link {
-      font-size: 13px; letter-spacing: 1px;
-      color: #666; text-decoration: none; transition: color 0.2s;
-      font-weight: 400;
+    .connect-actions { margin-top: 32px; display: flex; flex-direction: column; gap: 2px; }
+    .connect-btn {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px;
+      border: var(--border); border-bottom: none;
+      text-decoration: none; color: #fff;
+      transition: background 0.15s;
     }
-    .signup-extra-link:hover { color: #fff; }
+    .connect-btn:last-child { border-bottom: var(--border); }
+    .connect-btn:hover { background: #0d0d0d; }
+    .connect-btn svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; color: #555; }
+    .connect-btn:hover svg { color: #fff; }
+    .connect-btn-label { font-size: 14px; font-weight: 700; letter-spacing: 1px; flex: 1; }
+    .connect-btn-sub { font-size: 11px; color: #555; letter-spacing: 0.5px; }
+    .connect-btn-feedback { }
 
-    .signup-socials { margin-top: 32px; padding-top: 28px; border-top: var(--border); display: flex; flex-direction: column; gap: 18px; }
-    .signup-social-link {
-      display: flex; align-items: center; gap: 14px;
-      text-decoration: none; color: #777;
-      font-size: 13px; letter-spacing: 1px;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-    .signup-social-link:hover { color: #fff; }
-    .signup-social-link svg { width: 26px; height: 26px; fill: currentColor; flex-shrink: 0; }
+    .connect-quote { margin-top: 40px; padding-top: 28px; border-top: var(--border); max-width: 460px; }
+    .connect-quote p { font-size: 16px; color: #666; line-height: 1.7; margin-bottom: 12px; font-style: italic; }
+    .connect-quote span { font-size: 10px; letter-spacing: 3px; color: #444; text-transform: uppercase; }
 
     /* ── FOOTER ────────────────────────── */
     footer {
@@ -485,11 +485,9 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#screenshots">Screenshots</a>
-      <a href="#story">Story</a>
-      <a href="#how-it-works">How it works</a>
+      <a href="#how-it-works">Tutorial</a>
       <a href="#signup">Connect</a>
       <a href="/blog/">Articles</a>
-      <a href="/team.html">Team</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -500,11 +498,9 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" class="mobile-link">About</a>
     <a href="#screenshots" class="mobile-link">Screenshots</a>
-    <a href="#story" class="mobile-link">Story</a>
-    <a href="#how-it-works" class="mobile-link">How it works</a>
+    <a href="#how-it-works" class="mobile-link">Tutorial</a>
     <a href="#signup" class="mobile-link">Connect</a>
     <a href="/blog/" class="mobile-link">Articles</a>
-    <a href="/team.html" class="mobile-link">Team</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
@@ -531,17 +527,16 @@
   <div class="story snap-section" id="about">
     <div class="story-inner">
       <div class="section-label">About</div>
-      <h2 class="story-headline">Designed for brains like ours.<br>Works for every brain.</h2>
-      <p class="story-lede">Recall Contacts is an iPhone contacts app built for anyone who remembers the person — but blanks on the name.</p>
-      <p class="story-body">Instead of searching by spelling, you tag people the way your brain already works: <em>#NYC #Eastwood #crazyhat.</em> Search by hashtag. Find them instantly.</p>
-      <p class="story-body">It started with Paul Barbera — photographer, dyslexic, ADHD — after 25 years of knowing exactly who someone was but having no way to find them. He built the workaround he needed. Turns out, it works brilliantly for everyone.</p>
+      <h2 class="story-headline">Your contacts app,<br>rebuilt around memory.</h2>
+      <p class="story-lede">Recall Contacts is an iPhone app that lets you find anyone in your contacts by what you remember — not how their name is spelled.</p>
+      <p class="story-body">Tag people by context. <em>#NYC #Eastwood #crazyhat.</em> Search by hashtag and find them instantly. No spelling required.</p>
+      <p class="story-body">Smart colour-coded groups. Swipe-to-tag for rapid organising. A dyslexic-friendly mode. Your tags sync back to Apple Contacts — your data stays yours.</p>
+      <p class="story-attr">Built by Paul Barbera, because he needed it himself.</p>
     </div>
   </div>
 
   <!-- 3. SCREENSHOTS -->
   <div class="screenshots snap-section" id="screenshots">
-    <div class="section-label">App Screenshots</div>
-    <div class="section-title">Finally, a contacts app that works like memory.</div>
     <div class="carousel" id="carousel" aria-label="App screenshot carousel">
       <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
       <div class="carousel-track-wrap">
@@ -564,112 +559,12 @@
     </div>
   </div>
 
-  <!-- 3. STORY -->
-  <div class="story snap-section" id="story">
-    <div class="story-inner">
-      <div class="section-label">The story behind Recall</div>
-      <h2 class="story-headline">A workaround that became an app.</h2>
-      <p class="story-lede">25 years as a photographer. 4,000+ contacts. And I couldn't spell half their names.</p>
-      <p class="story-body">I'm dyslexic, and pretty sure I have ADHD. Names don't stick the way faces do. For most of my career I quietly struggled to find people — not because I forgot them, but because I couldn't spell them.</p>
-      <p class="story-body">So I invented a workaround: hashtags. Instead of a name I'd misspell and never find again, I'd tag people by context — <em>#NYC #Eastwood #crazyhat.</em> My brain runs on context, not convention. It worked.</p>
-      <p class="story-body">With Jason at Laan Labs and Claude Code, Recall is finally that app.</p>
-      <div class="story-attr">— Paul Barbera, creator of Recall Contacts</div>
-      <details class="story-dropdown">
-        <summary>Read the full story</summary>
-        <div class="story-full">
-          <p class="story-body">For years, I quietly struggled to remember names. Not people — never people. Just the letters supposed to pin them down.</p>
-          <p class="story-body">I'm a photographer. 25 years of meeting people — shoots, events, studios, industry rooms — and for most of that time, blanking on names. I'm dyslexic, and pretty sure I have ADHD. Names don't stick the way faces do.</p>
-          <p class="story-body">So I invented a workaround: hashtags. Instead of a name I'd misspell and never find again, I'd tag people by context — <em>#NYC #Eastwood #crazyhat.</em> My brain runs on context, not convention. It worked.</p>
-          <p class="story-body">But getting data in and back out again was always slow and clunky. For years I thought: this should be an app. Something that works the way memory actually works — not how apps expect you to remember.</p>
-          <p class="story-body">With Jason at Laan Labs and Claude Code, Recall is finally that app. A contacts app built by someone who needed it. Built for everyone whose brain works the same way.</p>
-          <p class="story-body" style="color:#fff; font-weight:700;">Made by one of us. Built for brains like ours.</p>
-        </div>
-      </details>
-    </div>
-  </div>
 
-  <!-- 4. THE PROBLEM -->
-  <div class="features-section snap-section" id="features">
-    <div class="section-label">The problem</div>
-    <h2 class="section-title">You remember the context.<br>You just can't spell the name.</h2>
-    <p class="section-body">You know exactly who they are. Where you met them. What they do. The name is the only thing your contacts app needs — and the one thing you can't give it. Recall is built for that gap.</p>
-    <div class="features">
-      <div class="feature">
-        <div class="feature-num">01</div>
-        <h3 class="feature-title">Search by #hashtag</h3>
-        <p class="feature-desc">Tag anyone with context. Search #tokyo, #2023, #designer and find them instantly — no spelling required.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-num">02</div>
-        <h3 class="feature-title">Smart groups</h3>
-        <p class="feature-desc">VIP, Family, Work, Parents — colour-coded groups that filter your world instantly.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-num">03</div>
-        <h3 class="feature-title">Swipe to tag</h3>
-        <p class="feature-desc">Tinder-style tagging. Swipe right to save, left to revisit later. Organise hundreds of contacts in minutes.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-num">04</div>
-        <h3 class="feature-title">Built for neurodivergent minds</h3>
-        <p class="feature-desc">Dyslexic-friendly mode. Designed around how you actually think — not how apps expect you to remember.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. SEE IT IN ACTION -->
-  <div class="demo-section snap-section" id="demo">
-    <div class="section-label">See it in action</div>
-    <h2 class="section-title">Find anyone, instantly</h2>
-    <div class="demo-wrap">
-      <div class="demo-search">
-        <span>#</span>
-        <input value="tokyo photographer" readonly aria-label="Search example" />
-      </div>
-      <div class="demo-filter-tags">
-        <span class="tag vip">VIP</span>
-        <span class="tag">#TOKYO</span>
-        <span class="tag">#PHOTOGRAPHER</span>
-      </div>
-      <div class="demo-contacts">
-        <div class="contact">
-          <div class="contact-avatar" aria-hidden="true">AK</div>
-          <div>
-            <div class="contact-name">Aanya Kim</div>
-            <div class="contact-tags">
-              <span class="ctag">#TOKYO</span>
-              <span class="ctag">#PHOTOGRAPHER</span>
-              <span class="ctag">#2023</span>
-              <span class="ctag vip">#VIP</span>
-            </div>
-          </div>
-        </div>
-        <div class="contact">
-          <div class="contact-avatar" aria-hidden="true">RS</div>
-          <div>
-            <div class="contact-name">Ruangsak A.</div>
-            <div class="contact-tags">
-              <span class="ctag">#TOKYO</span>
-              <span class="ctag">#ARTIST</span>
-              <span class="ctag">#2022</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 6. QUOTE -->
-  <div class="quote snap-section" id="quote">
-    <p class="quote-text">"I built this because I needed it. I remembered the face, the story, the city. The name was the only thing stopping me. My problem. Maybe yours too."</p>
-    <div class="quote-attr">— Paul Barbera, creator of Recall Contacts</div>
-  </div>
-
-  <!-- 7. VIDEO -->
+  <!-- 4. TUTORIAL -->
   <div class="video-section snap-section" id="how-it-works">
-    <div class="section-label">How it works</div>
-    <h2 class="section-title">A long intro<br>and me rambling</h2>
-    <p class="section-body">A real look at how Recall fits into daily life — how I carry it, use it, and why it actually works.</p>
+    <div class="section-label">Tutorial</div>
+    <h2 class="section-title">Tutorial</h2>
+    <p class="section-body">A real look at how Recall fits into daily life, how I use it, and why it actually works.</p>
     <div class="video-player">
       <iframe
         src="https://www.youtube.com/embed/wXPbl4qCyiU"
@@ -681,7 +576,7 @@
     </div>
   </div>
 
-  <!-- 8. SIGNUP -->
+  <!-- 5. CONNECT -->
   <div class="signup snap-section" id="signup">
     <div class="signup-inner">
       <div class="section-label">Connect</div>
@@ -696,20 +591,27 @@
         <div class="signup-thanks" id="signupThanks">Got it — thanks.</div>
       </form>
 
-      <div class="signup-links">
-        <p class="signup-extra-desc">We're always looking to improve. If you have feature suggestions, ideas, or anything you think would make Recall better — we genuinely want to hear it.</p>
-        <a href="https://form.typeform.com/to/rFbsBae0" target="_blank" rel="noopener" class="signup-extra-link">Give feedback →</a>
+      <div class="connect-actions">
+        <a href="https://www.youtube.com/@Recall-Contacts" target="_blank" rel="noopener" class="connect-btn" aria-label="Recall Contacts on YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          <span class="connect-btn-label">YouTube</span>
+          <span class="connect-btn-sub">Watch Recall in action</span>
+        </a>
+        <a href="https://www.instagram.com/recall_contacts/" target="_blank" rel="noopener" class="connect-btn" aria-label="Recall Contacts on Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <span class="connect-btn-label">Instagram</span>
+          <span class="connect-btn-sub">Follow @recall_contacts</span>
+        </a>
+        <a href="https://form.typeform.com/to/rFbsBae0" target="_blank" rel="noopener" class="connect-btn connect-btn-feedback">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+          <span class="connect-btn-label">Give Feedback</span>
+          <span class="connect-btn-sub">Help shape what Recall becomes</span>
+        </a>
       </div>
 
-      <div class="signup-socials">
-        <a href="https://www.youtube.com/@Recall-Contacts" target="_blank" rel="noopener" class="signup-social-link" aria-label="Recall Contacts on YouTube">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14C4.5 20.5 12 20.5 12 20.5s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
-          YouTube
-        </a>
-        <a href="https://www.instagram.com/recall_contacts/" target="_blank" rel="noopener" class="signup-social-link" aria-label="Recall Contacts on Instagram">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
-        </a>
+      <div class="connect-quote">
+        <p>"I built this because I needed it. I remembered the face, the story, the city. The name was the only thing stopping me. My problem. Maybe yours too."</p>
+        <span>— Paul Barbera</span>
       </div>
     </div>
     <footer>
