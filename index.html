@@ -818,22 +818,37 @@
         "You remember the context. Recall finds the name."
       ];
       var el = document.getElementById('typewriter-text');
-      if (!el) return;
-      var qi = 0, ci = 0, deleting = false;
+      var row = el ? el.parentElement : null;
+      if (!el || !row) return;
+      var qi = 0, ci = 0;
+
+      function fadeOut(cb) {
+        row.style.transition = 'opacity 0.5s ease';
+        row.style.opacity = '0';
+        setTimeout(cb, 520);
+      }
+      function fadeIn() {
+        row.style.transition = 'opacity 0.4s ease';
+        row.style.opacity = '1';
+      }
 
       function tick() {
         var q = quotes[qi];
-        if (!deleting) {
-          ci++;
-          el.textContent = q.slice(0, ci);
-          if (ci === q.length) { deleting = true; setTimeout(tick, 2400); return; }
-          setTimeout(tick, 52);
-        } else {
-          ci--;
-          el.textContent = q.slice(0, ci);
-          if (ci === 0) { deleting = false; qi = (qi + 1) % quotes.length; setTimeout(tick, 380); return; }
-          setTimeout(tick, 28);
+        ci++;
+        el.textContent = q.slice(0, ci);
+        if (ci === q.length) {
+          setTimeout(function() {
+            fadeOut(function() {
+              el.textContent = '';
+              ci = 0;
+              qi = (qi + 1) % quotes.length;
+              fadeIn();
+              setTimeout(tick, 300);
+            });
+          }, 2400);
+          return;
         }
+        setTimeout(tick, 52);
       }
       setTimeout(tick, 900);
     });
@@ -876,7 +891,7 @@
       ];
 
       function spawn() {
-        var isColored = Math.random() < 0.12;
+        var isColored = Math.random() < 0.22;
         var item = isColored
           ? colored[Math.floor(Math.random() * colored.length)]
           : { text: plain[Math.floor(Math.random() * plain.length)], cls: null };
@@ -891,8 +906,8 @@
         el.style.top  = y + '%';
 
         var maxOp = item.cls
-          ? (0.55 + Math.random() * 0.3)
-          : (0.12 + Math.random() * 0.22);
+          ? (0.6 + Math.random() * 0.3)
+          : (0.18 + Math.random() * 0.28);
         cloud.appendChild(el);
 
         requestAnimationFrame(function() {
