@@ -213,7 +213,7 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; line-height: 1.5; font-weight: 500; min-height: 1.5em; }
+    .hero-sub { font-size: 20px; color: #bbb; max-width: 480px; line-height: 1.5; font-weight: 500; min-height: 1.5em; transition: opacity 0.5s ease; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     .tw-cursor { animation: blink 1s step-start infinite; color: #555; font-weight: 300; margin-left: 1px; }
     .tag { border: 1px solid #2a2a2a; padding: 5px 12px; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #555; text-transform: uppercase; }
@@ -834,29 +834,20 @@
       if (!el || !row) return;
       var qi = 0, ci = 0;
 
-      function fadeOut(cb) {
-        row.style.transition = 'opacity 0.5s ease';
-        row.style.opacity = '0';
-        setTimeout(cb, 520);
-      }
-      function fadeIn() {
-        row.style.transition = 'opacity 0.4s ease';
-        row.style.opacity = '1';
-      }
-
       function tick() {
         var q = quotes[qi];
         ci++;
         el.textContent = q.slice(0, ci);
         if (ci === q.length) {
           setTimeout(function() {
-            fadeOut(function() {
+            row.style.opacity = '0';
+            setTimeout(function() {
               el.textContent = '';
               ci = 0;
               qi = (qi + 1) % quotes.length;
-              fadeIn();
+              row.style.opacity = '1';
               setTimeout(tick, 300);
-            });
+            }, 520);
           }, 2400);
           return;
         }
@@ -879,57 +870,67 @@
       ];
 
       var plain = [
+        /* cities */
         'NYC','TOKYO','LONDON','PARIS','SYDNEY','MIAMI','LA','CHICAGO','BARCELONA','BERLIN',
         'AMSTERDAM','DUBAI','SINGAPORE','TORONTO','MELBOURNE','ROME','HONG KONG','BANGKOK',
         'SEOUL','NAIROBI','CAPE TOWN','MADRID','LISBON','PRAGUE','VIENNA','STOCKHOLM',
         'OSLO','COPENHAGEN','ISTANBUL','ATHENS','MUMBAI','DELHI','SHANGHAI','BEIJING',
+        'IBIZA','MYKONOS','TULUM','BALI','AMALFI','CANNES','MARRAKECH','RIO','HAVANA',
+        'REYKJAVIK','EDINBURGH','DUBLIN','MONTREAL','BUENOS AIRES','LAGOS','BEIRUT',
+        /* years */
+        '2009','2010','2011','2012','2013','2014','2015','2016',
+        '2017','2018','2019','2020','2021','2022','2023','2024','2025','2026',
+        /* professions */
         'PHOTOGRAPHER','DESIGNER','ARCHITECT','CHEF','JOURNALIST','LAWYER','DOCTOR',
-        'TEACHER','ENGINEER','ARTIST','MUSICIAN','FILMMAKER','WRITER','STYLIST',
-        'PRODUCER','DIRECTOR','CONSULTANT','DEVELOPER','THERAPIST','NURSE','DENTIST',
-        'PUBLICIST','AGENT','EDITOR','CURATOR','GALLERIST','SOMMELIER','TRAINER',
-        'PILOT','SURGEON','ACCOUNTANT','BANKER','BROKER','COACH','PHOTOGRAPHER',
+        'ARTIST','MUSICIAN','FILMMAKER','WRITER','STYLIST','PRODUCER','DIRECTOR',
+        'DEVELOPER','THERAPIST','DENTIST','EDITOR','CURATOR','TRAINER','PILOT',
+        'SURGEON','ACCOUNTANT','BROKER','COACH','NURSE','GALLERIST','SOMMELIER',
+        /* venues */
         'EASTWOOD','NOBU','CHATEAU','CIPRIANI','BALTHAZAR','LOULOU','CHILTERN',
-        'SOHO HOUSE','GROUCHO','ANNABELS','CLARIDGES','SKETCH','ELECTRIC','NIGHTJAR',
-        'RONNIES','BERGHAIN','FABRIC','DRAGON','CHILTERN FIREHOUSE','NERO',
-        '2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025',
-        'WEDDING','BIRTHDAY','CONFERENCE','SUMMIT','FESTIVAL','OPENING','GALLERY',
-        'LAUNCH','DINNER','DRINKS','ROOFTOP','STUDIO','BEACH','AIRPORT','HOTEL',
-        'MARATHON','GYM','YOGA','SCHOOL','STARTUP','BRAND','PODCAST','FASHION',
-        'TECH','FINANCE','SPORT','TRAVEL','FOOD','MUSIC','ART','MEDIA','FILM',
-        'NEIGHBOUR','MENTOR','CLIENT','INVESTOR','FOUNDER','CEO','CREATIVE',
-        'FLATMATE','COLLEAGUE','CONNECTOR','EX','BOSS','DATE',
-        'IBIZA','MYKONOS','TULUM','BALI','MALDIVES','AMALFI','CANNES',
-        'GLASTONBURY','COACHELLA','SXSW','DAVOS','FRIEZE','ART BASEL'
+        'SOHO HOUSE','GROUCHO','ANNABELS','CLARIDGES','SKETCH','NIGHTJAR',
+        'BERGHAIN','FABRIC','DRAGON','NERO','CHILTERN FIREHOUSE','RONNIES',
+        /* context */
+        'WEDDING','BIRTHDAY','FESTIVAL','OPENING','GALLERY','DINNER','DRINKS',
+        'ROOFTOP','STUDIO','BEACH','HOTEL','GYM','YOGA','STARTUP','PODCAST',
+        'FASHION','TECH','SPORT','TRAVEL','MUSIC','ART','FILM','SUMMIT',
+        'GLASTONBURY','COACHELLA','DAVOS','FRIEZE','ART BASEL','SXSW',
+        'MENTOR','INVESTOR','FOUNDER','CEO','COLLEAGUE','FLATMATE','DATE'
       ];
+
+      var active = {};
 
       function spawn() {
         var isColored = Math.random() < 0.22;
-        var item = isColored
-          ? colored[Math.floor(Math.random() * colored.length)]
-          : { text: plain[Math.floor(Math.random() * plain.length)], cls: null };
+        var pool, item, key;
+
+        if (isColored) {
+          var avail = colored.filter(function(c) { return !active[c.text]; });
+          if (!avail.length) isColored = false;
+          else item = avail[Math.floor(Math.random() * avail.length)];
+        }
+        if (!isColored) {
+          var avail2 = plain.filter(function(t) { return !active['#' + t]; });
+          if (!avail2.length) return;
+          item = { text: avail2[Math.floor(Math.random() * avail2.length)], cls: null };
+        }
+
+        key = item.cls ? item.text : '#' + item.text;
+        active[key] = true;
 
         var el = document.createElement('span');
         el.className = 'tag tag-float' + (item.cls ? ' ' + item.cls : '');
-        el.textContent = item.cls ? item.text : '#' + item.text;
+        el.textContent = key;
 
-        var x = 2 + Math.random() * 90;
         var isMob = window.innerWidth < 721;
-        var y;
-        if (isMob) {
-          y = Math.random() < 0.45
-            ? 2 + Math.random() * 22
-            : 68 + Math.random() * 28;
-        } else {
-          y = 2 + Math.random() * 90;
-        }
+        var x = 2 + Math.random() * 90;
+        var y = isMob
+          ? (Math.random() < 0.45 ? 2 + Math.random() * 22 : 68 + Math.random() * 28)
+          : 2 + Math.random() * 90;
         el.style.left = x + '%';
         el.style.top  = y + '%';
 
-        var maxOp = item.cls
-          ? (0.6 + Math.random() * 0.3)
-          : (0.18 + Math.random() * 0.28);
+        var maxOp = item.cls ? (0.6 + Math.random() * 0.3) : (0.18 + Math.random() * 0.28);
         cloud.appendChild(el);
-
         requestAnimationFrame(function() {
           requestAnimationFrame(function() { el.style.opacity = maxOp; });
         });
@@ -937,17 +938,13 @@
         var life = 3200 + Math.random() * 5000;
         setTimeout(function() {
           el.style.opacity = 0;
+          delete active[key];
           setTimeout(function() { el.parentNode && el.parentNode.removeChild(el); }, 800);
         }, life);
       }
 
-      for (var i = 0; i < 22; i++) {
-        setTimeout(spawn, Math.random() * 2500);
-      }
-      (function loop() {
-        spawn();
-        setTimeout(loop, 280 + Math.random() * 340);
-      })();
+      for (var i = 0; i < 22; i++) setTimeout(spawn, Math.random() * 2200);
+      (function loop() { spawn(); setTimeout(loop, 290 + Math.random() * 320); })();
     });
   </script>
 
