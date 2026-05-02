@@ -456,9 +456,21 @@
     @media (max-width: 720px) {
       :root { --frame: 10px; --nav-h: 52px; }
 
+      body {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+      .snap-section {
+        height: calc(100vh - var(--frame) * 2 - var(--nav-h));
+        min-height: unset;
+        scroll-snap-align: start;
+        overflow-y: auto;
+      }
+
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .hero { padding: 0 20px; }
+      .hero-inner { padding: 0 20px; }
       .hero-title { font-size: 52px; }
       .hero-sub { font-size: 17px; }
       .screenshots, .story, .features-section, .demo-section, .quote, .video-section, .signup { padding: 0 20px; }
@@ -901,7 +913,15 @@
         el.textContent = item.cls ? item.text : '#' + item.text;
 
         var x = 2 + Math.random() * 90;
-        var y = 2 + Math.random() * 90;
+        var isMob = window.innerWidth < 721;
+        var y;
+        if (isMob) {
+          y = Math.random() < 0.45
+            ? 2 + Math.random() * 22
+            : 68 + Math.random() * 28;
+        } else {
+          y = 2 + Math.random() * 90;
+        }
         el.style.left = x + '%';
         el.style.top  = y + '%';
 
