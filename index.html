@@ -446,14 +446,16 @@
       :root { --frame: 10px; --nav-h: 52px; }
 
       body {
-        scroll-snap-type: y mandatory;
+        scroll-snap-type: y proximity;
         overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         height: 100vh;
       }
       .snap-section {
         height: calc(100vh - var(--frame) * 2 - var(--nav-h));
         min-height: unset;
         scroll-snap-align: start;
+        scroll-snap-stop: normal;
         overflow-y: auto;
       }
 
@@ -560,7 +562,7 @@
     <div class="video-player">
       <iframe
         src="https://www.youtube.com/embed/wXPbl4qCyiU"
-        title="Recall Contacts — How it works"
+        title="Recall Contacts — Tutorial"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
         loading="lazy">
@@ -783,7 +785,14 @@
       mobileMenu.classList.toggle('open');
     });
     mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
-      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        var href = link.getAttribute('href');
+        if (!isDesktop() && href && !href.startsWith('#')) {
+          var curr = sections[currentIndex];
+          if (curr) curr.scrollIntoView({ behavior: 'auto', block: 'start' });
+        }
+      });
     });
   </script>
 
