@@ -269,13 +269,13 @@
     .about-attr { font-size: 11px; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-top: 12px; }
 
     /* ── FEATURES ──────────────────────── */
-    .features-section { padding: 0 28px; border-bottom: var(--border); }
-    .features { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; }
-    .feature { padding: 32px 24px; border-top: var(--border); border-right: var(--border); }
+    .features-section { padding: 0 28px; border-bottom: var(--border); justify-content: flex-start; padding-top: 60px; }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px; border-top: var(--border); }
+    .feature { padding: 28px 24px; border-bottom: var(--border); border-right: var(--border); }
     .feature:nth-child(even) { border-right: none; }
-    .feature-num { font-size: 10px; letter-spacing: 3px; color: #333; margin-bottom: 14px; }
-    .feature-title { font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; margin-bottom: 10px; }
-    .feature-desc { font-size: 13px; color: #666; line-height: 1.65; }
+    .feature-num { font-size: 10px; letter-spacing: 3px; color: #2a2a2a; margin-bottom: 12px; }
+    .feature-title { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+    .feature-desc { font-size: 13px; color: #666; line-height: 1.7; }
 
     /* ── DEMO ──────────────────────────── */
     .demo-section { padding: 0 28px; border-bottom: var(--border); }
@@ -464,7 +464,10 @@
       .hero-inner { padding: 0 20px; }
       .hero-title { font-size: 52px; }
       .hero-sub { font-size: 17px; }
-      .about, .screenshots, .video-section, .signup { padding: 0 20px; }
+      .about, .features-section, .screenshots, .video-section, .signup { padding: 0 20px; }
+      .features-section { padding-top: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature { border-right: none; }
       .section-title { font-size: 26px; }
       .about-headline { font-size: 22px; }
       .about-lede { font-size: 18px; }
@@ -488,6 +491,7 @@
     <a href="#" class="nav-logo recall-font">#Recall</a>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#features">Features</a>
       <a href="#screenshots">Screenshots</a>
       <a href="#how-it-works">Tutorial</a>
       <a href="#signup">Connect</a>
@@ -502,6 +506,7 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" class="mobile-link">About</a>
+    <a href="#features" class="mobile-link">Features</a>
     <a href="#screenshots" class="mobile-link">Screenshots</a>
     <a href="#how-it-works" class="mobile-link">Tutorial</a>
     <a href="#signup" class="mobile-link">Connect</a>
@@ -531,7 +536,88 @@
     </div>
   </div>
 
-  <!-- 3. SCREENSHOTS -->
+  <!-- 3. FEATURES -->
+  <div class="features-section snap-section" id="features">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything Recall does.</h2>
+    <div class="features-grid">
+
+      <div class="feature">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Search by #hashtag</div>
+        <p class="feature-desc">Type what you remember — a place, a moment, a name fragment. Recall finds the person instantly.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">02</div>
+        <div class="feature-title">Swipe to tag</div>
+        <p class="feature-desc">Add a hashtag to any contact in one swipe. No forms. No typing. Just tag and go.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Smart groups</div>
+        <p class="feature-desc">Every tag is a group. #NYC. #WORK. #rooftopbar. Contacts organise themselves around what you remember.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">04</div>
+        <div class="feature-title">Parent Mode</div>
+        <p class="feature-desc">Attach your kids' names directly to their profile. Sarah — [Luca, Ella]. You already know. You just need the reminder.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">05</div>
+        <div class="feature-title">Super Tags</div>
+        <p class="feature-desc">Five priority shortcuts built in: VIP, FAMILY, WORK, PARENTS, FRIENDS. Instant filter for the people who matter most.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">06</div>
+        <div class="feature-title">Browse by last used</div>
+        <p class="feature-desc">See who you were in touch with most recently. Your native contacts app can't do this. Recall can.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">07</div>
+        <div class="feature-title">Swipe to review &amp; delete</div>
+        <p class="feature-desc">The same swipe that tags also lets you review and delete. The best way to finally clean up your address book.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">08</div>
+        <div class="feature-title">Highly customisable</div>
+        <p class="feature-desc">Turn features on or turn them all off. Build exactly the contacts app that fits how you work.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">09</div>
+        <div class="feature-title">Find anyone by context</div>
+        <p class="feature-desc">Remember the ramen bar but not the name? Search #ramen or #tokyo. Done.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">10</div>
+        <div class="feature-title">Works with your existing contacts</div>
+        <p class="feature-desc">Recall layers on top of your iPhone contacts. Nothing moves. Nothing breaks. Your data stays yours.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">11</div>
+        <div class="feature-title">Private by design</div>
+        <p class="feature-desc">No account required. No cloud sync. No data harvested. Everything stays on your device.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-num">12</div>
+        <div class="feature-title">Works for every kind of mind</div>
+        <p class="feature-desc">Recall was built because Paul is dyslexic and needed it. But context-first thinking isn't a disability — it's just how most people actually remember.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. SCREENSHOTS -->
   <div class="screenshots snap-section" id="screenshots">
     <div class="carousel" id="carousel" aria-label="App screenshot carousel">
       <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
