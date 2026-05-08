@@ -198,6 +198,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
 
+  <!-- Flodesk universal script — loads once, queues form calls made before it's ready -->
+  <script>
+    (function(w, d, t, h, s, n) {
+      w.FlodeskObject = n;
+      var fn = function() { (w[n].q = w[n].q || []).push(arguments); };
+      w[n] = w[n] || fn;
+      var f = d.getElementsByTagName(t)[0];
+      var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+      var sm = d.createElement(t); sm.async = true; sm.type = 'module';
+      sm.src = h + s + '.mjs' + v; f.parentNode.insertBefore(sm, f);
+      var sn = d.createElement(t); sn.async = true; sn.noModule = true;
+      sn.src = h + s + '.js' + v; f.parentNode.insertBefore(sn, f);
+    })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -851,13 +866,13 @@
       <h2 id="connect-heading">Keep in the loop</h2>
       <p>New features, tips, and occasional notes from Paul.</p>
 
-      <form class="signup-form" id="contactForm" action="https://formspree.io/paul@paulbarbera.com" method="POST">
-        <div class="signup-form-row">
-          <input type="email" name="email" class="signup-input" placeholder="Your email" required autocomplete="email" />
-          <button type="submit" class="signup-submit">Subscribe</button>
-        </div>
-        <div class="signup-thanks" id="signupThanks">Got it — thanks.</div>
-      </form>
+      <div id="fd-form-69f0b24abef402d800447a4b"></div>
+      <script>
+        window.fd('form', {
+          formId: '69f0b24abef402d800447a4b',
+          containerEl: '#fd-form-69f0b24abef402d800447a4b'
+        });
+      </script>
 
       <div class="connect-actions">
         <a href="https://www.youtube.com/@Recall-Contacts" target="_blank" rel="noopener" class="connect-btn" aria-label="Recall Contacts on YouTube">
@@ -1100,26 +1115,6 @@
         }
       });
     });
-  </script>
-
-  <script>
-    var contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var data = new FormData(contactForm);
-        fetch(contactForm.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        }).then(function(r) {
-          if (r.ok) {
-            contactForm.style.display = 'none';
-            document.getElementById('signupThanks').style.display = 'block';
-          }
-        });
-      });
-    }
   </script>
 
   <script>
