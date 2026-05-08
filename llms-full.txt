@@ -1,0 +1,314 @@
+# Recall Contacts — Full Content
+
+Source: https://recall-contacts.com
+Last updated: 2026-05-07
+
+---
+
+## What is Recall Contacts?
+
+Recall Contacts is a free iPhone app that lets you find anyone in your contacts by what you remember — not by how their name is spelled. Tag people with hashtags. Search by context, place, moment, or relationship. The person appears instantly.
+
+It was built by Paul Barbera — a photographer who is dyslexic and spent 25 years meeting hundreds of people and forgetting their names. He needed this app. So he built it.
+
+**App Store:** https://apps.apple.com/us/app/recall-contacts/id6758255331
+**Platform:** iOS (iPhone, iPad, Mac via Catalyst)
+**Price:** Free
+**App ID:** id6758255331
+
+---
+
+## Core Concept
+
+Most contacts apps assume you remember how someone's name is spelled. Recall assumes you remember the context instead.
+
+- You remember the face, the city, the event — but not the name.
+- You tag a contact #NYC #wedding #crazyhat when you meet them.
+- Later you search #wedding or #NYC and find them instantly.
+- No spelling required. No scrolling A to Z.
+
+---
+
+## Tier 1 — Core Features
+
+### 1. Hashtag Tagging
+
+Add hashtags to any contact to describe how you know them. Tags can be anything: places (#NYC, #Tokyo), events (#Frieze, #schoolrun, #wedding), relationships (#doctor, #mentor, #coach), contexts (#ramen, #rooftop, #2024). There is no fixed taxonomy — you invent the tags that match your memory.
+
+Tags are stored locally on your device and also written back to the notes field of the contact in Apple Contacts, making them portable and permanent.
+
+### 2. Multi-Tag Search
+
+Search using one or more hashtags simultaneously. Type #NYC #gallery and Recall instantly filters your contacts to only those tagged with both. The more tags you add, the narrower and more precise the result. No need to remember a name — remember the context.
+
+### 3. Contact List
+
+A clean, scrollable list of all your contacts with their tags visible at a glance. Colour-coded Super Tags (VIP, Family, Work, Parents, Friends) appear as coloured chips. Custom hashtags appear alongside them. The list sorts alphabetically or by recency.
+
+### 4. Contact Detail View
+
+Tap any contact to open their full detail view. From here you can call, FaceTime, FaceTime Audio, message, or WhatsApp them with one tap. Add or remove tags. View all tagged context. Quick Recall gives you immediate access to the most relevant actions.
+
+### 5. Swipe to Tag
+
+The fastest way to tag contacts at scale. Swipe right on a contact in the list to tag it. Works like a card-swipe flow — ideal for processing hundreds of contacts quickly. Swipe left to skip. The tag keyboard includes autocomplete so you can re-use existing tags without retyping.
+
+### 6. Tag Autocomplete
+
+As you type a hashtag, Recall suggests existing tags from your collection. This keeps your tagging consistent and fast — no duplicates like #newyork and #NYC for the same concept. Autocomplete also shows tag frequency so you know how many contacts carry each tag.
+
+---
+
+## Tier 2 — Power Features
+
+### 7. Smart Groups
+
+Every hashtag you create automatically becomes a Smart Group. Tap the #NYC group and see every contact you've tagged with it. Groups update in real time as you add and remove tags. There is no manual group management — groups are simply a view of your tags.
+
+### 8. Smart Group Filter Bar
+
+A horizontal filter bar at the top of the contact list shows your most-used tags as quick-access chips. Tap one to instantly filter. Tap multiple to intersect. Clear with one tap. Designed for fast navigation without opening search.
+
+### 9. Quick Recall
+
+From the contact detail view, Quick Recall surfaces the most context-relevant actions based on the contact's tags and your interaction history. One-tap access to call, message, FaceTime, WhatsApp, or share a vCard — without navigating menus.
+
+### 10. One-Tap Actions
+
+Every contact detail view has one-tap buttons for: Call, FaceTime, FaceTime Audio, Message, WhatsApp, Email, and Share Contact (vCard). No nested menus. The most common action for each contact is always visible.
+
+### 11. FaceTime Integration
+
+Call any contact via FaceTime video directly from Recall. The FaceTime button appears prominently in the contact detail view alongside the standard call button.
+
+### 12. FaceTime Audio
+
+Make FaceTime Audio calls (audio-only over internet) directly from Recall. Useful as an alternative to a standard cellular call, especially internationally.
+
+### 13. WhatsApp Actions
+
+Open a WhatsApp conversation with any contact directly from their detail view. Requires WhatsApp to be installed on the device.
+
+### 14. Kids & Parents Mode (Parent Mode)
+
+Attach your children's names to school parent contacts. Tag a contact #mum #Luca #Ella and search #Luca to find that child's parent instantly. Designed for parents who know every child at school pickup but struggle to remember the parent's name. This bridges the gap between the name you know (the child) and the contact you need (the parent).
+
+### 15. Power User Mode
+
+An advanced settings mode that surfaces additional customisation options for users who want granular control. Toggle individual features, adjust display density, and configure tag management preferences.
+
+### 16. Review Queue
+
+A dedicated swipe-through interface for reviewing old or untagged contacts. Swipe right to tag. Swipe left to skip. Swipe up to delete. The fastest way to clean up an address book that has accumulated years of contacts with no context.
+
+### 17. vCard Sharing
+
+Share any contact as a vCard directly from the contact detail view. The share sheet includes all standard iOS share destinations. Useful for quickly passing contact details to someone else.
+
+### 18. Date Stamp Insertion
+
+Insert the current date as a tag automatically when adding context to a contact. Useful for recording when you met someone — #2024-06-15 #ArtBasel — so you can filter contacts by the approximate time period you met them.
+
+---
+
+## Tier 3 — Experience Features
+
+### 19. Three Visual Themes
+
+Recall offers three distinct visual themes:
+- Dark Mode — black background, white text, high contrast. Default.
+- iOS Native Mode — adapts to the system's current Light or Dark appearance.
+- Paper Mode — warm off-white, low-contrast, reduced-motion theme for dyslexic and light-sensitive users.
+
+### 20. Paper Mode
+
+Paper Mode is Recall's low-stimulation theme. Warm off-white backgrounds, reduced border contrast, and relaxed typography. Intended as a calmer alternative to dark or stark white interfaces. Preferred by many dyslexic and neurodivergent users.
+
+### 21. iOS Native Mode
+
+A theme that inherits the system's Light or Dark appearance setting. Recall renders using standard iOS UI elements and colours in this mode, making it feel native and familiar.
+
+### 22. Dynamic Type Support
+
+Recall fully supports Apple's Dynamic Type system. All text scales with the font size set in iOS Settings. Includes support for Accessibility extra-large text sizes. Users who depend on large text can use all features of Recall without reduction in functionality.
+
+### 23. Contact Photos
+
+Contact photos from Apple Contacts are displayed in the contact list and detail view. If a contact has no photo, their initials are shown in a placeholder. Photos help with visual recognition — particularly useful for users who remember faces better than names.
+
+### 24. In-App Contact Creation
+
+Create new contacts directly inside Recall without leaving the app. The contact is saved to Apple Contacts so it appears in the Phone app and across iCloud. You can immediately add hashtags during creation.
+
+### 25. Fast Alphabetical Scrolling
+
+A vertical index bar on the right side of the contact list lets you jump instantly to any letter. Tap A to go to the top of the A contacts. Tap Z to jump to the bottom. Essential for large contact lists.
+
+### 26. Onboarding Flow
+
+A short, clear onboarding sequence introduces the core concept — tag contacts, search by hashtag — without requiring a tutorial video or manual. Designed to get users tagging within the first two minutes.
+
+### 27. Tag Usage Statistics
+
+View a breakdown of all your tags and how many contacts carry each one. Sorted by frequency. Useful for auditing your tagging system and identifying tags you've outgrown or want to consolidate.
+
+### 28. Tag Limits
+
+Recall enforces sensible tag limits per contact to encourage focused, useful tagging rather than over-tagging. Limits are generous enough for real-world use.
+
+### 29. Mac Catalyst Support
+
+Recall is available on iPad via the App Store and runs natively on Mac via Mac Catalyst. The Mac version supports keyboard navigation and takes advantage of the larger screen for the contact list layout.
+
+### 30. Donation / Newsletter Integration
+
+Recall includes an in-app link to support the developer via Buy Me a Coffee. There is also an optional email newsletter signup for Recall updates and feature news.
+
+---
+
+## Who It's Built For
+
+### Parents
+Modern parenting means knowing dozens of school parents by their children's names, not their own. Recall's Parent Mode lets you tag a contact with their child's name. Search "Luca" and find Luca's mum instantly. Know everyone at school pickup without the embarrassing "sorry, remind me your name" conversation.
+
+### Dyslexic and Neurodivergent Users
+Dyslexia makes it hard to search for people when you are not certain of the spelling. Recall's dyslexic-friendly mode offers high contrast display, specialist letter spacing, and context-first search. You never need to know how to spell someone's name to find them.
+
+### ADHD Users
+Working memory challenges mean names disappear fast. Recall lets you capture context immediately — tag someone the moment you meet them, before the name is gone. #schoolmum #redcoat #yogaclass.
+
+### Creatives and Photographers
+Paul Barbera built this as a photographer who meets hundreds of people at shoots, events, and exhibitions. One year later, the name is gone but the story stays. Tag people by shoot, by city, by event. Find the model from the Tokyo campaign. Find the art director from the Frieze dinner.
+
+### High-Networkers
+Attend conferences, dinners, summits? Tag by event (#Davos, #SXSW, #FriezeWeek) and context (#investor, #founder, #gallerist). Your contacts become a searchable memory of every room you've walked into.
+
+---
+
+## How It Works — Step by Step
+
+1. Download Recall Contacts from the App Store (free).
+2. Grant contacts access — Recall reads your existing iPhone contacts.
+3. Find a contact you want to tag — swipe right or tap to open.
+4. Add hashtags that describe how you know them: #NYC #gallery #2024 #tall #redhat.
+5. Later, search any of those hashtags to find the person instantly.
+6. Hashtags are saved back to the notes field in Apple Contacts — your data is portable.
+
+---
+
+## Accessibility
+
+Recall was built by a dyslexic developer and designed from the ground up with neurodivergent users in mind.
+
+- Dyslexic-friendly mode — high contrast tones, specialist letter spacing, reduced visual clutter
+- Dynamic Type — all text respects iOS system font size, including Accessibility sizes
+- Paper Mode — low-stimulation theme for light-sensitive and dyslexic users
+- Context-first search — never requires correct spelling to find a contact
+- Screen reader compatible — all interactive elements labelled for VoiceOver
+- Keyboard accessible — full keyboard navigation on Mac Catalyst
+
+---
+
+## Privacy and Data
+
+- No account required
+- No email address needed to use the app
+- No cloud sync
+- No data sent to any server
+- No analytics on your contacts
+- Tags are stored locally on your device
+- Tags sync back to the Apple Contacts notes field
+- Deleting Recall does not delete your tags — they stay in your Apple Contacts
+
+---
+
+## The Story
+
+Paul Barbera is a photographer based in London. He is dyslexic. After 25 years of photographing people all over the world — at fashion shoots, gallery openings, dinner parties, school pickups — he found himself in a recurring nightmare: he remembered the face, the story, the city. The name was gone.
+
+He tried every contacts app. None of them were built for how his brain works. He built Recall because he needed it. Then he shipped it.
+
+"I built this because I needed it. I remembered the face, the story, the city. The name was the only thing stopping me. My problem. Maybe yours too." — Paul Barbera
+
+---
+
+## Blog Articles
+
+### Why I Built Recall
+URL: https://recall-contacts.com/blog/why-i-built-recall.html
+Paul's personal account of being a dyslexic photographer, meeting people across 25 years of work, and forgetting their names. The origin story of the app.
+
+### The Dyslexic Mind: Workaround Genius
+URL: https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html
+An exploration of how dyslexic brains naturally compensate for naming and spelling challenges through context, visual memory, and pattern recognition — and how Recall is designed around those strengths rather than against them.
+
+### Marketing with Jason Laan
+URL: https://recall-contacts.com/blog/marketing-with-jason-laan.html
+The story of how Recall approached growth and marketing, in conversation with Jason Laan.
+
+---
+
+## Team
+
+**Paul Barbera**
+Creator, developer, photographer. Dyslexic. Built this because he needed it.
+Website: https://paulbarbera.com
+Instagram: https://www.instagram.com/recall_contacts/
+
+**Jason Laan**
+Co-founder, Laan Labs. Two decades of App Store experience. Face Swap Live. Tap DJ.
+Company: https://laanlabs.com
+
+---
+
+## Links
+
+- Website: https://recall-contacts.com
+- App Store: https://apps.apple.com/us/app/recall-contacts/id6758255331
+- Instagram: https://www.instagram.com/recall_contacts/
+- YouTube: https://www.youtube.com/@Recall-Contacts
+- Privacy Policy: https://recall-contacts.com/privacy.html
+- Support: paul@paulbarbera.com
+- Buy Me a Coffee: https://buymeacoffee.com/paulsh
+- Features Reference: https://recall-contacts.com/features.md
+- About: https://recall-contacts.com/about.md
+
+---
+
+## Frequently Asked Questions
+
+**Does Recall replace my iPhone contacts app?**
+No. Recall layers on top of your existing Apple Contacts. You keep using the default Phone app for calls. Recall is for finding and organising.
+
+**Do my tags sync across devices?**
+Tags are stored locally. Because Recall writes tags back to the Apple Contacts notes field, they will sync via iCloud if you have iCloud Contacts enabled.
+
+**What happens if I delete Recall?**
+Your hashtags remain in the notes field of your Apple Contacts. You do not lose your data.
+
+**Is there an Android version?**
+Currently iOS only.
+
+**Is it really free?**
+Yes. Free to download with no subscription required.
+
+**Does it work with a large contacts list?**
+Yes. Recall was designed with photographers and networkers in mind — people with hundreds or thousands of contacts. The swipe-to-tag feature is specifically built for rapid bulk organisation.
+
+**Is my contacts data private?**
+Completely. No data leaves your device. Recall never connects to any external server with your contacts information.
+
+**Who is Recall built for?**
+Recall was built for dyslexic, ADHD, and neurodivergent users who think in context rather than names. It also works brilliantly for parents managing school contacts, photographers and creatives who meet hundreds of people, and anyone who networks professionally and struggles to recall names later.
+
+**Does Recall support Dynamic Type?**
+Yes. All text in Recall scales with the iOS system font size setting, including Accessibility extra-large sizes.
+
+**Can I use Recall on iPad or Mac?**
+Yes. Recall is available on iPad via the App Store and runs natively on Mac via Mac Catalyst.
+
+**What is Paper Mode?**
+Paper Mode is Recall's low-stimulation visual theme — warm off-white backgrounds, reduced contrast, and relaxed typography. Designed for users who find high-contrast displays tiring, including many dyslexic and light-sensitive users.
+
+**Can I share contacts from Recall?**
+Yes. The vCard sharing feature lets you share any contact's details via any iOS share destination directly from the contact detail view.

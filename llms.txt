@@ -1,0 +1,33 @@
+# Recall Contacts
+
+> iPhone contacts app that lets you find anyone by what you remember — a hashtag, a place, a moment — not by how their name is spelled. Built for dyslexic, ADHD, and neurodivergent minds. Works brilliantly for everyone.
+
+Recall Contacts is a free iPhone app created by photographer Paul Barbera. It layers on top of your existing Apple Contacts — nothing moves, nothing breaks. Tag people with hashtags (#NYC, #wedding, #schoolrun, #doctor) and search by context instead of spelling. All data stays on your device. No account required. No cloud sync.
+
+## Product
+
+- [Home](https://recall-contacts.com/): Overview, features, screenshots, demo video, and App Store download
+- [App Store](https://apps.apple.com/us/app/recall-contacts/id6758255331): Download Recall Contacts for iPhone — free
+
+## Documentation
+
+- [Features Reference](https://recall-contacts.com/features.md): Complete feature guide covering all 30 features across Core, Power, and Experience tiers — including accessibility, privacy, and platform details
+- [About Recall](https://recall-contacts.com/about.md): App philosophy, origin story, who it's for, and the team behind it
+
+## Articles
+
+- [Why I Built Recall](https://recall-contacts.com/blog/why-i-built-recall.html): Paul Barbera's personal story — a dyslexic photographer who spent 25 years meeting people and forgetting their names
+- [The Dyslexic Mind: Workaround Genius](https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html): How dyslexic brains compensate for naming challenges with context and pattern recognition
+- [Marketing with Jason Laan](https://recall-contacts.com/blog/marketing-with-jason-laan.html): Growth and marketing story for Recall
+
+## People
+
+- [Team](https://recall-contacts.com/team.html): Paul Barbera — photographer, app creator, and the person who needed Recall before he built it
+
+## Legal
+
+- [Privacy Policy](https://recall-contacts.com/privacy.html): Fully on-device. No account required. No cloud sync. Your data stays yours.
+
+## Full Content
+
+- [llms-full.txt](https://recall-contacts.com/llms-full.txt): Complete site and product content in plain text for indexing — includes all features, FAQs, use cases, and team information
