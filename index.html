@@ -570,6 +570,13 @@
       outline-offset: 3px;
     }
 
+    /* ── VISUALLY HIDDEN (screen-reader accessible) ── */
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
     /* ── SKIP NAV ──────────────────────── */
     .skip-nav {
       position: fixed;
@@ -845,17 +852,24 @@
 
   <!-- 5. TUTORIAL -->
   <section class="video-section snap-section" id="how-it-works" aria-labelledby="tutorial-heading">
-    <div class="section-label">Tutorial</div>
     <h2 class="section-title" id="tutorial-heading">How Recall Works</h2>
     <p class="section-body">A real look at how Recall fits into daily life, how I use it, and why it actually works.</p>
     <div class="video-player">
-      <iframe
-        src="https://www.youtube.com/embed/wXPbl4qCyiU"
-        title="Recall Contacts — Tutorial video showing hashtag search, swipe-to-tag, and Smart Groups"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy">
-      </iframe>
+      <div class="yt-facade" data-videoid="wXPbl4qCyiU"
+           role="button" tabindex="0"
+           aria-label="Play tutorial video: Recall Contacts"
+           style="position:relative;width:100%;aspect-ratio:9/16;cursor:pointer;background:#000;overflow:hidden;">
+        <img src="https://i.ytimg.com/vi/wXPbl4qCyiU/hqdefault.jpg"
+             alt="Recall Contacts tutorial video thumbnail"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+          <svg width="56" height="40" viewBox="0 0 68 48" aria-hidden="true">
+            <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
+            <path d="M45 24 27 14v20z" fill="#fff"/>
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1264,6 +1278,34 @@
   </script>
 
   <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
+
+  <script>
+    /* ── YOUTUBE FACADE ─── */
+    (function() {
+      function activateFacade(facade) {
+        var id = facade.dataset.videoid;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+        iframe.title = 'Recall Contacts — Tutorial';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+        facade.innerHTML = '';
+        facade.appendChild(iframe);
+      }
+      document.addEventListener('click', function(e) {
+        var f = e.target.closest('.yt-facade');
+        if (f) activateFacade(f);
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          var f = document.activeElement && document.activeElement.closest
+            ? document.activeElement.closest('.yt-facade') : null;
+          if (f) { e.preventDefault(); activateFacade(f); }
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
