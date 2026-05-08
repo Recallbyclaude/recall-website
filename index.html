@@ -916,17 +916,22 @@
 
     function updateActiveNav(index) {
       var navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-      var navIds = Array.from(navLinks).map(function(l) {
+      /* Build a map of section-id → link so we only match real anchor links */
+      var idToLink = {};
+      navLinks.forEach(function(l) {
         var h = l.getAttribute('href');
-        return (h && h.startsWith('#') && h.length > 1) ? h.slice(1) : '';
+        if (h && h.startsWith('#') && h.length > 1) {
+          idToLink[h.slice(1)] = l;
+        }
       });
-      var activeId = '';
+      /* Walk backwards from current section to find the first one with a nav link */
+      var activeLink = null;
       for (var i = index; i >= 0; i--) {
         var sid = sections[i] ? sections[i].id : '';
-        if (navIds.indexOf(sid) !== -1) { activeId = sid; break; }
+        if (sid && idToLink[sid]) { activeLink = idToLink[sid]; break; }
       }
-      navLinks.forEach(function(link) {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + activeId);
+      navLinks.forEach(function(l) {
+        l.classList.toggle('active', l === activeLink);
       });
     }
 
@@ -998,8 +1003,10 @@
       if (isDesktop()) {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
         sections[currentIndex].classList.add('desktop-active');
+        updateActiveNav(currentIndex);
       } else {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
+        updateActiveNav(currentIndex);
       }
     });
 
