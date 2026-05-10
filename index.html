@@ -293,11 +293,11 @@
       border-bottom: var(--border);
       z-index: 800;
     }
-    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; flex-shrink: 0; min-width: 80px; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
     .nav-links a {
       font-size: 11px;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.5px;
       color: #999;
       text-decoration: none;
       text-transform: uppercase;
@@ -307,10 +307,6 @@
     .nav-links a:not(.nav-cta) {
       border: 1px solid transparent;
       padding: 5px 10px;
-    }
-    .nav-links a:not(.nav-cta).active {
-      border-color: #fff;
-      color: #fff;
     }
     .nav-cta {
       background: #fff;
@@ -671,7 +667,6 @@
       <a href="#how-it-works">Tutorial</a>
       <a href="#signup">Connect</a>
       <a href="/blog/" target="_blank" rel="noopener">Articles</a>
-      <a href="/team.html">Team</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -687,7 +682,6 @@
     <a href="#how-it-works" class="mobile-link">Tutorial</a>
     <a href="#signup" class="mobile-link">Connect</a>
     <a href="/blog/" target="_blank" rel="noopener" class="mobile-link">Articles</a>
-    <a href="/team.html" class="mobile-link">Team</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
@@ -915,6 +909,7 @@
     <div class="footer-logo recall-font">#Recall</div>
     <div class="footer-links">
       <a href="/privacy.html">Privacy</a>
+      <a href="/team.html">Meet the Team</a>
       <a href="https://paulbarbera.com/Recall-app" target="_blank" rel="noopener">paulbarbera.com</a>
       <a href="mailto:paul@paulbarbera.com">Support</a>
       <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener">Buy me a coffee</a>
@@ -943,46 +938,27 @@
       return window.matchMedia('(min-width: 721px)').matches;
     }
 
-    function updateActiveNav(index) {
-      var navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
-      /* Build a map of section-id → link so we only match real anchor links */
-      var idToLink = {};
-      navLinks.forEach(function(l) {
-        var h = l.getAttribute('href');
-        if (h && h.startsWith('#') && h.length > 1) {
-          idToLink[h.slice(1)] = l;
-        }
-      });
-      /* Walk backwards from current section to find the first one with a nav link */
-      var activeLink = null;
-      for (var i = index; i >= 0; i--) {
-        var sid = sections[i] ? sections[i].id : '';
-        if (sid && idToLink[sid]) { activeLink = idToLink[sid]; break; }
-      }
-      navLinks.forEach(function(l) {
-        l.classList.toggle('active', l === activeLink);
-      });
-    }
-
     function goToSection(index) {
       if (index < 0 || index >= sections.length) return;
       currentIndex = index;
       if (isDesktop()) {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
         sections[index].classList.add('desktop-active');
-        updateActiveNav(index);
         isScrolling = true;
         setTimeout(function() { isScrolling = false; }, 350);
       } else {
         isScrolling = true;
         sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        updateActiveNav(index);
         setTimeout(function() { isScrolling = false; }, 900);
       }
     }
 
-    /* Initialize desktop: show first section */
-    if (isDesktop()) goToSection(0);
+    /* Initialize: respect URL hash, else show first section */
+    (function() {
+      var hash = window.location.hash.slice(1);
+      var initIndex = hash ? sections.findIndex(function(s) { return s.id === hash; }) : -1;
+      if (isDesktop()) goToSection(initIndex !== -1 ? initIndex : 0);
+    })();
 
     /* Desktop: wheel navigates between tabs */
     window.addEventListener('wheel', function(e) {
@@ -1032,10 +1008,8 @@
       if (isDesktop()) {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
         sections[currentIndex].classList.add('desktop-active');
-        updateActiveNav(currentIndex);
       } else {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
-        updateActiveNav(currentIndex);
       }
     });
 
@@ -1119,13 +1093,23 @@
     mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
       link.addEventListener('click', function() {
         mobileMenu.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
         if (!isDesktop()) {
           var href = link.getAttribute('href');
-          if (href && !href.startsWith('#')) {
-            var curr = sections[currentIndex];
-            if (curr) curr.scrollIntoView({ behavior: 'auto', block: 'start' });
+          if (href && href.startsWith('#') && href.length > 1) {
+            /* Let goToSection's scrollIntoView finish before re-enabling snap */
+            clearTimeout(snapRestoreTimer);
+            snapRestoreTimer = setTimeout(function() {
+              document.body.style.scrollSnapType = '';
+            }, 950);
+          } else {
+            if (href && !href.startsWith('#')) {
+              var curr = sections[currentIndex];
+              if (curr) curr.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+            restoreSnap();
           }
-          restoreSnap();
         }
       });
     });

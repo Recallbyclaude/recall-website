@@ -114,11 +114,11 @@
       border-bottom: var(--border);
       z-index: 800;
     }
-    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; flex-shrink: 0; min-width: 80px; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
     .nav-links a {
       font-size: 11px;
-      letter-spacing: 2.5px;
+      letter-spacing: 1.5px;
       color: #999;
       text-decoration: none;
       text-transform: uppercase;
@@ -128,10 +128,6 @@
     .nav-links a:not(.nav-cta) {
       border: 1px solid transparent;
       padding: 5px 10px;
-    }
-    .nav-links a.active {
-      border-color: #fff;
-      color: #fff;
     }
     .nav-cta {
       background: #fff;
@@ -164,7 +160,6 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
     .mobile-menu a:hover { color: #fff; }
-    .mobile-menu a.active { color: #fff; }
     .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
 
     /* ── INNER BG ──────────────────────── */
@@ -318,8 +313,7 @@
       <a href="/#screenshots">Screenshots</a>
       <a href="/#how-it-works">Tutorial</a>
       <a href="/#signup">Connect</a>
-      <a href="/blog/" class="active">Articles</a>
-      <a href="/team.html">Team</a>
+      <a href="/blog/">Articles</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -333,8 +327,7 @@
     <a href="/#screenshots">Screenshots</a>
     <a href="/#how-it-works">Tutorial</a>
     <a href="/#signup">Connect</a>
-    <a href="/blog/" class="active">Articles</a>
-    <a href="/team.html">Team</a>
+    <a href="/blog/">Articles</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
@@ -387,6 +380,7 @@
     <div class="footer-logo recall-font">#Recall</div>
     <div class="footer-links">
       <a href="/privacy.html">Privacy</a>
+      <a href="/team.html">Meet the Team</a>
       <a href="mailto:paul@paulbarbera.com">Support</a>
       <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener">Buy me a coffee</a>
     </div>
