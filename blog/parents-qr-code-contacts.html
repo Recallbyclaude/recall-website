@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple's Contacts App Is Older Than Google. Parents Deserve Better. — Recall Contacts</title>
+  <meta name="description" content="Every school pickup ends with someone getting saved as 'Jake Football Dad.' The native Contacts app was designed for a world without school runs. We built a QR code for that." />
+  <meta name="author" content="Paul Barbera" />
+  <link rel="canonical" href="https://recall-contacts.com/blog/parents-qr-code-contacts.html" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Apple's Contacts App Is Older Than Google. Parents Deserve Better." />
+  <meta property="og:description" content="Every school pickup ends with someone getting saved as 'Jake Football Dad.' The native Contacts app was designed for a world without school runs. We built a QR code for that." />
+  <meta property="og:url" content="https://recall-contacts.com/blog/parents-qr-code-contacts.html" />
+  <meta property="og:image" content="https://recall-contacts.com/og-blog.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:author" content="Paul Barbera" />
+  <meta property="article:published_time" content="2026-05-23" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Apple's Contacts App Is Older Than Google. Parents Deserve Better." />
+  <meta name="twitter:description" content="Every school pickup ends with someone getting saved as 'Jake Football Dad.' The native Contacts app was designed for a world without school runs. We built a QR code for that." />
+  <meta name="twitter:image" content="https://recall-contacts.com/og-blog.svg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Apple's Contacts App Is Older Than Google. Parents Deserve Better.",
+    "description": "Every school pickup ends with someone getting saved as 'Jake Football Dad.' The native Contacts app was designed for a world without school runs. We built a QR code for that.",
+    "author": { "@type": "Person", "name": "Paul Barbera" },
+    "datePublished": "2026-05-23",
+    "url": "https://recall-contacts.com/blog/parents-qr-code-contacts.html",
+    "publisher": { "@type": "Organization", "name": "Recall Contacts", "url": "https://recall-contacts.com" }
+  }
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-29KJDLZTQ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29KJDLZTQ1');
+  </script>
+
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --frame: 18px;
+      --nav-h: 56px;
+      --border: 1px solid #2a2a2a;
+      --label-color: #999;
+    }
+
+    @keyframes gradientDrift {
+      0%, 100% { background-position: 100% 100%; }
+      50%       { background-position: 0% 0%; }
+    }
+
+    body {
+      background-color: #000;
+      background-image: linear-gradient(
+        to top left,
+        #E8A87A,
+        #E8C97A,
+        #8FCA8F,
+        #8FB8E8
+      );
+      background-size: 400% 400%;
+      animation: gradientDrift 60s ease infinite;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding-top: calc(var(--frame) + var(--nav-h) + 60px);
+      padding-left: var(--frame);
+      padding-right: var(--frame);
+      padding-bottom: 80px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── FRAME ─────────────────────────── */
+    .frame {
+      position: fixed;
+      inset: var(--frame);
+      border: var(--border);
+      pointer-events: none;
+      z-index: 900;
+    }
+    .frame::before, .frame::after {
+      content: '';
+      position: absolute;
+      width: 6px; height: 6px;
+      background: #333;
+      border-radius: 50%;
+    }
+    .frame::before { top: -3px; left: -3px; }
+    .frame::after  { top: -3px; right: -3px; }
+    .frame-corner-bl, .frame-corner-br {
+      position: fixed;
+      width: 6px; height: 6px;
+      background: #333;
+      border-radius: 50%;
+      z-index: 901;
+      pointer-events: none;
+    }
+    .frame-corner-bl { bottom: calc(var(--frame) - 3px); left:  calc(var(--frame) - 3px); }
+    .frame-corner-br { bottom: calc(var(--frame) - 3px); right: calc(var(--frame) - 3px); }
+
+    .recall-font { font-family: 'Bungee Shade', cursive; }
+
+    /* ── NAV ───────────────────────────── */
+    nav {
+      position: fixed;
+      top: var(--frame);
+      left: var(--frame);
+      right: var(--frame);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: #000;
+      border-bottom: var(--border);
+      z-index: 800;
+    }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; flex-shrink: 0; min-width: 80px; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: #999;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:not(.nav-cta) {
+      border: 1px solid transparent;
+      padding: 5px 10px;
+    }
+    .nav-links a.active {
+      border-color: #fff;
+      color: #fff;
+    }
+    .nav-cta {
+      background: #fff;
+      color: #000 !important;
+      padding: 7px 18px;
+      font-size: 11px !important;
+      font-weight: 700;
+      letter-spacing: 2px !important;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; }
+
+    /* ── MOBILE MENU ───────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame); right: var(--frame);
+      background: #000;
+      border-bottom: var(--border);
+      border-left: var(--border);
+      border-right: var(--border);
+      z-index: 799;
+      flex-direction: column;
+      padding: 24px 28px;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
+
+    /* ── INNER BG ──────────────────────── */
+    .inner-bg {
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame);
+      right: var(--frame);
+      bottom: var(--frame);
+      background: #000;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── ARTICLE ───────────────────────── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-back {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 48px;
+      transition: color 0.2s;
+    }
+    .article-back:hover { color: #fff; }
+
+    .article-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--label-color);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .article-title {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .article-byline {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #444;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: var(--border);
+    }
+
+    /* ── SHARE ─────────────────────────── */
+    .article-share { margin-bottom: 48px; }
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      background: none;
+      border: 1px solid #2a2a2a;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      font-family: inherit;
+    }
+    .btn-share:hover { color: #fff; border-color: #555; }
+    .btn-share svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .article-lede {
+      font-size: 22px;
+      color: #ccc;
+      line-height: 1.55;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .article-body {
+      font-size: 18px;
+      color: #888;
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+
+    .article-body em { color: #bbb; font-style: italic; }
+    .article-body strong { color: #fff; font-weight: 700; }
+
+    .article-divider {
+      border: none;
+      border-top: var(--border);
+      margin: 48px 0;
+    }
+
+    .article-pullquote {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      border-left: 2px solid #333;
+      padding-left: 28px;
+      margin: 48px 0;
+    }
+
+    /* ── CTA BLOCK ─────────────────────── */
+    .article-cta {
+      border: var(--border);
+      padding: 36px 32px;
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .article-cta-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #444;
+      text-transform: uppercase;
+    }
+    .article-cta-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .article-cta-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .btn-primary {
+      background: #fff;
+      color: #000;
+      padding: 13px 32px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      align-self: flex-start;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-primary:hover { background: #ddd; }
+
+    /* ── FOOTER ────────────────────────── */
+    footer {
+      max-width: 680px;
+      margin: 60px auto 0;
+      padding: 32px 28px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: var(--border);
+    }
+    .footer-logo { font-size: 18px; color: #333; }
+    .footer-links { display: flex; gap: 24px; align-items: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: #444; text-decoration: none; text-transform: uppercase; }
+    .footer-links a:hover { color: #fff; }
+    .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+
+    /* ── FOCUS ─────────────────────────── */
+    :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    /* ── RESPONSIVE ────────────────────── */
+    @media (max-width: 720px) {
+      :root { --frame: 10px; --nav-h: 52px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .article-wrap { padding: 0 20px; }
+      .article-lede { font-size: 18px; }
+      .article-body { font-size: 16px; }
+      .article-cta { padding: 28px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame" aria-hidden="true"></div>
+  <div class="frame-corner-bl" aria-hidden="true"></div>
+  <div class="frame-corner-br" aria-hidden="true"></div>
+  <div class="inner-bg" aria-hidden="true"></div>
+
+  <nav>
+    <a href="/" class="nav-logo recall-font">#Recall</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#features">Features</a>
+      <a href="/#screenshots">Screenshots</a>
+      <a href="/#how-it-works">Tutorial</a>
+      <a href="/#signup">Connect</a>
+      <a href="/blog/" class="active">Articles</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#about">About</a>
+    <a href="/#features">Features</a>
+    <a href="/#screenshots">Screenshots</a>
+    <a href="/#how-it-works">Tutorial</a>
+    <a href="/#signup">Connect</a>
+    <a href="/blog/">Articles</a>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+  </div>
+
+  <article class="article-wrap">
+
+    <a href="/blog/" class="article-back">← All articles</a>
+
+    <div class="article-label">Contacts</div>
+    <h1 class="article-title">Apple's Contacts App<br>Is Older Than Google.<br>Parents Deserve<br>Better.</h1>
+    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 4 min read</div>
+
+    <div class="article-share">
+      <button class="btn-share" onclick="shareArticle()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+
+    <p class="article-lede">You're on the sideline at football. Practice ends. Someone's kid and your kid have been training together every Saturday for three months. Their dad turns to you: "Hey, we should swap numbers." You both reach for your phones. What happens next is somehow still a disaster in 2026.</p>
+
+    <p class="article-body">One of you calls the other so they have your number. Or you spell your name out loud while they type — "P-A-U-L, no wait, Barbera, B-A-R..." — and you both know exactly one of you is going to get this wrong. Or you do the AirDrop dance where you both stand there waving your phones at each other until something happens. Forty-five seconds later, they're saved in your phone as <strong>"Jake Football Dad"</strong> and you are saved in theirs under whatever name autocorrect decided you were.</p>
+
+    <p class="article-body">Two weeks from now, neither of you will find each other. Not because you forgot. Because the system you used to save each other was never designed for how parents actually meet people.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">Here's a fun fact: Apple's Contacts app — the one you used just now, the one that made you spell your surname out loud on a football pitch — is architecturally the same app it's been since the early iPhone era. It was designed for a world of business cards and office colleagues. First name. Last name. Company. Phone. Email. Done.</p>
+
+    <p class="article-body">That world had nothing to do with school pickups, Saturday sport, birthday parties, WhatsApp class groups, or any of the seventeen social contexts a parent navigates before 9am on a Tuesday. But here we are, still using it. Still adding people as <em>"Sarah H (Luca's class?)"</em> and hoping for the best.</p>
+
+    <div class="article-pullquote">"The Contacts app was designed for a world of business cards. You live in a world of school runs."</div>
+
+    <p class="article-body">I'm not being too hard on Apple. They built a contacts manager and it manages contacts — technically. The problem is that the social geometry of parenthood is wildly different from what any phone manufacturer anticipated. You don't meet people at desks. You meet them at the gate at 8:50am when you're already late and someone's shoe is on the wrong foot. You don't exchange business cards. You shout your number across a car park.</p>
+
+    <p class="article-body">And then, somehow, you're supposed to file that person alphabetically and find them again in six weeks when you need to know if there's school on Friday.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">When I built Recall, I basically set out to remake the Contacts app. Not in the sense of replacing it — it works fine as a database — but in the sense of giving it a layer of human intelligence it was never built with. Tags. Context. Search that works the way your brain works, not the way a spreadsheet does.</p>
+
+    <p class="article-body">But there was still that moment of friction. The bit where two people actually exchange information. Even with a great app for organising contacts, getting someone into your phone in the first place was still the same old mess.</p>
+
+    <p class="article-body">So I added a QR code.</p>
+
+    <p class="article-body">It sounds simple because it is. Open Recall, tap your QR code, hand your phone to the other person, they scan it — and they've got you. Name, number, everything. No spelling. No calling yourself. No AirDrop timeout. Ten seconds and done. Then they add a tag — <em>#FootballDad</em>, <em>#YearThreeMums</em>, <em>#KaratePickup</em> — and you're findable forever.</p>
+
+    <p class="article-body">The QR code isn't a gimmick. It's the bit that makes the whole thing real. Because you can have the most sophisticated contacts system in the world, but if the moment of exchange is still broken, you've just built a beautiful house with a broken front door.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body">There's a version of this that goes even further. I carry my QR code printed out — in my wallet, actually — because sometimes phones are at the bottom of a bag, or a battery is dead, or you're juggling a six-year-old and a coffee and dignity isn't really on the table. Someone pulls out their camera, scans the code, and it's done. Same result. No phones swapped, no numbers misspelled, no saved-as-wrong-name.</p>
+
+    <p class="article-body">This is a small problem. I want to be honest about that. It is not a grand civilisational challenge. Nobody's life is in danger because they saved someone as "Jake Football Dad."</p>
+
+    <p class="article-body">But small problems are allowed to have good solutions. And the small problem of <em>how parents exchange contact information</em> has been unsolved — or rather, just accepted as unsolvable — for decades. Every parent has a version of this story. The misspelled name. The number they can't place. The person they genuinely liked and then just... lost, because the system ate them.</p>
+
+    <div class="article-pullquote">"Small problems are allowed to have good solutions."</div>
+
+    <p class="article-body">Recall is a native iPhone app. It works with your existing Apple Contacts — nothing moves, nothing gets deleted, nothing requires you to start over. It just adds the layer that was always missing: context. The ability to tag people by how you know them and search by those tags the moment you need to find someone. The QR code makes getting people in painless. The hashtags make finding them instant.</p>
+
+    <p class="article-body">You could use it for school parents. You could use it for your sports club, your book group, your neighbourhood, your work conferences where you collect thirty business cards and remember exactly zero of the people on them. Any situation where you meet people through a shared context — and then need to find them again later — is a situation Recall was built for.</p>
+
+    <p class="article-body">But I'll be honest: I built it because of parents. Because of school gates and sidelines and birthday parties. Because the Contacts app has had thirty-odd years and it still makes you spell your name out loud in a car park.</p>
+
+    <p class="article-body">We can do better than that. And now we have.</p>
+
+    <div class="article-cta">
+      <div class="article-cta-label">Try it free</div>
+      <div class="article-cta-title">Recall Contacts — for iPhone</div>
+      <p class="article-cta-desc">Share your QR code. Tag anyone. Search by hashtag. Find them instantly. Works with your existing Apple Contacts — no migration required.</p>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
+      <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; text-decoration:none; margin-top:4px; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#444'">Buy me a coffee ☕</a>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="footer-logo recall-font">#Recall</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/team.html">Meet the Team</a>
+      <a href="/support">Support</a>
+      <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener">Buy me a coffee</a>
+    </div>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="footer-cta">App Store</a>
+  </footer>
+
+  <script>
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
+
+    function shareArticle() {
+      if (navigator.share) {
+        navigator.share({
+          title: "Apple's Contacts App Is Older Than Google. Parents Deserve Better.",
+          url: window.location.href
+        });
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          alert('Link copied to clipboard');
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
