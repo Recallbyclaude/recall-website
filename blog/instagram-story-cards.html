@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1080" />
+  <title>Instagram Story Cards — Recall Contacts</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .card-label {
+      color: #555;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      width: 1080px;
+      text-align: center;
+      padding-bottom: 8px;
+    }
+
+    /* ── CARD ───────────────────────────── */
+    .card {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 80px 90px;
+    }
+
+    @keyframes gradientDrift {
+      0%, 100% { background-position: 100% 100%; }
+      50%       { background-position: 0% 0%; }
+    }
+
+    .card {
+      background-color: #000;
+      background-image: linear-gradient(to top left, #E8A87A, #E8C97A, #8FCA8F, #8FB8E8);
+      background-size: 400% 400%;
+      animation: gradientDrift 60s ease infinite;
+      color: #fff;
+    }
+
+    /* inner black overlay keeps content readable */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 36px;
+      background: #000;
+      z-index: 0;
+    }
+
+    /* border frame */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 36px;
+      border: 1px solid #2a2a2a;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 36px;
+    }
+
+    /* ── LOGO ───────────────────────────── */
+    .logo {
+      font-family: 'Bungee Shade', cursive;
+      font-size: 52px;
+      color: #fff;
+      line-height: 1;
+    }
+
+    /* ── TAG / LABEL ────────────────────── */
+    .tag {
+      font-size: 22px;
+      letter-spacing: 5px;
+      color: #444;
+      text-transform: uppercase;
+    }
+
+    /* ── BODY AREA ──────────────────────── */
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 52px;
+      padding: 80px 0;
+    }
+
+    .card-eyebrow {
+      font-size: 22px;
+      letter-spacing: 5px;
+      color: #555;
+      text-transform: uppercase;
+    }
+
+    .card-headline {
+      font-size: 96px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.0;
+    }
+
+    .card-headline.small {
+      font-size: 72px;
+    }
+
+    .card-headline.large {
+      font-size: 120px;
+    }
+
+    .card-sub {
+      font-size: 38px;
+      color: #666;
+      line-height: 1.6;
+      max-width: 820px;
+    }
+
+    .card-sub strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .card-sub em {
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* ── STAT ───────────────────────────── */
+    .card-stat {
+      font-size: 200px;
+      font-weight: 900;
+      letter-spacing: -4px;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .card-stat-label {
+      font-size: 38px;
+      color: #555;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── DIVIDER ────────────────────────── */
+    .card-divider {
+      border: none;
+      border-top: 1px solid #2a2a2a;
+      width: 120px;
+    }
+
+    /* ── FOOTER ─────────────────────────── */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-url {
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: #333;
+      text-transform: uppercase;
+    }
+
+    .card-cta {
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: #fff;
+      text-transform: uppercase;
+      background: #fff;
+      color: #000;
+      padding: 18px 36px;
+      font-weight: 700;
+    }
+
+    /* ── CARD-SPECIFIC ACCENTS ──────────── */
+    .accent-line {
+      width: 80px;
+      height: 4px;
+      background: #fff;
+    }
+
+    .pullquote {
+      font-size: 58px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      border-left: 4px solid #333;
+      padding-left: 48px;
+    }
+
+    .number-big {
+      font-size: 280px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 0.85;
+      letter-spacing: -8px;
+    }
+
+    .number-unit {
+      font-size: 48px;
+      color: #555;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ CARD 1 -->
+  <div class="card-label">Card 1 of 5 — The Problem</div>
+  <div class="card">
+    <div class="card-inner">
+      <div class="logo">#Recall</div>
+
+      <div class="card-body">
+        <div class="card-eyebrow">Sound familiar?</div>
+        <div class="card-headline">You saved them as<br>"Jake Football<br>Dad."</div>
+        <hr class="card-divider">
+        <p class="card-sub">You'll never find them again.<br>Not because you forgot them.<br>Because your phone wasn't built<br>for how parents meet people.</p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-url">recall-contacts.com</div>
+        <div class="tag">#Contacts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CARD 2 -->
+  <div class="card-label">Card 2 of 5 — The Fact</div>
+  <div class="card">
+    <div class="card-inner">
+      <div class="logo">#Recall</div>
+
+      <div class="card-body">
+        <div class="card-eyebrow">Uncomfortable truth</div>
+        <div class="pullquote">Apple's Contacts app is architecturally the same app it's been since the early iPhone era.</div>
+        <p class="card-sub">It was designed for <strong>business cards and office colleagues.</strong><br><br>First name. Last name. Company.<br><br>It has no idea what a school run is.</p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-url">recall-contacts.com</div>
+        <div class="tag">#Contacts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CARD 3 -->
+  <div class="card-label">Card 3 of 5 — The Exchange</div>
+  <div class="card">
+    <div class="card-inner">
+      <div class="logo">#Recall</div>
+
+      <div class="card-body">
+        <div class="card-eyebrow">The number swap ritual</div>
+        <div class="card-headline small">One of you calls the other. Or you spell your name out loud. Or you do the AirDrop dance.</div>
+        <hr class="card-divider">
+        <p class="card-sub">Forty-five seconds later, you're saved under <strong>whatever name autocorrect decided you were.</strong></p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-url">recall-contacts.com</div>
+        <div class="tag">#Contacts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CARD 4 -->
+  <div class="card-label">Card 4 of 5 — The Solution</div>
+  <div class="card">
+    <div class="card-inner">
+      <div class="logo">#Recall</div>
+
+      <div class="card-body">
+        <div class="card-eyebrow">There's a better way</div>
+        <div class="number-big">10</div>
+        <div class="number-unit">seconds</div>
+        <hr class="card-divider">
+        <p class="card-sub">Open Recall. Show your <strong>QR code.</strong><br>They scan it. Done.<br><br>No spelling. No calling yourself.<br>No AirDrop timeout.<br><br>Then tag them — <em>#FootballDad,<br>#YearThreeMums, #KaratePickup</em> —<br>and find them instantly, forever.</p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-url">recall-contacts.com</div>
+        <div class="tag">#Contacts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CARD 5 -->
+  <div class="card-label">Card 5 of 5 — CTA</div>
+  <div class="card">
+    <div class="card-inner">
+      <div class="logo">#Recall</div>
+
+      <div class="card-body">
+        <div class="card-eyebrow">Small problem. Good solution.</div>
+        <div class="card-headline large">Your contacts app.<br>Rebuilt for real life.</div>
+        <hr class="card-divider">
+        <p class="card-sub">Tag people by how you know them.<br>Share your QR code in 10 seconds.<br>Find anyone instantly.<br><br><strong>Free on the App Store.</strong></p>
+      </div>
+
+      <div class="card-footer">
+        <div class="card-url">recall-contacts.com</div>
+        <div class="card-cta">Get the App</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
