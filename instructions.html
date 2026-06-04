@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instructions — How to Use Recall Contacts</title>
+  <meta name="description" content="Step-by-step instructions for Recall Contacts. Learn how to tag contacts with hashtags, create Smart Groups, use Parent Mode, set up themes, and get the most out of Recall." />
+  <meta name="keywords" content="recall contacts instructions, how to use recall contacts, hashtag contacts tutorial, tag contacts guide, smart groups setup, parent mode instructions, recall contacts help, iPhone contacts app guide" />
+  <meta name="author" content="Paul Barbera" />
+  <link rel="canonical" href="https://recall-contacts.com/instructions" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Instructions — Recall Contacts" />
+  <meta property="og:description" content="How to get the most out of Recall Contacts. Step-by-step guide to tagging, searching, and organising your contacts by hashtag." />
+  <meta property="og:url" content="https://recall-contacts.com/instructions" />
+  <meta property="og:image" content="https://recall-contacts.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Instructions — Recall Contacts" />
+  <meta name="twitter:image" content="https://recall-contacts.com/og-image.png" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-29KJDLZTQ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29KJDLZTQ1');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 0 0 80px;
+      line-height: 1.75;
+    }
+
+    a { color: #fff; text-decoration: none; }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid #1a1a1a;
+      position: sticky;
+      top: 0;
+      background: #000;
+      z-index: 100;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+    .nav-logo {
+      font-family: 'Bungee Shade', cursive;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta {
+      background: #fff;
+      color: #000 !important;
+      padding: 8px 18px;
+      font-size: 12px !important;
+      letter-spacing: 2px !important;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) { .nav-links { display: none; } }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 32px 0;
+    }
+
+    .back {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+      display: inline-block;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back:hover { color: #fff; }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 52px;
+      max-width: 520px;
+    }
+
+    /* ── TABLE OF CONTENTS ── */
+    .toc {
+      border: 1px solid #1e1e1e;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+    }
+    .toc-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 14px;
+    }
+    .toc ol {
+      list-style: decimal;
+      padding-left: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+    }
+    @media (max-width: 480px) { .toc ol { grid-template-columns: 1fr; } }
+    .toc ol li { font-size: 13px; color: #666; }
+    .toc ol li a { color: #666; letter-spacing: 0.5px; transition: color 0.2s; }
+    .toc ol li a:hover { color: #fff; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 56px; }
+
+    .section-num {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-top: 8px;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #888;
+      margin: 28px 0 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    p strong { color: #ccc; }
+
+    ol, ul {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    ol li, ul li {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+    ol li strong, ul li strong { color: #ccc; }
+
+    /* ── TIP BOXES ── */
+    .tip {
+      background: #0d0d0d;
+      border-left: 2px solid #333;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 13px;
+      color: #777;
+    }
+    .tip strong { color: #aaa; }
+
+    /* ── STEP LIST ── */
+    .steps {
+      counter-reset: step-counter;
+      list-style: none;
+      padding: 0;
+    }
+    .steps li {
+      counter-increment: step-counter;
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step-counter);
+      min-width: 26px;
+      height: 26px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #777;
+      margin-top: 1px;
+    }
+    .steps li span { font-size: 14px; color: #999; line-height: 1.8; }
+    .steps li span strong { color: #ccc; }
+
+    /* ── IMAGE PLACEHOLDER ── */
+    .screen-placeholder {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 9/19;
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 24px 0;
+    }
+
+    .screenshot-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .screenshot-row .screen-placeholder { flex: 0 0 auto; }
+
+    .screenshot-img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 24px;
+      border: 1px solid #1e1e1e;
+    }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      font-size: 12px;
+      color: #444;
+    }
+    .page-footer a { color: #444; letter-spacing: 1px; transition: color 0.2s; }
+    .page-footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">#Recall</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/features">Features</a>
+      <a href="/instructions" class="active">Instructions</a>
+      <a href="/blog/">Articles</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <a href="/" class="back">← Back to Home</a>
+
+    <h1>How to Use<br>Recall Contacts</h1>
+    <p class="subtitle">A complete guide to tagging, searching, and organising your contacts by hashtag.</p>
+
+    <div class="toc">
+      <div class="toc-label">Contents</div>
+      <ol>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#tagging">How Tagging Works</a></li>
+        <li><a href="#searching">Searching by Hashtag</a></li>
+        <li><a href="#smart-groups">Smart Groups</a></li>
+        <li><a href="#super-tags">Super Tags</a></li>
+        <li><a href="#parent-mode">Parent Mode</a></li>
+        <li><a href="#review-queue">Review &amp; Delete Queue</a></li>
+        <li><a href="#themes">Themes &amp; Display</a></li>
+        <li><a href="#privacy">Your Data &amp; Privacy</a></li>
+        <li><a href="#tips">Tips &amp; Tricks</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. GETTING STARTED -->
+    <div class="section" id="getting-started">
+      <div class="section-num">01</div>
+      <h2>Getting Started</h2>
+
+      <p>Recall Contacts layers on top of your existing iPhone contacts. When you open the app for the first time, it asks for permission to access your contacts. This is the only permission it needs.</p>
+
+      <p>Your contacts are not copied or uploaded anywhere — they are read directly from your device. Nothing changes in your Apple Contacts app or Phone app.</p>
+
+      <h3>First steps</h3>
+      <ol class="steps">
+        <li><span>Download Recall Contacts from the <strong>App Store</strong> (free).</span></li>
+        <li><span>Open the app and tap <strong>Allow Access</strong> when prompted for contacts permission.</span></li>
+        <li><span>Your contacts appear in the main list. They look exactly as they do in your iPhone contacts app.</span></li>
+        <li><span>Pick one contact you know well and add your first hashtag to it. This is the best way to understand how Recall works.</span></li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> Start by tagging 10 contacts with a shared context — a city, an event, a workplace. Then search for that tag and see how it feels to find people by memory rather than by name.</div>
+    </div>
+
+    <!-- 2. TAGGING -->
+    <div class="section" id="tagging">
+      <div class="section-num">02</div>
+      <h2>How Tagging Works</h2>
+
+      <p>A hashtag in Recall is just a word or phrase you attach to a contact to describe how you know them. Tags can be anything: places, events, relationships, contexts, moments.</p>
+
+      <p>Examples: <strong>#NYC</strong>, <strong>#wedding2023</strong>, <strong>#doctor</strong>, <strong>#rooftopbar</strong>, <strong>#ArtBasel</strong>, <strong>#school</strong>, <strong>#mentor</strong>.</p>
+
+      <h3>Adding a tag to a contact</h3>
+      <ol class="steps">
+        <li><span>Tap any contact in the list to open their detail view.</span></li>
+        <li><span>Tap <strong>Add Tag</strong> (the + button near the hashtag area).</span></li>
+        <li><span>Type your hashtag. Don't type the # symbol — Recall adds it for you.</span></li>
+        <li><span>As you type, autocomplete suggestions appear from your existing tags. Tap one to use it, or finish typing to create a new tag.</span></li>
+        <li><span>Tap <strong>Save</strong> or press return. The tag is added immediately.</span></li>
+      </ol>
+
+      <h3>Swipe to Tag (fastest method)</h3>
+      <ol class="steps">
+        <li><span>From the main contact list, <strong>swipe right</strong> on any contact.</span></li>
+        <li><span>A tagging panel opens. Type your tag and confirm.</span></li>
+        <li><span>The contact is tagged and you return to the list — ready to swipe the next one.</span></li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> Tags are stored locally on your device and also written back to the <strong>notes field</strong> in Apple Contacts. This means they sync across your devices via iCloud if you have iCloud Contacts enabled — and they survive if you ever delete Recall.</div>
+
+      <h3>Removing a tag</h3>
+      <p>Open the contact's detail view, find the tag you want to remove, and tap the × next to it. The tag is removed from that contact immediately. Your other contacts keep their copy of the same tag.</p>
+    </div>
+
+    <!-- 3. SEARCHING -->
+    <div class="section" id="searching">
+      <div class="section-num">03</div>
+      <h2>Searching by Hashtag</h2>
+
+      <p>The search bar at the top of the main list is where Recall's core power lives. Type any hashtag (or partial hashtag) to filter your contacts instantly.</p>
+
+      <h3>Single-tag search</h3>
+      <ol class="steps">
+        <li><span>Tap the search bar.</span></li>
+        <li><span>Type a hashtag keyword — e.g. <strong>tokyo</strong>.</span></li>
+        <li><span>Recall instantly filters to show only contacts tagged <strong>#tokyo</strong>.</span></li>
+      </ol>
+
+      <h3>Multi-tag search</h3>
+      <ol class="steps">
+        <li><span>After typing the first tag, add a space and type another — e.g. <strong>tokyo photographer</strong>.</span></li>
+        <li><span>Recall narrows the results to contacts tagged with <strong>both</strong> tags.</span></li>
+        <li><span>Keep adding tags to narrow further. The more context you add, the more precise the result.</span></li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> You don't need to remember the exact tag. Partial matches work — typing <strong>tok</strong> will surface <strong>#tokyo</strong> and <strong>#tokenring</strong>. Start broad, then refine.</div>
+    </div>
+
+    <!-- 4. SMART GROUPS -->
+    <div class="section" id="smart-groups">
+      <div class="section-num">04</div>
+      <h2>Smart Groups</h2>
+
+      <p>Every hashtag you create automatically becomes a Smart Group. Recall builds these for you — there's no manual setup.</p>
+
+      <ol class="steps">
+        <li><span>Tap the <strong>Groups</strong> tab (or the filter bar at the top of the contact list).</span></li>
+        <li><span>You'll see all your tags listed as groups, sorted by frequency.</span></li>
+        <li><span>Tap any group to jump straight to the contacts tagged with it.</span></li>
+      </ol>
+
+      <p>Groups update in real time. The moment you add or remove a tag from a contact, the group is updated.</p>
+    </div>
+
+    <!-- 5. SUPER TAGS -->
+    <div class="section" id="super-tags">
+      <div class="section-num">05</div>
+      <h2>Super Tags</h2>
+
+      <p>Super Tags are five built-in priority categories that appear as colour-coded chips in your contact list: <strong>VIP, Family, Work, Parents, Friends</strong>.</p>
+
+      <p>Unlike custom hashtags (which appear in light grey), Super Tags stand out visually — they're the fastest way to see which of your contacts belong to the groups that matter most.</p>
+
+      <h3>Applying a Super Tag</h3>
+      <ol class="steps">
+        <li><span>Open any contact's detail view.</span></li>
+        <li><span>Tap one of the five Super Tag buttons — <strong>VIP, Family, Work, Parents</strong>, or <strong>Friends</strong>.</span></li>
+        <li><span>The chip appears on the contact in the main list immediately.</span></li>
+      </ol>
+
+      <h3>Filtering by Super Tag</h3>
+      <p>The filter bar at the top of the contact list shows your Super Tags as quick-access chips. Tap <strong>VIP</strong> to see only VIP contacts. Tap <strong>Family</strong> to see only family. Tap multiple chips to combine filters.</p>
+    </div>
+
+    <!-- 6. PARENT MODE -->
+    <div class="section" id="parent-mode">
+      <div class="section-num">06</div>
+      <h2>Parent Mode</h2>
+
+      <p>Parent Mode is designed for one specific problem: you know every child at school pickup, but you can never remember the parent's name. Parent Mode bridges that gap.</p>
+
+      <h3>Setting up Parent Mode</h3>
+      <ol class="steps">
+        <li><span>Open a school parent contact (e.g. <strong>Sarah Mitchell</strong>).</span></li>
+        <li><span>Add a hashtag for her child's name: <strong>#Luca</strong>.</span></li>
+        <li><span>Add a hashtag for the context: <strong>#schoolmum</strong>.</span></li>
+        <li><span>Later at pickup, search <strong>#Luca</strong> and Sarah's contact appears instantly.</span></li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> You can attach multiple children to one parent — <strong>#Luca #Ella</strong> — and searching either name will find the parent. Tag the other parent too and searching <strong>#Luca</strong> will surface both.</div>
+
+      <h3>Enabling Parent Mode in settings</h3>
+      <p>Go to <strong>Settings → Modes</strong> and enable <strong>Parent Mode</strong>. This activates the dedicated Parents Super Tag and unlocks the child-name attachment workflow in the contact editor.</p>
+    </div>
+
+    <!-- 7. REVIEW QUEUE -->
+    <div class="section" id="review-queue">
+      <div class="section-num">07</div>
+      <h2>Review &amp; Delete Queue</h2>
+
+      <p>Most people have hundreds of contacts with no context. The Review Queue is the fastest way to process them all and build a tagged, useful address book.</p>
+
+      <ol class="steps">
+        <li><span>Tap the <strong>Review</strong> button (broom icon or menu item).</span></li>
+        <li><span>Untagged or old contacts appear one at a time as cards.</span></li>
+        <li><span><strong>Swipe right</strong> to tag the contact — a tag input slides in.</span></li>
+        <li><span><strong>Swipe left</strong> to skip it and move to the next.</span></li>
+        <li><span><strong>Swipe up</strong> to delete the contact permanently from Apple Contacts.</span></li>
+      </ol>
+
+      <div class="tip"><strong>Tip:</strong> You don't need to process all contacts at once. Review Queue saves your position so you can return and continue where you left off.</div>
+    </div>
+
+    <!-- 8. THEMES -->
+    <div class="section" id="themes">
+      <div class="section-num">08</div>
+      <h2>Themes &amp; Display</h2>
+
+      <p>Recall includes three visual themes accessible from <strong>Settings → Appearance</strong>:</p>
+
+      <ul>
+        <li><strong>Dark Mode</strong> — Black background, white text. The default. High contrast and designed for extended use.</li>
+        <li><strong>iOS Native Mode</strong> — Follows your iPhone's system Light or Dark setting. Familiar iOS colours.</li>
+        <li><strong>Paper Mode</strong> — Warm off-white, low contrast, no sharp edges. Designed for dyslexic users and anyone who finds stark displays tiring.</li>
+      </ul>
+
+      <h3>Dynamic Type</h3>
+      <p>Recall fully respects your iPhone's text size setting. Go to <strong>iOS Settings → Display &amp; Brightness → Text Size</strong> to increase the text size, and Recall will scale all text to match — including the Accessibility extra-large sizes.</p>
+    </div>
+
+    <!-- 9. PRIVACY -->
+    <div class="section" id="privacy">
+      <div class="section-num">09</div>
+      <h2>Your Data &amp; Privacy</h2>
+
+      <ul>
+        <li>No account required. No email address needed.</li>
+        <li>No contacts data is sent to any server — ever.</li>
+        <li>Tags are stored locally on your device.</li>
+        <li>Tags are also written to the Apple Contacts notes field, so they persist if you delete Recall and sync via iCloud if you choose.</li>
+        <li>Deleting Recall does not delete your tags. They remain safely in Apple Contacts.</li>
+      </ul>
+
+      <p>Recall connects to no external service. It reads your contacts from Apple's local database on-device, and that is where everything stays.</p>
+    </div>
+
+    <!-- 10. TIPS -->
+    <div class="section" id="tips">
+      <div class="section-num">10</div>
+      <h2>Tips &amp; Tricks</h2>
+
+      <h3>Tag at the moment you meet someone</h3>
+      <p>The best time to tag is immediately. Open Recall right after getting someone's contact and add three tags: <strong>where</strong> you met, <strong>what context</strong>, and <strong>anything distinctive</strong>. Three tags at the moment of meeting will save you minutes of searching six months later.</p>
+
+      <h3>Use date stamps for events</h3>
+      <p>Recall can insert the current date as a tag automatically. Tap the date stamp button when adding tags to create something like <strong>#2025-06-04 #ArtBasel</strong>. This lets you filter contacts by roughly when you met them.</p>
+
+      <h3>Tag statistics</h3>
+      <p>Go to <strong>Settings → Tag Statistics</strong> to see a breakdown of all your tags and how many contacts carry each one. Useful for auditing your tagging system and spotting tags you've outgrown.</p>
+
+      <h3>Keyboard navigation on Mac</h3>
+      <p>Recall on Mac via Catalyst supports full keyboard navigation. Use arrow keys to move through contacts, Tab to jump between elements, and standard macOS keyboard shortcuts throughout.</p>
+
+      <h3>Power User Mode</h3>
+      <p>Go to <strong>Settings → Power User Mode</strong> to unlock additional customisation options. Adjust display density, toggle individual features, and configure tag management preferences.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="page-footer">
+      <a href="/">Home</a>
+      <a href="/features">Features</a>
+      <a href="/support">Support</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/team.html">Team</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" rel="noopener">Get the App</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

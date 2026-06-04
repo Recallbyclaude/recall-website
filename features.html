@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — Recall Contacts | iPhone Hashtag Contact Manager</title>
+  <meta name="description" content="Every feature in Recall Contacts explained. Hashtag tagging, Smart Groups, Parent Mode, Dog Mode, BCC Mode, Quick Recall, Multi-Tag Search, and more. Free iPhone contacts app." />
+  <meta name="keywords" content="recall contacts features, hashtag contacts app, smart groups iPhone, parent mode contacts, dog mode contacts, pet mode contacts, BCC contacts, multi-tag search, swipe to tag, contact organizer features, iPhone address book app, neurodivergent contacts app, dyslexia contacts, ADHD contacts app, iOS contacts manager" />
+  <meta name="author" content="Paul Barbera" />
+  <link rel="canonical" href="https://recall-contacts.com/features" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Features — Recall Contacts" />
+  <meta property="og:description" content="Every feature in Recall Contacts explained. Find anyone by hashtag, place, or context." />
+  <meta property="og:url" content="https://recall-contacts.com/features" />
+  <meta property="og:image" content="https://recall-contacts.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Features — Recall Contacts" />
+  <meta name="twitter:description" content="Every feature in Recall Contacts. Tag anyone. Search by hashtag. Find them instantly." />
+  <meta name="twitter:image" content="https://recall-contacts.com/og-image.png" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-29KJDLZTQ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-29KJDLZTQ1');
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 0 0 80px;
+      line-height: 1.65;
+    }
+
+    a { color: #fff; text-decoration: none; }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid #1a1a1a;
+      position: sticky;
+      top: 0;
+      background: #000;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Bungee Shade', cursive;
+      font-size: 22px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #888; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta {
+      background: #fff;
+      color: #000 !important;
+      padding: 8px 18px;
+      font-size: 12px !important;
+      letter-spacing: 2px !important;
+      font-weight: 700;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 32px 40px;
+    }
+    .back {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #666;
+      display: inline-block;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .back:hover { color: #fff; }
+    h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .page-subtitle {
+      font-size: 15px;
+      color: #666;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION LABELS ── */
+    .group-label {
+      max-width: 720px;
+      margin: 52px auto 16px;
+      padding: 0 32px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #444;
+    }
+
+    /* ── ACCORDION ── */
+    .features-list {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .feature-item {
+      border-top: 1px solid #1e1e1e;
+    }
+    .feature-item:last-child {
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .feature-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 22px 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      color: #fff;
+    }
+    .feature-trigger:focus-visible {
+      outline: 1px solid #555;
+      outline-offset: 2px;
+    }
+
+    .feature-trigger-left { flex: 1; min-width: 0; }
+
+    .feature-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-coming {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #888;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .feature-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .keyword {
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      color: #555;
+      background: #0d0d0d;
+      border: 1px solid #222;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+
+    .expand-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #2a2a2a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, transform 0.25s;
+      color: #666;
+    }
+    .expand-arrow svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.25s ease;
+    }
+
+    .feature-trigger[aria-expanded="true"] .expand-arrow {
+      border-color: #444;
+    }
+    .feature-trigger[aria-expanded="true"] .expand-arrow svg {
+      transform: rotate(180deg);
+    }
+
+    /* ── PANEL ── */
+    .feature-panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .feature-panel.open {
+      max-height: 800px;
+    }
+
+    .feature-panel-inner {
+      padding: 0 0 28px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 560px) {
+      .feature-panel-inner.has-image {
+        grid-template-columns: 1fr 200px;
+        align-items: start;
+      }
+    }
+
+    .feature-description {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.8;
+    }
+    .feature-description p + p { margin-top: 10px; }
+
+    .feature-image-placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      max-height: 360px;
+      background: #0d0d0d;
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .feature-image {
+      width: 100%;
+      aspect-ratio: 9/16;
+      max-height: 360px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid #1e1e1e;
+    }
+
+    /* ── FOOTER CTA ── */
+    .footer-cta {
+      max-width: 720px;
+      margin: 64px auto 0;
+      padding: 0 32px;
+      text-align: center;
+    }
+    .footer-cta p {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.85; }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">#Recall</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/features" class="active">Features</a>
+      <a href="/instructions">Instructions</a>
+      <a href="/blog/">Articles</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <a href="/" class="back">← Back to Home</a>
+    <h1>Every feature,<br>explained.</h1>
+    <p class="page-subtitle">Recall is built around one idea: your memory works by context, not by name. Every feature flows from that.</p>
+  </div>
+
+  <!-- CORE FEATURES -->
+  <div class="group-label">Core</div>
+  <div class="features-list" id="core-features">
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-hashtag">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Search by #Hashtag</div>
+          <div class="feature-keywords">
+            <span class="keyword">#hashtag search</span>
+            <span class="keyword">context search</span>
+            <span class="keyword">find contacts</span>
+            <span class="keyword">no spelling required</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-hashtag" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Type what you remember — a place, a moment, a relationship — and Recall finds the right person instantly. No need to spell their name correctly. No need to remember their last name at all.</p>
+            <p>Search <strong>#NYC #gallery</strong> and see everyone you've tagged with both. The more context you add, the narrower and more precise the result.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-swipe">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Swipe to Tag</div>
+          <div class="feature-keywords">
+            <span class="keyword">swipe gesture</span>
+            <span class="keyword">quick tagging</span>
+            <span class="keyword">bulk tag</span>
+            <span class="keyword">card swipe</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-swipe" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>The fastest way to tag contacts at scale. Swipe right on a contact in the list to add a hashtag. Works like a card-swipe flow — perfect for processing hundreds of contacts quickly.</p>
+            <p>The tag keyboard includes autocomplete so you can re-use existing tags without retyping. Swipe left to skip and move on.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-multitagsearch">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Multi-Tag Search</div>
+          <div class="feature-keywords">
+            <span class="keyword">filter contacts</span>
+            <span class="keyword">intersect tags</span>
+            <span class="keyword">precision search</span>
+            <span class="keyword">combine hashtags</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-multitagsearch" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Stack multiple hashtags to narrow your search. Type <strong>#Tokyo #photographer #2024</strong> and Recall shows only contacts matching all three. The more tags, the more precise the result.</p>
+            <p>Combine any tags in any order. There's no fixed hierarchy — just your memory.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-autocomplete">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Tag Autocomplete</div>
+          <div class="feature-keywords">
+            <span class="keyword">tag suggestions</span>
+            <span class="keyword">consistent tagging</span>
+            <span class="keyword">tag frequency</span>
+            <span class="keyword">no duplicates</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-autocomplete" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>As you type a hashtag, Recall suggests existing tags from your collection. This keeps tagging consistent — no accidental duplicates like <strong>#newyork</strong> and <strong>#NYC</strong> for the same place.</p>
+            <p>Autocomplete also shows each tag's frequency, so you can see at a glance how widely used a tag is across your contacts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- POWER FEATURES -->
+  <div class="group-label">Power</div>
+  <div class="features-list" id="power-features">
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-smartgroups">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Smart Groups</div>
+          <div class="feature-keywords">
+            <span class="keyword">auto groups</span>
+            <span class="keyword">tag-based groups</span>
+            <span class="keyword">real-time filter</span>
+            <span class="keyword">contact lists</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-smartgroups" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Every hashtag you create automatically becomes a Smart Group. Tap <strong>#NYC</strong> and see every contact tagged with it. Groups update in real time as you add and remove tags.</p>
+            <p>No manual group management ever. Groups are simply a live view of your tags.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-supertags">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Super Tags</div>
+          <div class="feature-keywords">
+            <span class="keyword">VIP contacts</span>
+            <span class="keyword">priority tags</span>
+            <span class="keyword">colour-coded</span>
+            <span class="keyword">family work friends</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-supertags" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Five colour-coded priority tags built in from day one: <strong>VIP, Family, Work, Parents, Friends</strong>. These appear as prominent chips in the contact list so the people who matter most are always visible at a glance.</p>
+            <p>Tap any Super Tag chip in the filter bar to instantly show only that group.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-quickrecall">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Quick Recall</div>
+          <div class="feature-keywords">
+            <span class="keyword">one-tap actions</span>
+            <span class="keyword">call message FaceTime</span>
+            <span class="keyword">WhatsApp</span>
+            <span class="keyword">contact actions</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-quickrecall" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>From the contact detail view, Quick Recall surfaces the most relevant actions in one tap: Call, FaceTime, FaceTime Audio, Message, WhatsApp, Email, and Share Contact (vCard).</p>
+            <p>No nested menus. No hunting. The right action is always one tap away.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-reviewqueue">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Review &amp; Delete Queue</div>
+          <div class="feature-keywords">
+            <span class="keyword">clean address book</span>
+            <span class="keyword">swipe to delete</span>
+            <span class="keyword">contact cleanup</span>
+            <span class="keyword">review queue</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-reviewqueue" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>A swipe-through interface for reviewing old or untagged contacts. Swipe right to tag. Swipe left to skip. Swipe up to delete. The fastest way to clean up an address book that's accumulated years of forgotten contacts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-browselastused">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Browse by Last Used</div>
+          <div class="feature-keywords">
+            <span class="keyword">recent contacts</span>
+            <span class="keyword">sort by recency</span>
+            <span class="keyword">last contacted</span>
+            <span class="keyword">contact history</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-browselastused" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>See who you were in touch with most recently. Sort your contact list by recency to keep your active relationships at the top. Your native iPhone contacts app can't do this. Recall can.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-vcardsharing">
+        <div class="feature-trigger-left">
+          <div class="feature-name">vCard Sharing</div>
+          <div class="feature-keywords">
+            <span class="keyword">share contact</span>
+            <span class="keyword">vCard export</span>
+            <span class="keyword">contact card</span>
+            <span class="keyword">iOS share sheet</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-vcardsharing" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Share any contact as a standard vCard directly from the detail view. Works with all iOS share destinations — AirDrop, Messages, WhatsApp, email, and more. One tap to pass contact details to someone else.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODES -->
+  <div class="group-label">Modes</div>
+  <div class="features-list" id="modes-features">
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-parentmode">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Parent Mode</div>
+          <div class="feature-keywords">
+            <span class="keyword">school parents</span>
+            <span class="keyword">kids contacts</span>
+            <span class="keyword">attach children names</span>
+            <span class="keyword">school pickup</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-parentmode" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Attach your children's names to their school parent contacts. Tag a contact <strong>#mum #Luca #Ella</strong> and search <strong>#Luca</strong> to find that child's parent instantly.</p>
+            <p>Designed for parents who know every child at school pickup but struggle to remember the parent's name. You know the child — Recall connects you to the contact.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-dogmode">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Dog Mode <span class="badge-coming">Coming Soon</span></div>
+          <div class="feature-keywords">
+            <span class="keyword">pet mode</span>
+            <span class="keyword">dog owner contacts</span>
+            <span class="keyword">park contacts</span>
+            <span class="keyword">dog park friends</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-dogmode" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Just like Parent Mode, but for dog owners. Attach your dog's name (and theirs) to contacts you meet at the park, at puppy class, or at the vet. Search <strong>#Biscuit</strong> to find the owner of that labrador you met at the dog park last month.</p>
+            <p>Because you always remember the dog's name first.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-bccmode">
+        <div class="feature-trigger-left">
+          <div class="feature-name">BCC Mode <span class="badge-coming">Coming Soon</span></div>
+          <div class="feature-keywords">
+            <span class="keyword">bulk message</span>
+            <span class="keyword">group invite</span>
+            <span class="keyword">copy contacts</span>
+            <span class="keyword">lunch invite</span>
+            <span class="keyword">send to group</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-bccmode" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Compose a message once, then send it to a Smart Group in one action. Filter to <strong>#WorkLondon</strong>, write your lunch invite, and Recall generates the list of contacts ready to copy-paste into any messaging app.</p>
+            <p>Perfect for organising events, sending group updates, or reaching out to everyone from a particular context — without creating a group chat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="group-label">Experience</div>
+  <div class="features-list" id="experience-features">
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-themes">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Three Visual Themes</div>
+          <div class="feature-keywords">
+            <span class="keyword">dark mode</span>
+            <span class="keyword">paper mode</span>
+            <span class="keyword">iOS native</span>
+            <span class="keyword">dyslexia friendly</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-themes" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p><strong>Dark Mode</strong> — the default. Black background, white text, high contrast. Built for low-light environments and extended use.</p>
+            <p><strong>iOS Native Mode</strong> — adapts to your system Light or Dark setting. Standard iOS colours, feels immediately familiar.</p>
+            <p><strong>Paper Mode</strong> — warm off-white, low contrast, reduced motion. The calm alternative. Designed for dyslexic and light-sensitive users who find stark interfaces tiring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-dynamictype">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Dynamic Type Support</div>
+          <div class="feature-keywords">
+            <span class="keyword">accessibility text size</span>
+            <span class="keyword">large text</span>
+            <span class="keyword">iOS font scaling</span>
+            <span class="keyword">vision accessibility</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-dynamictype" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>All text in Recall scales with the font size you set in iOS Settings → Display &amp; Brightness → Text Size. Includes full support for Accessibility extra-large sizes. Users who depend on large text can use Recall without losing any functionality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-private">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Private by Design</div>
+          <div class="feature-keywords">
+            <span class="keyword">no account needed</span>
+            <span class="keyword">offline contacts</span>
+            <span class="keyword">no cloud sync</span>
+            <span class="keyword">data stays on device</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-private" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>No account. No email. No cloud. No contacts data ever leaves your device. Recall never connects to any external server with your personal information.</p>
+            <p>Tags are stored locally and also written to the Apple Contacts notes field — so they sync via iCloud if you choose to use it, entirely on your terms. Delete the app and your tags remain in Apple Contacts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-item">
+      <button class="feature-trigger" aria-expanded="false" aria-controls="panel-mac">
+        <div class="feature-trigger-left">
+          <div class="feature-name">Mac &amp; iPad Support</div>
+          <div class="feature-keywords">
+            <span class="keyword">Mac Catalyst</span>
+            <span class="keyword">iPad contacts app</span>
+            <span class="keyword">keyboard navigation</span>
+            <span class="keyword">macOS contacts</span>
+          </div>
+        </div>
+        <div class="expand-arrow" aria-hidden="true">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <polyline points="2,4 6,8 10,4"/>
+          </svg>
+        </div>
+      </button>
+      <div class="feature-panel" id="panel-mac" role="region">
+        <div class="feature-panel-inner">
+          <div class="feature-description">
+            <p>Recall runs natively on Mac via Mac Catalyst (macOS 12+) and on iPad (iPadOS 15+). The Mac version supports full keyboard navigation and takes advantage of the larger screen for the contact list layout.</p>
+            <p>One purchase (free) across iPhone, iPad, and Mac.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER CTA -->
+  <div class="footer-cta">
+    <p>Free to download. No account required.</p>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" rel="noopener" class="cta-btn">Get Recall — Free on the App Store</a>
+  </div>
+
+  <script>
+    document.querySelectorAll('.feature-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var panelId = btn.getAttribute('aria-controls');
+        var panel = document.getElementById(panelId);
+
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (expanded) {
+          panel.classList.remove('open');
+        } else {
+          panel.classList.add('open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
