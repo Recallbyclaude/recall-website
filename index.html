@@ -66,7 +66,6 @@
       "https://recall-contacts.com/Images_app%20store%20pages/image5.png",
       "https://recall-contacts.com/Images_app%20store%20pages/image6.png"
     ],
-    "aggregateRating": null,
     "inLanguage": "en"
   }
   </script>
@@ -223,22 +222,8 @@
       --label-color: #999;
     }
 
-    @keyframes gradientDrift {
-      0%, 100% { background-position: 100% 100%; }
-      50%       { background-position: 0% 0%; }
-    }
-
     body {
       background-color: #000;
-      background-image: linear-gradient(
-        to top left,
-        #E8A87A,
-        #E8C97A,
-        #8FCA8F,
-        #8FB8E8
-      );
-      background-size: 400% 400%;
-      animation: gradientDrift 60s ease infinite;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       padding-top: calc(var(--frame) + var(--nav-h));
@@ -384,7 +369,7 @@
     .screenshots { padding: 0 28px; border-bottom: var(--border); align-items: center; text-align: center; }
     .carousel { position: relative; max-width: 300px; margin: 40px auto 0; }
     .carousel-track-wrap { overflow: hidden; border-radius: 32px; border: var(--border); }
-    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+    .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
     .carousel-slide { min-width: 100%; }
     .carousel-slide img { width: 100%; display: block; border-radius: 32px; aspect-ratio: 9/19.5; object-fit: cover; background: #111; }
     .carousel-btn {
@@ -664,10 +649,7 @@
       <a href="#about">About</a>
       <a href="/features">Features</a>
       <a href="/instructions">Instructions</a>
-      <a href="#screenshots">Screenshots</a>
-      <a href="#how-it-works">Tutorial</a>
-      <a href="#signup">Connect</a>
-      <a href="/blog/" target="_blank" rel="noopener">Articles</a>
+      <a href="/blog/" rel="noopener">Articles</a>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -680,10 +662,9 @@
     <a href="#about" class="mobile-link">About</a>
     <a href="/features" class="mobile-link">Features</a>
     <a href="/instructions" class="mobile-link">Instructions</a>
+    <a href="/blog/" rel="noopener" class="mobile-link">Articles</a>
     <a href="#screenshots" class="mobile-link">Screenshots</a>
-    <a href="#how-it-works" class="mobile-link">Tutorial</a>
     <a href="#signup" class="mobile-link">Connect</a>
-    <a href="/blog/" target="_blank" rel="noopener" class="mobile-link">Articles</a>
     <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
@@ -827,7 +808,7 @@
       <button class="carousel-btn prev" id="prevBtn" aria-label="Previous screenshot">&#8592;</button>
       <div class="carousel-track-wrap">
         <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide"><img src="Images_app%20store%20pages/image1.png" alt="Recall Contacts — contacts list with VIP, Family, Work and Parents groups, searchable by hashtag" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="Images_app%20store%20pages/image1.png" alt="Recall Contacts — contacts list with VIP, Family, Work and Parents groups, searchable by hashtag" loading="eager" fetchpriority="high" /></div>
           <div class="carousel-slide"><img src="Images_app%20store%20pages/image2.png" alt="Recall Contacts — search smarter, filter by hashtag instead of scrolling A to Z" loading="lazy" /></div>
           <div class="carousel-slide"><img src="Images_app%20store%20pages/image3.png" alt="Recall Contacts — moments over names, contact profile with photo, call and text buttons, and hashtag tags" loading="lazy" /></div>
           <div class="carousel-slide"><img src="Images_app%20store%20pages/image4.png" alt="Recall Contacts — search by context not A to Z, hashtag keyboard search filtering contacts instantly" loading="lazy" /></div>
@@ -934,10 +915,17 @@
     /* ── NAVIGATION ─── */
     var sections = Array.from(document.querySelectorAll('.snap-section'));
     var currentIndex = 0;
-    var isScrolling = false;
+    var navLocked = false;
+    var navLockTimer = null;
 
     function isDesktop() {
       return window.matchMedia('(min-width: 721px)').matches;
+    }
+
+    function lockNav(ms) {
+      navLocked = true;
+      clearTimeout(navLockTimer);
+      navLockTimer = setTimeout(function() { navLocked = false; }, ms || 500);
     }
 
     function goToSection(index) {
@@ -946,46 +934,56 @@
       if (isDesktop()) {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
         sections[index].classList.add('desktop-active');
-        isScrolling = true;
-        setTimeout(function() { isScrolling = false; }, 350);
+        lockNav(500);
       } else {
-        isScrolling = true;
         sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(function() { isScrolling = false; }, 900);
+        lockNav(900);
       }
     }
 
-    /* Initialize: respect URL hash, else show first section */
+    /* Initialize */
     (function() {
       var hash = window.location.hash.slice(1);
       var initIndex = hash ? sections.findIndex(function(s) { return s.id === hash; }) : -1;
       if (isDesktop()) goToSection(initIndex !== -1 ? initIndex : 0);
     })();
 
-    /* Desktop: wheel navigates between tabs */
+    /* Desktop wheel — accumulate delta, require threshold to avoid trackpad micro-fires */
+    var wheelAccum = 0;
+    var wheelResetTimer = null;
     window.addEventListener('wheel', function(e) {
       if (!isDesktop()) return;
       e.preventDefault();
-      if (isScrolling) return;
-      if (e.deltaY > 0) goToSection(currentIndex + 1);
-      else goToSection(currentIndex - 1);
+      if (navLocked) return;
+
+      /* Normalize across deltaMode (pixels vs lines vs pages) */
+      var delta = e.deltaMode === 1 ? e.deltaY * 20
+                : e.deltaMode === 2 ? e.deltaY * 300
+                : e.deltaY;
+
+      wheelAccum += delta;
+      clearTimeout(wheelResetTimer);
+      wheelResetTimer = setTimeout(function() { wheelAccum = 0; }, 200);
+
+      if (Math.abs(wheelAccum) >= 80) {
+        var dir = wheelAccum > 0 ? 1 : -1;
+        wheelAccum = 0;
+        goToSection(currentIndex + dir);
+      }
     }, { passive: false });
 
-    /* Desktop: touch swipe navigates between tabs */
-    var touchStartY = 0;
-    var touchStartX = 0;
+    /* Desktop touch swipe */
+    var touchStartY = 0, touchStartX = 0;
     window.addEventListener('touchstart', function(e) {
       touchStartY = e.touches[0].clientY;
       touchStartX = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchend', function(e) {
-      if (!isDesktop()) return;
-      if (isScrolling) return;
+      if (!isDesktop() || navLocked) return;
       var diffY = touchStartY - e.changedTouches[0].clientY;
       var diffX = Math.abs(touchStartX - e.changedTouches[0].clientX);
-      if (Math.abs(diffY) > 50 && Math.abs(diffY) > diffX * 1.5) {
-        if (diffY > 0) goToSection(currentIndex + 1);
-        else goToSection(currentIndex - 1);
+      if (Math.abs(diffY) > 60 && Math.abs(diffY) > diffX * 1.5) {
+        goToSection(currentIndex + (diffY > 0 ? 1 : -1));
       }
     }, { passive: true });
 
@@ -998,14 +996,11 @@
           return;
         }
         var targetIndex = sections.findIndex(function(s) { return s.id === targetId; });
-        if (targetIndex !== -1) {
-          e.preventDefault();
-          goToSection(targetIndex);
-        }
+        if (targetIndex !== -1) { e.preventDefault(); goToSection(targetIndex); }
       });
     });
 
-    /* Handle resize between mobile ↔ desktop */
+    /* Resize */
     window.addEventListener('resize', function() {
       if (isDesktop()) {
         sections.forEach(function(s) { s.classList.remove('desktop-active'); });
@@ -1042,7 +1037,6 @@
     document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
     document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
 
-    /* Swipe on carousel */
     var carouselStartX = 0;
     var wrap = track.parentElement;
     wrap.addEventListener('touchstart', function(e) { carouselStartX = e.touches[0].clientX; }, { passive: true });
@@ -1051,36 +1045,37 @@
       if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
     });
 
-    /* Auto-slide when screenshots section is in view */
+    function startAutoSlide() {
+      if (autoSlideInterval) return;
+      autoSlideInterval = setInterval(function() {
+        if (!document.hidden) goTo(current + 1);
+      }, 3000);
+    }
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
+
     var screenshotsEl = document.getElementById('screenshots');
-    var slideObserver = new IntersectionObserver(function(entries) {
+    new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          if (!autoSlideInterval) {
-            autoSlideInterval = setInterval(function() { goTo(current + 1); }, 3000);
-          }
-        } else {
-          clearInterval(autoSlideInterval);
-          autoSlideInterval = null;
-        }
+        entry.isIntersecting ? startAutoSlide() : stopAutoSlide();
       });
-    }, { threshold: 0.5 });
-    slideObserver.observe(screenshotsEl);
+    }, { threshold: 0.5 }).observe(screenshotsEl);
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) stopAutoSlide();
+    });
 
     /* ── HAMBURGER ─── */
     var hamburgerBtn = document.getElementById('hamburger');
     var mobileMenu = document.getElementById('mobileMenu');
     var snapRestoreTimer = null;
 
-    function disableSnap() {
-      document.body.style.scrollSnapType = 'none';
-      clearTimeout(snapRestoreTimer);
-    }
+    function disableSnap() { document.body.style.scrollSnapType = 'none'; clearTimeout(snapRestoreTimer); }
     function restoreSnap() {
       clearTimeout(snapRestoreTimer);
-      snapRestoreTimer = setTimeout(function() {
-        document.body.style.scrollSnapType = '';
-      }, 350);
+      snapRestoreTimer = setTimeout(function() { document.body.style.scrollSnapType = ''; }, 400);
     }
 
     hamburgerBtn.addEventListener('click', function() {
@@ -1088,10 +1083,9 @@
       mobileMenu.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', opening ? 'true' : 'false');
       mobileMenu.setAttribute('aria-hidden', opening ? 'false' : 'true');
-      if (!isDesktop()) {
-        if (opening) { disableSnap(); } else { restoreSnap(); }
-      }
+      if (!isDesktop()) { opening ? disableSnap() : restoreSnap(); }
     });
+
     mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
       link.addEventListener('click', function() {
         mobileMenu.classList.remove('open');
@@ -1100,16 +1094,9 @@
         if (!isDesktop()) {
           var href = link.getAttribute('href');
           if (href && href.startsWith('#') && href.length > 1) {
-            /* Let goToSection's scrollIntoView finish before re-enabling snap */
             clearTimeout(snapRestoreTimer);
-            snapRestoreTimer = setTimeout(function() {
-              document.body.style.scrollSnapType = '';
-            }, 950);
+            snapRestoreTimer = setTimeout(function() { document.body.style.scrollSnapType = ''; }, 950);
           } else {
-            if (href && !href.startsWith('#')) {
-              var curr = sections[currentIndex];
-              if (curr) curr.scrollIntoView({ behavior: 'auto', block: 'start' });
-            }
             restoreSnap();
           }
         }
@@ -1118,7 +1105,7 @@
   </script>
 
   <script>
-    /* ── TYPEWRITER ─── */
+    /* ── TYPEWRITER — pauses when tab is hidden ─── */
     window.addEventListener('DOMContentLoaded', function() {
       var quotes = [
         "Stop scrolling A to Z. Search #tokyo instead.",
@@ -1130,31 +1117,32 @@
       var el = document.getElementById('typewriter-text');
       var row = el ? el.parentElement : null;
       if (!el || !row) return;
-      var qi = 0, ci = 0;
+      var qi = 0, ci = 0, twTimer = null;
 
       function tick() {
+        if (document.hidden) { twTimer = setTimeout(tick, 200); return; }
         var q = quotes[qi];
         ci++;
         el.textContent = q.slice(0, ci);
         if (ci === q.length) {
-          setTimeout(function() {
+          twTimer = setTimeout(function() {
             row.style.opacity = '0';
-            setTimeout(function() {
+            twTimer = setTimeout(function() {
               el.textContent = '';
               ci = 0;
               qi = (qi + 1) % quotes.length;
               row.style.opacity = '1';
-              setTimeout(tick, 300);
+              twTimer = setTimeout(tick, 300);
             }, 520);
           }, 2400);
           return;
         }
-        setTimeout(tick, 52);
+        twTimer = setTimeout(tick, 52);
       }
-      setTimeout(tick, 900);
+      twTimer = setTimeout(tick, 900);
     });
 
-    /* ── TAG CLOUD ─── */
+    /* ── TAG CLOUD — pauses when hero not visible ─── */
     window.addEventListener('DOMContentLoaded', function() {
       var cloud = document.getElementById('tagCloud');
       if (!cloud) return;
@@ -1168,46 +1156,41 @@
       ];
 
       var plain = [
-        /* cities */
         'NYC','TOKYO','LONDON','PARIS','SYDNEY','MIAMI','LA','CHICAGO','BARCELONA','BERLIN',
         'AMSTERDAM','DUBAI','SINGAPORE','TORONTO','MELBOURNE','ROME','HONG KONG','BANGKOK',
         'SEOUL','NAIROBI','CAPE TOWN','MADRID','LISBON','PRAGUE','VIENNA','STOCKHOLM',
         'OSLO','COPENHAGEN','ISTANBUL','ATHENS','MUMBAI','DELHI','SHANGHAI','BEIJING',
         'IBIZA','MYKONOS','TULUM','BALI','AMALFI','CANNES','MARRAKECH','RIO','HAVANA',
         'REYKJAVIK','EDINBURGH','DUBLIN','MONTREAL','BUENOS AIRES','LAGOS','BEIRUT',
-        'KYOTO','FLORENCE','VENICE','LISBON','PORTO','SEVILLE','VALENCIA','MILAN',
+        'KYOTO','FLORENCE','VENICE','PORTO','SEVILLE','VALENCIA','MILAN',
         'BRUGES','GHENT','TALLINN','VILNIUS','WARSAW','BUDAPEST','ZAGREB','SPLIT',
-        /* years */
-        '2009','2010','2011','2012','2013','2014','2015','2016',
         '2017','2018','2019','2020','2021','2022','2023','2024','2025','2026',
-        /* professions */
         'PHOTOGRAPHER','DESIGNER','ARCHITECT','CHEF','JOURNALIST','LAWYER','DOCTOR',
         'ARTIST','MUSICIAN','FILMMAKER','WRITER','STYLIST','PRODUCER','DIRECTOR',
         'DEVELOPER','THERAPIST','DENTIST','EDITOR','CURATOR','TRAINER','PILOT',
         'SURGEON','ACCOUNTANT','BROKER','COACH','NURSE','GALLERIST','SOMMELIER',
-        'FLORIST','TAILOR','VINTNER','BARISTA','TATTOOIST','DJ','SCULPTOR',
-        'ILLUSTRATOR','ANIMATOR','SOUND ENGINEER','CASTING DIRECTOR','PUBLICIST',
-        /* venues */
-        'EASTWOOD','NOBU','CHATEAU','CIPRIANI','BALTHAZAR','LOULOU','CHILTERN',
-        'SOHO HOUSE','GROUCHO','ANNABELS','CLARIDGES','SKETCH','NIGHTJAR',
-        'BERGHAIN','FABRIC','DRAGON','NERO','CHILTERN FIREHOUSE','RONNIES',
-        'HARRY\'S BAR','THE IVY','LOCANDA','RIVER CAFE','ELECTRIC','RONNIE\'S',
-        /* context */
+        'FLORIST','TAILOR','BARISTA','DJ','SCULPTOR','ILLUSTRATOR','ANIMATOR','PUBLICIST',
+        'EASTWOOD','NOBU','CHATEAU','CIPRIANI','BALTHAZAR','SOHO HOUSE','GROUCHO',
+        'ANNABELS','CLARIDGES','SKETCH','BERGHAIN','CHILTERN FIREHOUSE',
+        'THE IVY','RIVER CAFE','ELECTRIC',
         'WEDDING','BIRTHDAY','FESTIVAL','OPENING','GALLERY','DINNER','DRINKS',
         'ROOFTOP','STUDIO','BEACH','HOTEL','GYM','YOGA','STARTUP','PODCAST',
         'FASHION','TECH','SPORT','TRAVEL','MUSIC','ART','FILM','SUMMIT',
         'GLASTONBURY','COACHELLA','DAVOS','FRIEZE','ART BASEL','SXSW',
-        'MENTOR','INVESTOR','FOUNDER','CEO','COLLEAGUE','FLATMATE','DATE',
+        'MENTOR','INVESTOR','FOUNDER','CEO','COLLEAGUE','FLATMATE',
         'HIKING','SURFING','SKIING','MARATHON','CYCLING','BOXING','PILATES',
-        'SCHOOL RUN','BOOK CLUB','WINE TASTING','COOKING CLASS','OPEN MIC',
-        'HOUSE PARTY','AFTER PARTY','FLAT WHITE','LATE NIGHT','EARLY MORNING'
+        'SCHOOL RUN','BOOK CLUB','WINE TASTING','COOKING CLASS',
+        'HOUSE PARTY','AFTER PARTY','LATE NIGHT','EARLY MORNING'
       ];
 
-      /* active: currently visible. cooling: recently faded, on cooldown. */
-      var active = {};
-      var cooling = {};
+      var active = {}, cooling = {};
+      var heroVisible = true;
+      var loopTimer = null;
+      /* mobile: cap simultaneous tags lower to save battery */
+      var maxActive = window.innerWidth < 721 ? 6 : 14;
 
       function available(key) { return !active[key] && !cooling[key]; }
+      function activeCount() { return Object.keys(active).length; }
 
       function startCooldown(key, ms) {
         cooling[key] = true;
@@ -1215,9 +1198,11 @@
       }
 
       function spawn() {
-        var tryColored = Math.random() < 0.25;
-        var item, key;
+        if (!heroVisible || document.hidden) return;
+        if (activeCount() >= maxActive) return;
 
+        var tryColored = Math.random() < 0.25;
+        var item;
         if (tryColored) {
           var ca = colored.filter(function(c) { return available(c.text); });
           if (ca.length) item = ca[Math.floor(Math.random() * ca.length)];
@@ -1228,7 +1213,7 @@
           item = { text: pa[Math.floor(Math.random() * pa.length)], cls: null };
         }
 
-        key = item.cls ? item.text : '#' + item.text;
+        var key = item.cls ? item.text : '#' + item.text;
         active[key] = true;
 
         var el = document.createElement('span');
@@ -1249,21 +1234,37 @@
           requestAnimationFrame(function() { el.style.opacity = maxOp; });
         });
 
-        var life = 3500 + Math.random() * 4500;
+        var life = 4000 + Math.random() * 4000;
         setTimeout(function() {
           el.style.opacity = 0;
           delete active[key];
           startCooldown(key, item.cls ? 18000 : 9000);
-          setTimeout(function() { el.parentNode && el.parentNode.removeChild(el); }, 800);
+          setTimeout(function() { if (el.parentNode) el.parentNode.removeChild(el); }, 800);
         }, life);
       }
 
-      for (var i = 0; i < 22; i++) setTimeout(spawn, Math.random() * 2200);
-      (function loop() { spawn(); setTimeout(loop, 300 + Math.random() * 300); })();
+      function scheduleLoop() {
+        loopTimer = setTimeout(function() {
+          spawn();
+          scheduleLoop();
+        }, 600 + Math.random() * 600);
+      }
+
+      /* Pause loop when hero is off-screen (desktop tab navigation) */
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          heroVisible = entry.isIntersecting;
+        });
+      }, { threshold: 0.1 }).observe(cloud.parentElement);
+
+      /* Seed initial tags */
+      var seedCount = window.innerWidth < 721 ? 5 : 12;
+      for (var i = 0; i < seedCount; i++) setTimeout(spawn, Math.random() * 1800);
+      scheduleLoop();
     });
   </script>
 
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
+  <script defer data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
 
   <script>
     /* ── YOUTUBE FACADE ─── */
