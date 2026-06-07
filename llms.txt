@@ -7,22 +7,25 @@ Recall Contacts is a free iPhone app created by photographer Paul Barbera. It la
 ## Product
 
 - [Home](https://recall-contacts.com/): Overview, features, screenshots, demo video, and App Store download
+- [Features](https://recall-contacts.com/features): Every feature explained — hashtag tagging, Smart Groups, Parent Mode, Dog Mode, BCC Mode, Quick Recall, and more
+- [Instructions](https://recall-contacts.com/instructions): Step-by-step guide to using Recall — tagging, searching, Smart Groups, Parent Mode, Review Queue, themes, and tips
 - [App Store](https://apps.apple.com/us/app/recall-contacts/id6758255331): Download Recall Contacts for iPhone — free
 
-## Documentation
+## Help & Support
 
-- [Features Reference](https://recall-contacts.com/features.md): Complete feature guide covering all 30 features across Core, Power, and Experience tiers — including accessibility, privacy, and platform details
-- [About Recall](https://recall-contacts.com/about.md): App philosophy, origin story, who it's for, and the team behind it
+- [Support](https://recall-contacts.com/support): Full help guide — getting started, features, settings, troubleshooting, and contact information
 
 ## Articles
 
 - [Why I Built Recall](https://recall-contacts.com/blog/why-i-built-recall.html): Paul Barbera's personal story — a dyslexic photographer who spent 25 years meeting people and forgetting their names
 - [The Dyslexic Mind: Workaround Genius](https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html): How dyslexic brains compensate for naming challenges with context and pattern recognition
-- [Marketing with Jason Laan](https://recall-contacts.com/blog/marketing-with-jason-laan.html): Growth and marketing story for Recall
+- [You Know Her as Mia's Mom](https://recall-contacts.com/blog/mias-mom.html): The word for knowing someone only through their child — and how Recall's Parent Mode solves it
+- [Apple's Contacts App Is Older Than Google](https://recall-contacts.com/blog/parents-qr-code-contacts.html): Why the native Contacts app fails parents at school pickup, and what we built instead
+- [Face Swap's Creator on Marketing Recall](https://recall-contacts.com/blog/marketing-with-jason-laan.html): Jason Laan's honest assessment of how Paul is marketing Recall — and what to do differently
 
 ## People
 
-- [Team](https://recall-contacts.com/team.html): Paul Barbera — photographer, app creator, and the person who needed Recall before he built it
+- [Team](https://recall-contacts.com/team.html): Paul Barbera (photographer, creator) and Jason Laan (co-founder, Laan Labs) — the two people behind Recall Contacts
 
 ## Legal
 
@@ -30,4 +33,4 @@ Recall Contacts is a free iPhone app created by photographer Paul Barbera. It la
 
 ## Full Content
 
-- [llms-full.txt](https://recall-contacts.com/llms-full.txt): Complete site and product content in plain text for indexing — includes all features, FAQs, use cases, and team information
+- [llms-full.txt](https://recall-contacts.com/llms-full.txt): Complete site and product content in plain text for indexing — includes all features, FAQs, use cases, instructions, and team information
