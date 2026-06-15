@@ -1,0 +1,188 @@
+/* ─────────────────────────────────────────────────────────────────
+   RECALL CONTACTS — LIGHT THEME OVERRIDE
+   Loaded after per-page <style> blocks on all non-homepage pages.
+   Switches dark (black) pages to match the light pastel homepage.
+───────────────────────────────────────────────────────────────── */
+
+:root {
+  --lt-text:   #1A1A1A;
+  --lt-text2:  #555;
+  --lt-text3:  #999;
+  --lt-border: 1px solid #E8E8EA;
+  --lt-grad:   linear-gradient(135deg, #FFDFDF 0%, #EACEF5 45%, #C5DCEF 100%);
+  --lt-nav-h:  64px;
+  --vip:       #F5C84A;
+  --family:    #E8835A;
+  --work:      #6BC87A;
+  --parents:   #8BB8D6;
+  --friends:   #C9A8D4;
+}
+
+/* ── HIDE DARK FRAME ─────────────────────────────────────────── */
+.frame,
+.frame-corner-bl,
+.frame-corner-br,
+.inner-bg { display: none !important; }
+
+/* ── BODY ────────────────────────────────────────────────────── */
+@keyframes gradientDrift { 0%,100%{} }   /* kill the dark animation */
+
+body {
+  background-color: #fff !important;
+  background-image: var(--lt-grad) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 640px !important;
+  background-attachment: scroll !important;
+  animation: none !important;
+  color: var(--lt-text) !important;
+  padding-top: calc(var(--lt-nav-h) + 56px) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ── NAV ─────────────────────────────────────────────────────── */
+nav,
+.site-nav {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: var(--lt-border) !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: var(--lt-nav-h) !important;
+}
+
+.nav-logo,
+.site-nav .nav-logo { color: var(--lt-text) !important; }
+
+.nav-links a,
+.site-nav .nav-links a {
+  color: var(--lt-text2) !important;
+  border-color: transparent !important;
+  background: none !important;
+  border-radius: 8px !important;
+}
+.nav-links a:hover,
+.site-nav .nav-links a:hover { color: var(--lt-text) !important; background: rgba(0,0,0,0.05) !important; }
+.nav-links a.active,
+.site-nav .nav-links a.active { color: var(--lt-text) !important; background: rgba(0,0,0,0.05) !important; border-color: transparent !important; }
+.nav-cta,
+.site-nav .nav-cta { background: var(--lt-text) !important; color: #fff !important; border-radius: 100px !important; }
+.nav-cta:hover,
+.site-nav .nav-cta:hover { background: #333 !important; }
+.nav-hamburger span { background: var(--lt-text) !important; }
+
+/* ── MOBILE MENU ─────────────────────────────────────────────── */
+.mobile-menu {
+  background: rgba(255,255,255,0.97) !important;
+  border-bottom: var(--lt-border) !important;
+  border-left: none !important;
+  border-right: none !important;
+  top: var(--lt-nav-h) !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+.mobile-menu a { color: var(--lt-text2) !important; }
+.mobile-menu a:hover { color: var(--lt-text) !important; }
+.mobile-menu .nav-cta { background: var(--lt-text) !important; color: #fff !important; border-radius: 100px !important; }
+
+/* ── ARTICLE ─────────────────────────────────────────────────── */
+.article-wrap {
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: 0 28px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+.article-back { color: var(--lt-text3) !important; }
+.article-back:hover { color: var(--lt-text) !important; }
+.article-label { color: var(--lt-text3) !important; }
+.article-title { color: var(--lt-text) !important; }
+.article-byline { color: var(--lt-text3) !important; border-bottom-color: #E8E8EA !important; }
+.article-lede { color: #333 !important; }
+.article-body { color: var(--lt-text2) !important; }
+.article-body em { color: var(--lt-text) !important; }
+.article-body strong { color: var(--lt-text) !important; }
+.article-divider { border-top-color: #E8E8EA !important; }
+.article-pullquote { color: var(--lt-text) !important; border-left-color: #ccc !important; }
+.btn-share { color: var(--lt-text3) !important; border-color: #E8E8EA !important; }
+.btn-share:hover { color: var(--lt-text) !important; border-color: #999 !important; }
+
+/* ── ARTICLE CTA ─────────────────────────────────────────────── */
+.article-cta { border-color: #E8E8EA !important; background: rgba(255,255,255,0.8) !important; }
+.article-cta-label { color: var(--lt-text3) !important; }
+.article-cta-title { color: var(--lt-text) !important; }
+.article-cta-desc { color: var(--lt-text2) !important; }
+.btn-primary { background: var(--lt-text) !important; color: #fff !important; border-radius: 100px !important; }
+.btn-primary:hover { background: #333 !important; }
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+footer { border-top-color: #E8E8EA !important; }
+.footer-logo { color: var(--lt-text) !important; }
+.footer-links a { color: var(--lt-text3) !important; }
+.footer-links a:hover { color: var(--lt-text) !important; }
+.footer-cta { background: var(--lt-text) !important; color: #fff !important; border-radius: 100px !important; }
+
+/* ── BLOG INDEX ──────────────────────────────────────────────── */
+.page-inner { position: relative; z-index: 1; }
+.page-label { color: var(--lt-text3) !important; }
+.page-title { color: var(--lt-text) !important; }
+.article-list { border-top-color: #E8E8EA !important; }
+.article-item { border-top-color: #E8E8EA !important; }
+.article-item:hover { background: rgba(0,0,0,0.02) !important; }
+.article-date { color: var(--lt-text3) !important; }
+.article-tag { color: var(--lt-text3) !important; border-color: #E8E8EA !important; background: none !important; }
+.article-item .article-title { color: var(--lt-text) !important; }
+.article-excerpt { color: var(--lt-text2) !important; }
+.article-read { color: var(--lt-text3) !important; }
+
+/* ── COMPARISON ARTICLE ──────────────────────────────────────── */
+.app-number { color: var(--lt-text3) !important; margin-top: 56px !important; }
+.app-heading { color: var(--lt-text) !important; }
+.app-link { color: inherit !important; text-decoration-color: #ddd !important; }
+.app-link:hover { text-decoration-color: var(--lt-text) !important; }
+.app-best-for { color: var(--lt-text3) !important; border-top-color: #E8E8EA !important; }
+.app-best-for strong { color: var(--lt-text2) !important; }
+.comparison-wrap { overflow-x: auto; }
+.comparison-table th { color: var(--lt-text3) !important; border-bottom-color: #E8E8EA !important; }
+.comparison-table td { color: var(--lt-text2) !important; border-bottom-color: #E8E8EA !important; }
+.col-app { color: var(--lt-text) !important; }
+.col-app a { color: var(--lt-text) !important; border-bottom-color: #E8E8EA !important; }
+.recall-row td { background: rgba(245,200,74,0.07) !important; }
+.recall-row .col-app,
+.recall-row .col-app a { color: #7A5000 !important; }
+
+/* ── NON-BLOG PAGES (features, support, team, privacy, etc.) ─── */
+.site-nav + * { margin-top: 0; }
+.page-header a.back { color: var(--lt-text3) !important; }
+.page-header a.back:hover { color: var(--lt-text) !important; }
+.page-subtitle { color: var(--lt-text2) !important; }
+
+/* Features page */
+.group-label { color: var(--lt-text3) !important; border-bottom-color: #E8E8EA !important; }
+.feature-item { border-bottom-color: #E8E8EA !important; }
+.feature-trigger { color: var(--lt-text) !important; }
+.feature-trigger:hover { background: rgba(0,0,0,0.03) !important; }
+.feature-name { color: var(--lt-text) !important; }
+.keyword { background: #F5F5F5 !important; color: var(--lt-text2) !important; border: none !important; }
+.feature-description { color: var(--lt-text2) !important; }
+.expand-arrow { color: var(--lt-text3) !important; }
+
+/* Team, Privacy, Support, Instructions */
+h1, h2, h3 { color: var(--lt-text) !important; }
+p { color: var(--lt-text2) !important; }
+a { color: var(--lt-text) !important; }
+.section-content, .content-wrap, .page-content { color: var(--lt-text2) !important; }
+
+/* 404 */
+.error-code { color: var(--lt-text) !important; }
+.error-message { color: var(--lt-text2) !important; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  body { padding-top: calc(56px + 40px) !important; background-size: 100% 480px !important; }
+  nav, .site-nav { height: 56px !important; }
+  .mobile-menu { top: 56px !important; }
+  .article-wrap { padding: 0 20px !important; }
+}

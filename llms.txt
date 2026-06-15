@@ -2,7 +2,7 @@
 
 > iPhone contacts app that lets you find anyone by what you remember — a hashtag, a place, a moment — not by how their name is spelled. Built for dyslexic, ADHD, and neurodivergent minds. Works brilliantly for everyone.
 
-Recall Contacts is a free iPhone app created by photographer Paul Barbera. It layers on top of your existing Apple Contacts — nothing moves, nothing breaks. Tag people with hashtags (#NYC, #wedding, #schoolrun, #doctor) and search by context instead of spelling. All data stays on your device. No account required. No cloud sync.
+Recall Contacts is a $2.00 iPhone and Mac app created by photographer Paul Barbera. It layers on top of your existing Apple Contacts — nothing moves, nothing breaks. Tag people with hashtags (#NYC, #wedding, #schoolrun, #doctor) and search by context instead of spelling. All data stays on your device. No account required. No cloud sync.
 
 ## Product
 
@@ -21,6 +21,7 @@ Recall Contacts is a free iPhone app created by photographer Paul Barbera. It la
 - [The Dyslexic Mind: Workaround Genius](https://recall-contacts.com/blog/dyslexic-mind-workaround-genius.html): How dyslexic brains compensate for naming challenges with context and pattern recognition
 - [You Know Her as Mia's Mom](https://recall-contacts.com/blog/mias-mom.html): The word for knowing someone only through their child — and how Recall's Parent Mode solves it
 - [Apple's Contacts App Is Older Than Google](https://recall-contacts.com/blog/parents-qr-code-contacts.html): Why the native Contacts app fails parents at school pickup, and what we built instead
+- [The Best Contacts Apps in 2026: An Honest Comparison](https://recall-contacts.com/blog/contacts-app-comparison.html): Apple Contacts, Google Contacts, Cloze, Salesforce, Dex, and Recall compared — for freelancers, parents, dog owners, and anyone who forgets names
 - [Face Swap's Creator on Marketing Recall](https://recall-contacts.com/blog/marketing-with-jason-laan.html): Jason Laan's honest assessment of how Paul is marketing Recall — and what to do differently
 
 ## People

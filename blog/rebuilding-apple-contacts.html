@@ -3,38 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why I Built Recall — 25 Years of Faces, Half the Names | Recall</title>
-  <meta name="description" content="I'm dyslexic. Names don't stick the way faces do. For 25 years as a photographer I quietly struggled — so I invented a workaround, then built an app." />
-  <meta name="keywords" content="why I built recall contacts, dyslexic photographer, Paul Barbera recall, dyslexia contacts app story, iPhone app for dyslexic, hashtag contacts origin, dyslexia workaround" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <title>I Think I'm Just Rebuilding Apple Contacts — Recall Contacts</title>
+  <meta name="description" content="I've been quietly building Recall part-time and somewhere along the way I realised something funny — I'm not making a memory app. I'm rebuilding Apple's Contacts. That thing has barely changed since 2002." />
   <meta name="author" content="Paul Barbera" />
-  <link rel="canonical" href="https://recall-contacts.com/blog/why-i-built-recall.html" />
+  <link rel="canonical" href="https://recall-contacts.com/blog/rebuilding-apple-contacts.html" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="Why I built Recall: 25 years of faces, half the names" />
-  <meta property="og:description" content="I'm dyslexic. Names don't stick the way faces do. For most of my career I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app." />
-  <meta property="og:url" content="https://recall-contacts.com/blog/why-i-built-recall.html" />
-  <meta property="og:image" content="https://recall-contacts.com/og-why-i-built-recall.svg" />
+  <meta property="og:title" content="I Think I'm Just Rebuilding Apple Contacts" />
+  <meta property="og:description" content="I've been quietly building Recall part-time and somewhere along the way I realised something funny — I'm not making a memory app. I'm rebuilding Apple's Contacts." />
+  <meta property="og:url" content="https://recall-contacts.com/blog/rebuilding-apple-contacts.html" />
+  <meta property="og:image" content="https://recall-contacts.com/og-blog.svg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="article:author" content="Paul Barbera" />
-  <meta property="article:published_time" content="2026-04-29" />
+  <meta property="article:published_time" content="2026-06-12" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Why I built Recall: 25 years of faces, half the names" />
-  <meta name="twitter:description" content="I'm dyslexic. Names don't stick the way faces do. For most of my career I quietly struggled — not because I forgot people, but because I couldn't spell them. So I invented a workaround. Then I built an app." />
-  <meta name="twitter:image" content="https://recall-contacts.com/og-why-i-built-recall.svg" />
+  <meta name="twitter:title" content="I Think I'm Just Rebuilding Apple Contacts" />
+  <meta name="twitter:description" content="Apple's Contacts app has barely changed since 2002. Here's what I've been quietly fixing." />
+  <meta name="twitter:image" content="https://recall-contacts.com/og-blog.svg" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "Why I built Recall: 25 years of faces, half the names",
-    "description": "I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them.",
+    "headline": "I Think I'm Just Rebuilding Apple Contacts",
+    "description": "I've been quietly building Recall part-time and realised something funny — I'm not making a memory app. I'm rebuilding Apple's Contacts. That thing has barely changed since 2002.",
     "author": { "@type": "Person", "name": "Paul Barbera" },
-    "datePublished": "2026-04-29",
-    "url": "https://recall-contacts.com/blog/why-i-built-recall.html",
+    "datePublished": "2026-06-12",
+    "url": "https://recall-contacts.com/blog/rebuilding-apple-contacts.html",
     "publisher": { "@type": "Organization", "name": "Recall Contacts", "url": "https://recall-contacts.com" }
   }
   </script>
@@ -286,6 +284,15 @@
     .article-body em { color: #bbb; font-style: italic; }
     .article-body strong { color: #fff; font-weight: 700; }
 
+    .article-body ul {
+      margin: 8px 0 24px 0;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 12px;
+      color: #888;
+    }
+
     .article-divider {
       border: none;
       border-top: var(--border);
@@ -394,7 +401,8 @@
     <a href="/" class="nav-logo recall-font">#Recall</a>
     <div class="nav-links">
       <a href="/#about">About</a>
-      <a href="/#features">Features</a>
+      <a href="/features">Features</a>
+      <a href="/instructions">Instructions</a>
       <a href="/#screenshots">Screenshots</a>
       <a href="/#how-it-works">Tutorial</a>
       <a href="/#signup">Connect</a>
@@ -408,7 +416,8 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="/#about">About</a>
-    <a href="/#features">Features</a>
+    <a href="/features">Features</a>
+    <a href="/instructions">Instructions</a>
     <a href="/#screenshots">Screenshots</a>
     <a href="/#how-it-works">Tutorial</a>
     <a href="/#signup">Connect</a>
@@ -420,9 +429,9 @@
 
     <a href="/blog/" class="article-back">← All articles</a>
 
-    <div class="article-label">Story</div>
-    <h1 class="article-title">Why I built Recall:<br>25 years of faces,<br>half the names</h1>
-    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 4 min read</div>
+    <div class="article-label">Building Recall</div>
+    <h1 class="article-title">I Think I'm Just<br>Rebuilding Apple<br>Contacts.</h1>
+    <div class="article-byline">Paul Barbera &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; 4 min read</div>
 
     <div class="article-share">
       <button class="btn-share" onclick="shareArticle()">
@@ -431,44 +440,68 @@
       </button>
     </div>
 
-    <p class="article-lede">I'm dyslexic. Names don't stick the way faces do. For most of my career as a photographer I quietly struggled — not because I forgot people, but because I couldn't spell them.</p>
+    <p class="article-lede">I've been building Recall part-time. Quietly. Scratching an itch. And somewhere in the last few months it hit me — I'm not really making a memory app. I'm rebuilding the contacts app that's been sitting on my phone since 2007.</p>
 
-    <p class="article-body">Twenty-five years. Thousands of shoots, events, studios, industry rooms. I met people constantly — and for most of that time I had no reliable way to find them again. Not because I forgot who they were. I remembered everything. The job, the city, the hat they were wearing. The name was the only thing my contacts app needed, and the one thing I couldn't reliably give it.</p>
+    <p class="article-body">The honest truth is I started this for me. I wanted a contacts app that worked the way my brain actually works — context first, name second. Tags, hashtags, the ability to pull up <em>everyone from Mia's school</em> in two taps. Not a corporate CRM. Not LinkedIn. Just my contacts, but smarter.</p>
 
-    <p class="article-body">Searching by spelling when you're dyslexic is an exercise in frustration. I'd type what I thought a name sounded like, get nothing, try three variations, give up. The person existed. My memory of them was vivid. The gap was just letters on a screen.</p>
-
-    <hr class="article-divider" />
-
-    <p class="article-body">So I invented a workaround. Instead of relying on spelling, I started tagging people in the Notes field of their contact — context that would actually stick. <em>#NYC. #Eastwood. #crazyhat. #2019. #photographer.</em></p>
-
-    <p class="article-body">My brain runs on context, not convention. I remember where I met someone, what they do, the thing that made them memorable. So I built a tagging system around that — not their name, but the handful of words I actually associated with them.</p>
-
-    <p class="article-body">It worked. Surprisingly well. I'd search a hashtag, find the person instantly, and wonder why this wasn't just how contacts apps worked.</p>
-
-    <div class="article-pullquote">"The person existed. My memory of them was vivid. The gap was just letters on a screen."</div>
-
-    <p class="article-body">For years, though, it was slow and clunky. Adding tags meant opening the native Contacts app, finding the Notes field, typing raw hashtags, saving. Getting them back out meant searching freetext and hoping the results made sense. I kept thinking: this should be a proper app. One that makes tagging fast, searching instant, and works the way memory actually works.</p>
+    <p class="article-body">What I didn't expect was that the process itself would be the reward. Having complete control over an interface — without trying to make it sound bigger than it is — has been genuinely fun. I'd forgotten what that felt like.</p>
 
     <hr class="article-divider" />
 
-    <p class="article-body">I'm not a developer. I had the idea, the use case, and 25 years of living the problem. What I didn't have was the ability to build it myself.</p>
+    <p class="article-body"><strong>Two groups keep showing up.</strong></p>
 
-    <p class="article-body">That changed when I started working with Jason at Laan Labs, and with Claude Code as my co-builder. The three of us — a photographer, a developer, and an AI assistant — built Recall Contacts from scratch. The first version took shape faster than I expected. The hard part wasn't the code. It was resisting the temptation to over-engineer it. Keep it simple. Make the thing work the way memory works.</p>
+    <p class="article-body">As I've iterated, two niches have really lit up.</p>
 
-    <p class="article-body">The result is an app that reads the hashtags already sitting in your Apple Contacts Notes fields, lets you add and edit them without leaving the app, and gives you instant search by tag. It syncs back to Apple Contacts natively — no new database, no lock-in. Your tags live where your contacts already live.</p>
+    <p class="article-body"><strong>Parents.</strong> You can name every kid in your child's class, including their dogs, including their birthday party themes — but you cannot for the life of you remember any of the <em>other parents'</em> names. There's actually a word for this — <em>teknonymy</em> — and I wrote a <a href="/blog/mias-mom.html" style="color:#bbb; text-decoration:underline;">whole separate piece on it</a>. The short version: it's universal, it's ancient, and your phone has no way to handle it.</p>
+
+    <p class="article-body"><strong>Dog people.</strong> Same problem, different species. You know every dog at the park. Bear. Luna. Murphy. Their owners? Total blanks. You greet the dog, nod at the human, hope they don't notice.</p>
+
+    <p class="article-body">Both groups need the same thing: store people by the thing that actually anchors them in your memory.</p>
 
     <hr class="article-divider" />
 
-    <p class="article-body">I built it because I needed it. But the more I've talked about it, the more I've realised the audience is much wider than dyslexic photographers with 4,000 contacts.</p>
+    <p class="article-body"><strong>The boring stuff matters too.</strong></p>
 
-    <p class="article-body">Anyone who thinks in context rather than convention. Anyone who meets a lot of people and wants a better way to remember them. Anyone who's ever stared at a search bar and had no idea how to even start. Recall works brilliantly for everyone — but it was built by someone who needed it to.</p>
+    <p class="article-body">Lately I've added the maintenance features the app needed to actually be useful day to day:</p>
 
-    <p class="article-body"><strong>Made by one of us. Built for brains like ours.</strong></p>
+    <ul>
+      <li><strong>Merge duplicates</strong> — because everyone's contacts list is a graveyard of "John," "John 2," "John (iCloud old)."</li>
+      <li><strong>BCC-style group texting</strong> — send one message to a group without creating a chaotic group thread. Still a bit clunky. Getting there.</li>
+      <li>Better tagging, faster search, smarter empty states.</li>
+    </ul>
+
+    <p class="article-body">None of it is sexy. All of it is necessary.</p>
+
+    <hr class="article-divider" />
+
+    <p class="article-body"><strong>Then it hit me.</strong></p>
+
+    <p class="article-body">Apple's Contacts app started life as <strong>Address Book in Mac OS X 10.2 Jaguar — released August 2002</strong>. That's twenty-four years ago. It jumped to iPhone in 2007, and in the nearly two decades since, the core experience has barely changed. Same first-name-last-name fields. Same flat alphabetical list. Same logic that assumed our social world was a Rolodex.</p>
+
+    <p class="article-body">But the way we know people now is completely different. We know them by their kids. Their dogs. The Slack we met them in. The conference. The school gate. The dog park. The neighbour two doors down whose name we never caught but whose parcels we sign for.</p>
+
+    <p class="article-body">Our brains organise people by context. Apple Contacts organises them by alphabet.</p>
+
+    <p class="article-body"><strong>That gap is what I've been quietly filling in.</strong></p>
+
+    <div class="article-pullquote">"I thought I was making a memory app. Turns out I'm making the contacts app Apple forgot to build."</div>
+
+    <hr class="article-divider" />
+
+    <p class="article-body"><strong>So here's the question.</strong></p>
+
+    <p class="article-body">The pitch I've been using is <em>memory</em> — remember anyone, by anything. And it works. But I'm starting to think the truer pitch is simpler:</p>
+
+    <p class="article-body"><strong>A better contacts app.</strong></p>
+
+    <p class="article-body">More powerful. Built for how we actually know people in 2026, not how we knew them in 2002. Still uses your iCloud contacts under the hood, so nothing to migrate. Just better, on top.</p>
+
+    <p class="article-body">I'd genuinely love to know what you think.</p>
 
     <div class="article-cta">
       <div class="article-cta-label">Try it free</div>
       <div class="article-cta-title">Recall Contacts — for iPhone</div>
-      <p class="article-cta-desc">Tag anyone. Search by hashtag. Find them instantly. Works with your existing Apple Contacts — no migration required.</p>
+      <p class="article-cta-desc">Tag anyone. Search by hashtag. Merge duplicates. Group-text without the chaos. Works with your existing Apple Contacts — no migration required.</p>
       <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="btn-primary">Download on the App Store</a>
       <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener" style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#444; text-decoration:none; margin-top:4px; transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#444'">Buy me a coffee ☕</a>
     </div>
@@ -497,17 +530,18 @@
     });
 
     function shareArticle() {
-      var url = window.location.href;
-      var title = 'Why I built Recall: 25 years of faces, half the names';
       if (navigator.share) {
-        navigator.share({ title: title, url: url }).catch(function(){});
+        navigator.share({
+          title: "I Think I'm Just Rebuilding Apple Contacts",
+          url: window.location.href
+        });
       } else {
-        window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          alert('Link copied to clipboard');
+        });
       }
     }
   </script>
-
-  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="paulsh" data-description="If Recall saves you time, buy me a coffee ☕" data-message="" data-color="#FFDD00" data-position="Right" data-x_margin="36" data-y_margin="36"></script>
 
 </body>
 </html>
