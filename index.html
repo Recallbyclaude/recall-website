@@ -897,40 +897,38 @@
       }, 4000 + i * 600);
     });
 
-    /* ── FLOATING PHOTOS ── */
-    var heroPhotos = [
-      'images/hero/photo1.jpg',
-      'images/hero/photo2.jpg',
-      'images/hero/photo3.jpg',
-      'images/hero/photo4.jpg',
-      'images/hero/photo5.jpg',
-      'images/hero/photo6.jpg',
-      'images/hero/photo7.jpg'
-    ];
-    heroPhotos.forEach(function(src, i) {
-      var img = document.createElement('img');
-      img.className = 'photo-float';
-      img.src = src;
-      img.alt = '';
-      img.draggable = false;
-      img.onerror = function() { this.style.display = 'none'; };
-      var p = safePos();
-      img.style.left = p.x + '%';
-      img.style.top  = p.y + '%';
-      tagCloud.appendChild(img);
-      /* 5s visible, 40s hidden — staggered 7s apart → ~0–1 photo visible at any moment */
-      function cyclePhoto() {
-        var np = safePos();
-        img.style.left = np.x + '%';
-        img.style.top  = np.y + '%';
-        img.style.opacity = '1';
-        setTimeout(function() {
-          img.style.opacity = '0';
-          setTimeout(cyclePhoto, 40000);
-        }, 5000);
-      }
-      setTimeout(cyclePhoto, 2000 + i * 7000);
-    });
+    /* ── FLOATING PHOTOS — loaded from manifest so the folder stays live ── */
+    fetch('images/hero/manifest.json')
+      .then(function(r) { return r.json(); })
+      .then(function(files) {
+        /* Shuffle so each page load shows a different order */
+        files.sort(function() { return Math.random() - 0.5; });
+        files.forEach(function(filename, i) {
+          var img = document.createElement('img');
+          img.className = 'photo-float';
+          img.src = 'images/hero/' + encodeURIComponent(filename);
+          img.alt = '';
+          img.draggable = false;
+          img.onerror = function() { this.style.display = 'none'; };
+          var p = safePos();
+          img.style.left = p.x + '%';
+          img.style.top  = p.y + '%';
+          tagCloud.appendChild(img);
+          /* 5s visible, 40s hidden, staggered 7s — keeps it sparse */
+          function cyclePhoto() {
+            var np = safePos();
+            img.style.left = np.x + '%';
+            img.style.top  = np.y + '%';
+            img.style.opacity = '1';
+            setTimeout(function() {
+              img.style.opacity = '0';
+              setTimeout(cyclePhoto, 40000);
+            }, 5000);
+          }
+          setTimeout(cyclePhoto, 2000 + i * 7000);
+        });
+      })
+      .catch(function() { /* no manifest — photos just don't show */ });
 
     /* ── CAROUSEL ── */
     var track = document.getElementById('carouselTrack');
