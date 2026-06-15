@@ -918,19 +918,18 @@
       img.style.left = p.x + '%';
       img.style.top  = p.y + '%';
       tagCloud.appendChild(img);
-      /* Stagger first appearance widely so only 1 photo shows at a time */
-      setTimeout(function() {
+      /* 5s visible, 40s hidden — staggered 7s apart → ~0–1 photo visible at any moment */
+      function cyclePhoto() {
+        var np = safePos();
+        img.style.left = np.x + '%';
+        img.style.top  = np.y + '%';
         img.style.opacity = '1';
-        setInterval(function() {
+        setTimeout(function() {
           img.style.opacity = '0';
-          setTimeout(function() {
-            var np = safePos();
-            img.style.left = np.x + '%';
-            img.style.top  = np.y + '%';
-            img.style.opacity = '1';
-          }, 1100);
-        }, 22000);
-      }, 2000 + i * 4500);
+          setTimeout(cyclePhoto, 40000);
+        }, 5000);
+      }
+      setTimeout(cyclePhoto, 2000 + i * 7000);
     });
 
     /* ── CAROUSEL ── */
