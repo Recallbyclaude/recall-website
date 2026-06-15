@@ -255,30 +255,6 @@
       min-height: 1.5em;
     }
 
-    /* Smart Groups */
-    .smart-groups {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 32px 0 40px;
-    }
-    .sg {
-      padding: 10px 18px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      cursor: default;
-      user-select: none;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .sg.vip     { background: var(--vip);     color: #5A3D00; }
-    .sg.family  { background: var(--family);  color: #fff; }
-    .sg.work    { background: var(--work);    color: #fff; outline: 3px solid #3D9450; }
-    .sg.parents { background: var(--parents); color: #fff; }
-    .sg.friends { background: var(--friends); color: #fff; }
-
     .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
       background: var(--text); color: #fff;
@@ -499,8 +475,7 @@
       .carousel-btn.prev { left: -40px; }
       .carousel-btn.next { right: -40px; }
       footer { flex-direction: column; align-items: flex-start; }
-      .smart-groups { gap: 6px; }
-      .sg { padding: 8px 14px; font-size: 11px; }
+
     }
   </style>
 </head>
@@ -545,14 +520,6 @@
       <h1 class="hero-title recall-font">#Recall</h1>
       <p class="hero-sub" aria-live="polite"><span id="typewriter-text">Your contacts app, rebuilt around memory.</span><span class="tw-cursor" aria-hidden="true">|</span></p>
 
-      <div class="smart-groups" aria-label="Smart Group categories">
-        <span class="sg vip">VIP</span>
-        <span class="sg family">Family</span>
-        <span class="sg work">Work</span>
-        <span class="sg parents">Parents</span>
-        <span class="sg friends">Friends</span>
-      </div>
-
       <div class="hero-actions">
         <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" rel="noopener" class="btn-primary">Download Free</a>
         <a href="#about" class="btn-secondary">Learn more ↓</a>
@@ -568,7 +535,6 @@
       <p class="about-lede">Recall Contacts is an iPhone app that lets you find anyone in your contacts by what you remember — not how their name is spelled.</p>
       <p class="about-body">Tag people by context. <em>#NYC #Eastwood #crazyhat.</em> Search by hashtag and find them instantly. No spelling required.</p>
       <p class="about-body">Smart colour-coded groups. Swipe-to-tag for rapid organising. A dyslexic-friendly mode. Your tags sync back to Apple Contacts — your data stays yours.</p>
-      <p class="about-attr">Built by Paul Barbera, because he needed it himself.</p>
     </div>
   </section>
 
@@ -866,22 +832,52 @@
     setTimeout(typewrite, 1200);
 
     /* ── FLOATING TAGS ── */
-    var floatTags = ['#NYC','#work','#VIP','#family','#parents','#friends','#ramen','#tokyo','#photographer','#doctor','#neighbour','#school','#startup','#yoga','#crazyhat'];
-    var classes = ['','vip','work','family','parents','friends','','','','','','','','',''];
+    var floatTags = [
+      { text: '#NYC',          cls: '' },
+      { text: '#VIP',          cls: 'vip' },
+      { text: '#family',       cls: 'family' },
+      { text: '#work',         cls: 'work' },
+      { text: '#parents',      cls: 'parents' },
+      { text: '#friends',      cls: 'friends' },
+      { text: '#ramen',        cls: '' },
+      { text: '#tokyo',        cls: '' },
+      { text: '#photographer', cls: '' },
+      { text: '#doctor',       cls: '' },
+      { text: '#neighbour',    cls: '' },
+      { text: '#school',       cls: '' },
+      { text: '#startup',      cls: '' },
+      { text: '#yoga',         cls: '' },
+      { text: '#crazyhat',     cls: '' }
+    ];
+
+    /* Content block occupies roughly left 0–62%, top 12–80% of the hero.
+       Tags are only placed outside that zone. */
+    function safePos() {
+      for (var attempt = 0; attempt < 40; attempt++) {
+        var x = 3 + Math.random() * 90;
+        var y = 3 + Math.random() * 90;
+        if (x < 62 && y > 12 && y < 80) continue;
+        return { x: x, y: y };
+      }
+      return { x: 68 + Math.random() * 26, y: 5 + Math.random() * 88 };
+    }
+
     var tagCloud = document.getElementById('tagCloud');
     floatTags.forEach(function(t, i) {
       var el = document.createElement('span');
-      el.className = 'tag tag-float' + (classes[i] ? ' ' + classes[i] : '');
-      el.textContent = t;
-      el.style.left = (5 + Math.random() * 85) + '%';
-      el.style.top = (5 + Math.random() * 85) + '%';
+      el.className = 'tag tag-float' + (t.cls ? ' ' + t.cls : '');
+      el.textContent = t.text;
+      var p = safePos();
+      el.style.left = p.x + '%';
+      el.style.top  = p.y + '%';
       tagCloud.appendChild(el);
       setTimeout(function() { el.style.opacity = '1'; }, 300 + i * 180);
       setInterval(function() {
         el.style.opacity = '0';
         setTimeout(function() {
-          el.style.left = (5 + Math.random() * 85) + '%';
-          el.style.top = (5 + Math.random() * 85) + '%';
+          var np = safePos();
+          el.style.left = np.x + '%';
+          el.style.top  = np.y + '%';
           el.style.opacity = '1';
         }, 750);
       }, 4000 + i * 600);
