@@ -312,6 +312,9 @@
       pointer-events: none;
       display: block;
     }
+    @media (max-width: 720px) {
+      .photo-float { width: 82px; height: 110px; }
+    }
 
     /* ── ABOUT ── */
     .about-inner { max-width: 680px; }
@@ -897,38 +900,60 @@
       }, 4000 + i * 600);
     });
 
-    /* ── FLOATING PHOTOS — loaded from manifest so the folder stays live ── */
+    /* ── FLOATING PHOTOS — 3 zones, always 3 visible, never overlapping ── */
     fetch('images/hero/manifest.json')
       .then(function(r) { return r.json(); })
       .then(function(files) {
-        /* Shuffle so each page load shows a different order */
+        if (!files || !files.length) return;
         files.sort(function() { return Math.random() - 0.5; });
-        files.forEach(function(filename, i) {
+
+        /* Three non-overlapping zones outside the content block.
+           Desktop: spread across top-right, mid-right, bottom-left.
+           Mobile:  all in right column at different heights. */
+        var wide = window.innerWidth > 720;
+        var zones = wide ? [
+          { xMin: 65, xMax: 82, yMin: 4,  yMax: 20 },
+          { xMin: 65, xMax: 82, yMin: 44, yMax: 58 },
+          { xMin: 5,  xMax: 44, yMin: 82, yMax: 90 }
+        ] : [
+          { xMin: 62, xMax: 80, yMin: 4,  yMax: 15 },
+          { xMin: 62, xMax: 80, yMin: 38, yMax: 52 },
+          { xMin: 62, xMax: 80, yMin: 68, yMax: 78 }
+        ];
+
+        var cursor = 0;
+
+        zones.forEach(function(zone, zi) {
           var img = document.createElement('img');
           img.className = 'photo-float';
-          img.src = 'images/hero/' + encodeURIComponent(filename);
           img.alt = '';
           img.draggable = false;
-          img.onerror = function() { this.style.display = 'none'; };
-          var p = safePos();
-          img.style.left = p.x + '%';
-          img.style.top  = p.y + '%';
           tagCloud.appendChild(img);
-          /* 5s visible, 40s hidden, staggered 7s — keeps it sparse */
-          function cyclePhoto() {
-            var np = safePos();
-            img.style.left = np.x + '%';
-            img.style.top  = np.y + '%';
+
+          function showNext() {
+            var src = files[cursor % files.length];
+            cursor++;
+            var p = {
+              x: zone.xMin + Math.random() * (zone.xMax - zone.xMin),
+              y: zone.yMin + Math.random() * (zone.yMax - zone.yMin)
+            };
+            img.onerror = function() { setTimeout(showNext, 200); };
+            img.style.left = p.x + '%';
+            img.style.top  = p.y + '%';
+            img.src = 'images/hero/' + encodeURIComponent(src);
             img.style.opacity = '1';
+            /* Each zone stays visible a different length — they never all swap at once */
             setTimeout(function() {
               img.style.opacity = '0';
-              setTimeout(cyclePhoto, 40000);
-            }, 5000);
+              setTimeout(showNext, 1000);
+            }, 8000 + zi * 2000);
           }
-          setTimeout(cyclePhoto, 2000 + i * 7000);
+
+          /* Stagger first appearance so they fade in one at a time */
+          setTimeout(showNext, 600 + zi * 1800);
         });
       })
-      .catch(function() { /* no manifest — photos just don't show */ });
+      .catch(function() {});
 
     /* ── CAROUSEL ── */
     var track = document.getElementById('carouselTrack');
