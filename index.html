@@ -850,25 +850,15 @@
 
     /* ── FLOATING TAGS ── */
     var floatTags = [
-      { text: '#NYC',          cls: '' },
-      { text: '#VIP',          cls: 'vip' },
-      { text: '#family',       cls: 'family' },
-      { text: '#work',         cls: 'work' },
-      { text: '#parents',      cls: 'parents' },
-      { text: '#friends',      cls: 'friends' },
-      { text: '#ramen',        cls: '' },
-      { text: '#tokyo',        cls: '' },
-      { text: '#photographer', cls: '' },
-      { text: '#doctor',       cls: '' },
-      { text: '#neighbour',    cls: '' },
-      { text: '#school',       cls: '' },
-      { text: '#startup',      cls: '' },
-      { text: '#yoga',         cls: '' },
-      { text: '#crazyhat',     cls: '' }
+      { text: '#VIP',    cls: 'vip'     },
+      { text: '#family', cls: 'family'  },
+      { text: '#work',   cls: 'work'    },
+      { text: '#NYC',    cls: ''        },
+      { text: '#tokyo',  cls: ''        },
+      { text: '#doctor', cls: ''        }
     ];
 
-    /* Content block occupies roughly left 0–62%, top 12–80% of the hero.
-       Tags are only placed outside that zone. */
+    /* Tags only appear outside the content block (left 0–62%, top 12–80%) */
     function safePos() {
       for (var attempt = 0; attempt < 40; attempt++) {
         var x = 3 + Math.random() * 90;
@@ -880,24 +870,53 @@
     }
 
     var tagCloud = document.getElementById('tagCloud');
+    var tagEls = [];
+
+    /* Place tag at a non-overlapping position, checking all currently visible tags */
+    function placeTag(el) {
+      for (var attempt = 0; attempt < 60; attempt++) {
+        var p = safePos();
+        el.style.left = p.x + '%';
+        el.style.top  = p.y + '%';
+        var rect = el.getBoundingClientRect();
+        var ok = true;
+        for (var j = 0; j < tagEls.length; j++) {
+          if (tagEls[j] === el || !tagEls[j]._vis) continue;
+          var r = tagEls[j].getBoundingClientRect();
+          var pad = 10;
+          if (!(rect.right + pad < r.left || rect.left - pad > r.right ||
+                rect.bottom + pad < r.top  || rect.top - pad  > r.bottom)) {
+            ok = false; break;
+          }
+        }
+        if (ok) return;
+      }
+    }
+
     floatTags.forEach(function(t, i) {
       var el = document.createElement('span');
       el.className = 'tag tag-float' + (t.cls ? ' ' + t.cls : '');
       el.textContent = t.text;
-      var p = safePos();
-      el.style.left = p.x + '%';
-      el.style.top  = p.y + '%';
+      el.style.left = '-300%';
+      el._vis = false;
       tagCloud.appendChild(el);
-      setTimeout(function() { el.style.opacity = '1'; }, 300 + i * 180);
-      setInterval(function() {
-        el.style.opacity = '0';
-        setTimeout(function() {
-          var np = safePos();
-          el.style.left = np.x + '%';
-          el.style.top  = np.y + '%';
-          el.style.opacity = '1';
-        }, 750);
-      }, 4000 + i * 600);
+      tagEls.push(el);
+
+      function show() {
+        el._vis = false;
+        placeTag(el);
+        el._vis = true;
+        el.style.opacity = '1';
+      }
+
+      setTimeout(function() {
+        show();
+        setInterval(function() {
+          el._vis = false;
+          el.style.opacity = '0';
+          setTimeout(show, 800);
+        }, 5000 + i * 900);
+      }, 400 + i * 500);
     });
 
     /* ── FLOATING PHOTOS — 3 zones, always 3 visible, never overlapping ── */
