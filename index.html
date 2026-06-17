@@ -256,6 +256,8 @@
       background-color: #000;
       border-bottom: var(--border);
       scroll-margin-top: calc(var(--frame) + var(--nav-h));
+      position: relative;
+      z-index: 1;
     }
 
     /* ── SHARED ────────────────────────── */
@@ -414,6 +416,18 @@
     /* ── FOCUS ─────────────────────────── */
     :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
+    /* ── INNER BG ──────────────────────── */
+    .inner-bg {
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame);
+      right: var(--frame);
+      bottom: var(--frame);
+      background: #000;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     /* ── SKIP NAV ──────────────────────── */
     .skip-nav { position: fixed; top: -100%; left: var(--frame); z-index: 9999; background: #fff; color: #000; padding: 10px 20px; font-size: 13px; font-weight: 700; text-decoration: none; letter-spacing: 1px; }
     .skip-nav:focus { top: var(--frame); }
@@ -459,6 +473,7 @@
   <div class="frame" aria-hidden="true"></div>
   <div class="frame-corner-bl" aria-hidden="true"></div>
   <div class="frame-corner-br" aria-hidden="true"></div>
+  <div class="inner-bg" aria-hidden="true"></div>
 
   <header role="banner">
   <nav aria-label="Main navigation">
