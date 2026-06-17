@@ -182,44 +182,57 @@
     @media (max-width: 860px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .feature-grid { grid-template-columns: 1fr; } }
 
-    /* ── CARD COLOR DRIFT ── */
-    @keyframes color-drift {
-      0%   { background: #FEF8E7; }
-      20%  { background: #FDEEE8; }
-      40%  { background: #EDF9EF; }
-      60%  { background: #EAF3FB; }
-      80%  { background: #F4EFF9; }
-      100% { background: #FEF8E7; }
+    /* ── CARD RADIAL WASH ── */
+    @keyframes card-wash {
+      0%   { background-color: #F5C84A; }
+      20%  { background-color: #E8835A; }
+      40%  { background-color: #6BC87A; }
+      60%  { background-color: #8BB8D6; }
+      80%  { background-color: #C9ABD4; }
+      100% { background-color: #F5C84A; }
     }
-    #grid-core  .feature-card:nth-child(1) { animation-delay:    0s; }
-    #grid-core  .feature-card:nth-child(2) { animation-delay: -7.5s; }
-    #grid-core  .feature-card:nth-child(3) { animation-delay:  -15s; }
-    #grid-core  .feature-card:nth-child(4) { animation-delay:-22.5s; }
-    #grid-power .feature-card:nth-child(1) { animation-delay:   -3s; }
-    #grid-power .feature-card:nth-child(2) { animation-delay:   -9s; }
-    #grid-power .feature-card:nth-child(3) { animation-delay:  -15s; }
-    #grid-power .feature-card:nth-child(4) { animation-delay:  -21s; }
-    #grid-power .feature-card:nth-child(5) { animation-delay:  -27s; }
-    #grid-modes .feature-card:nth-child(1) { animation-delay:   -5s; }
-    #grid-modes .feature-card:nth-child(2) { animation-delay:-12.5s; }
-    #grid-modes .feature-card:nth-child(3) { animation-delay:  -20s; }
-    #grid-modes .feature-card:nth-child(4) { animation-delay:-27.5s; }
-    #grid-xp    .feature-card:nth-child(1) { animation-delay: -1.5s; }
-    #grid-xp    .feature-card:nth-child(2) { animation-delay:  -10s; }
-    #grid-xp    .feature-card:nth-child(3) { animation-delay:-17.5s; }
-    #grid-xp    .feature-card:nth-child(4) { animation-delay:  -25s; }
+
+    #grid-core  .feature-card:nth-child(1) { --dur: 28s; --delay:   0s; }
+    #grid-core  .feature-card:nth-child(2) { --dur: 35s; --delay:  -8s; }
+    #grid-core  .feature-card:nth-child(3) { --dur: 22s; --delay: -14s; }
+    #grid-core  .feature-card:nth-child(4) { --dur: 40s; --delay:  -3s; }
+    #grid-power .feature-card:nth-child(1) { --dur: 32s; --delay:  -7s; }
+    #grid-power .feature-card:nth-child(2) { --dur: 25s; --delay: -19s; }
+    #grid-power .feature-card:nth-child(3) { --dur: 45s; --delay: -11s; }
+    #grid-power .feature-card:nth-child(4) { --dur: 20s; --delay:  -5s; }
+    #grid-power .feature-card:nth-child(5) { --dur: 38s; --delay: -22s; }
+    #grid-power .feature-card:nth-child(6) { --dur: 27s; --delay: -16s; }
+    #grid-modes .feature-card:nth-child(1) { --dur: 33s; --delay:  -9s; }
+    #grid-modes .feature-card:nth-child(2) { --dur: 21s; --delay: -28s; }
+    #grid-modes .feature-card:nth-child(3) { --dur: 42s; --delay:  -6s; }
+    #grid-xp    .feature-card:nth-child(1) { --dur: 24s; --delay: -13s; }
+    #grid-xp    .feature-card:nth-child(2) { --dur: 36s; --delay: -20s; }
+    #grid-xp    .feature-card:nth-child(3) { --dur: 29s; --delay:  -2s; }
+    #grid-xp    .feature-card:nth-child(4) { --dur: 18s; --delay: -31s; }
 
     /* ── CARD ── */
     .feature-card {
-      animation: color-drift 30s linear infinite;
-      will-change: background;
+      background: #fafaf8;
       padding: 28px 26px 26px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       position: relative;
     }
-    .feature-card:hover { filter: brightness(0.96); }
+    .feature-card > * { position: relative; z-index: 1; }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #F5C84A;
+      -webkit-mask-image: radial-gradient(ellipse at 40% 35%, black 0%, transparent 65%);
+      mask-image: radial-gradient(ellipse at 40% 35%, black 0%, transparent 65%);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: card-wash var(--dur, 30s) linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    .feature-card:hover::before { opacity: 0.6; transition: opacity 0.4s ease; }
 
     /* ── CARD ILLUSTRATION ── */
     .card-illo { color: #1A1A1A; margin-bottom: 6px; }
@@ -340,9 +353,8 @@
   <link rel="stylesheet" href="/css/light.css">
   <style>
   body {
-    background-image: linear-gradient(135deg, #FFDFDF 0%, #EACEF5 45%, #C5DCEF 100%) !important;
-    background-attachment: fixed !important;
-    background-size: cover !important;
+    background: #f9f9f7 !important;
+    background-image: none !important;
   }
   </style>
 </head>
