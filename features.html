@@ -221,18 +221,9 @@
     }
     .feature-card:hover { filter: brightness(0.96); }
 
-    /* ── CARD ICON ── */
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-bottom: 2px;
-    }
-    .card-icon svg { width: 22px; height: 22px; }
+    /* ── CARD ILLUSTRATION ── */
+    .card-illo { color: #1A1A1A; margin-bottom: 6px; }
+    .card-illo svg { width: 36px; height: 36px; opacity: 0.55; display: block; }
 
     /* ── CARD TITLE ── */
     .card-title {
@@ -398,12 +389,14 @@
     <div class="feature-grid" id="grid-core">
 
       <div class="feature-card">
-        <div class="card-icon ic-green">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="5.5" y1="8" x2="16.5" y2="8"/>
-            <line x1="5.5" y1="14" x2="16.5" y2="14"/>
-            <line x1="9" y1="4.5" x2="7" y2="17.5"/>
-            <line x1="15" y1="4.5" x2="13" y2="17.5"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13" cy="12" r="8"/>
+            <line x1="19" y1="18" x2="27" y2="26"/>
+            <line x1="9" y1="10" x2="17" y2="10"/>
+            <line x1="9" y1="14" x2="17" y2="14"/>
+            <line x1="11" y1="7" x2="10" y2="17"/>
+            <line x1="15" y1="7" x2="14" y2="17"/>
           </svg>
         </div>
         <div class="card-title t-green">Search by #Hashtag</div>
@@ -411,10 +404,13 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-green">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12a3 3 0 003 3h7a3 3 0 000-6H8a2 2 0 010-4h8"/>
-            <polyline points="15,4 18,7 15,10"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="18" height="24" rx="2"/>
+            <line x1="6" y1="12" x2="16" y2="12"/>
+            <line x1="6" y1="16" x2="12" y2="16"/>
+            <line x1="22" y1="14" x2="30" y2="14"/>
+            <polyline points="26,10 30,14 26,18"/>
           </svg>
         </div>
         <div class="card-title t-green">Swipe to Tag</div>
@@ -422,14 +418,18 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-green">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="3" y1="7" x2="10" y2="7"/><line x1="3" y1="11" x2="10" y2="11"/>
-            <line x1="5.5" y1="4.5" x2="4.5" y2="13.5"/>
-            <line x1="9.5" y1="4.5" x2="8.5" y2="13.5"/>
-            <line x1="13" y1="9" x2="20" y2="9"/><line x1="13" y1="13" x2="20" y2="13"/>
-            <line x1="15.5" y1="6.5" x2="14.5" y2="15.5"/>
-            <line x1="19.5" y1="6.5" x2="18.5" y2="15.5"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="11" x2="11" y2="11"/>
+            <line x1="3" y1="15" x2="11" y2="15"/>
+            <line x1="5.5" y1="8.5" x2="4.5" y2="17.5"/>
+            <line x1="9.5" y1="8.5" x2="8.5" y2="17.5"/>
+            <line x1="13" y1="11" x2="13" y2="15"/>
+            <line x1="11.5" y1="13" x2="14.5" y2="13"/>
+            <line x1="17" y1="11" x2="25" y2="11"/>
+            <line x1="17" y1="15" x2="25" y2="15"/>
+            <line x1="19.5" y1="8.5" x2="18.5" y2="17.5"/>
+            <line x1="23.5" y1="8.5" x2="22.5" y2="17.5"/>
           </svg>
         </div>
         <div class="card-title t-green">Multi-Tag Search</div>
@@ -437,11 +437,13 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-green">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9.5" cy="9.5" r="5.5"/>
-            <line x1="13.5" y1="13.5" x2="19" y2="19"/>
-            <polyline points="7.5,9.5 9,11 12,8"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="11" x2="18" y2="11"/>
+            <line x1="4" y1="16" x2="18" y2="16"/>
+            <line x1="7.5" y1="7.5" x2="6" y2="19.5"/>
+            <line x1="15" y1="7.5" x2="13.5" y2="19.5"/>
+            <polyline points="21,12 24,16 30,8"/>
           </svg>
         </div>
         <div class="card-title t-green">Tag Autocomplete</div>
@@ -460,11 +462,14 @@
     <div class="feature-grid" id="grid-power">
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <circle cx="7.5" cy="7.5" r="2.5"/>
-            <circle cx="14.5" cy="7.5" r="2.5"/>
-            <path d="M2.5 18c0-2.8 2.2-5 5-5h7c2.8 0 5 2.2 5 5"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7" cy="24" r="3"/>
+            <circle cx="16" cy="7" r="3"/>
+            <circle cx="25" cy="24" r="3"/>
+            <line x1="9.5" y1="22" x2="14" y2="10"/>
+            <line x1="18" y1="10" x2="22.5" y2="22"/>
+            <line x1="10" y1="24" x2="22" y2="24"/>
           </svg>
         </div>
         <div class="card-title t-gold">Smart Groups</div>
@@ -472,9 +477,14 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11,2 13.9,8.6 21,9.3 15.6,14.1 17.2,21 11,17.3 4.8,21 6.4,14.1 1,9.3 8.1,8.6"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3,22 L8,9 L16,16 L24,9 L29,22"/>
+            <line x1="3" y1="22" x2="29" y2="22"/>
+            <line x1="4" y1="26" x2="28" y2="26"/>
+            <circle cx="8" cy="9" r="1.5"/>
+            <circle cx="16" cy="16" r="1.5"/>
+            <circle cx="24" cy="9" r="1.5"/>
           </svg>
         </div>
         <div class="card-title t-gold">Super Tags</div>
@@ -482,9 +492,9 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="13,2 7,11 12,11 9,20 17,11 12,11 15,2"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19,3 L10,16 L16,16 L13,29 L22,16 L16,16 Z"/>
           </svg>
         </div>
         <div class="card-title t-gold">Quick Recall</div>
@@ -492,11 +502,11 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="5" width="14" height="4" rx="1"/>
-            <rect x="4" y="11" width="14" height="4" rx="1"/>
-            <line x1="7" y1="19" x2="15" y2="19"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="18" width="20" height="11" rx="2"/>
+            <rect x="5" y="13" width="20" height="11" rx="2"/>
+            <rect x="2" y="8" width="20" height="11" rx="2"/>
           </svg>
         </div>
         <div class="card-title t-gold">Review &amp; Delete Queue</div>
@@ -504,10 +514,10 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <circle cx="11" cy="11" r="8"/>
-            <polyline points="11,6.5 11,11 14.5,13" stroke-linejoin="round"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="16" cy="16" r="12"/>
+            <polyline points="16,8 16,16 21,19"/>
           </svg>
         </div>
         <div class="card-title t-gold">Browse by Last Used</div>
@@ -515,11 +525,13 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-gold">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 17v2a1 1 0 001 1h12a1 1 0 001-1v-2"/>
-            <polyline points="14,8 11,5 8,8"/>
-            <line x1="11" y1="5" x2="11" y2="16"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="8" width="18" height="18" rx="2"/>
+            <line x1="5" y1="16" x2="16" y2="16"/>
+            <line x1="5" y1="21" x2="12" y2="21"/>
+            <line x1="24" y1="22" x2="24" y2="6"/>
+            <polyline points="20,10 24,6 28,10"/>
           </svg>
         </div>
         <div class="card-title t-gold">vCard Sharing</div>
@@ -538,12 +550,13 @@
     <div class="feature-grid" id="grid-modes">
 
       <div class="feature-card">
-        <div class="card-icon ic-orange">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <circle cx="7.5" cy="5.5" r="2.5"/>
-            <path d="M2.5 18c0-2.8 2.2-5 5-5h4"/>
-            <circle cx="16" cy="9" r="1.8"/>
-            <path d="M12 18c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="7" r="4"/>
+            <path d="M3,28 Q10,18 17,28"/>
+            <circle cx="22" cy="11" r="3"/>
+            <path d="M16,28 Q22,21 28,28"/>
+            <line x1="14" y1="20" x2="18" y2="21"/>
           </svg>
         </div>
         <div class="card-title t-orange">Parent Mode</div>
@@ -551,12 +564,12 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-orange">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <ellipse cx="5" cy="7.5" rx="1.6" ry="2.2"/>
-            <ellipse cx="11" cy="5.5" rx="1.6" ry="2.2"/>
-            <ellipse cx="17" cy="7.5" rx="1.6" ry="2.2"/>
-            <path d="M7 12.5c-1.8 1-2.8 2.2-2.8 3.5a2.5 2.5 0 005 0c0-.6.2-1.1.5-1.5h2.6c.3.4.5.9.5 1.5a2.5 2.5 0 005 0c0-1.3-1-2.5-2.8-3.5a5 5 0 00-8 0z"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="16" cy="22" rx="6" ry="7"/>
+            <circle cx="9" cy="14" r="3"/>
+            <circle cx="16" cy="11" r="3"/>
+            <circle cx="23" cy="14" r="3"/>
           </svg>
         </div>
         <div class="card-title t-orange">Dog Mode <span class="badge-coming">Coming Soon</span></div>
@@ -564,12 +577,16 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-orange">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="18" height="12" rx="1"/>
-            <polyline points="2,7 11,13.5 20,7"/>
-            <path d="M16 4.5l2.5 2.5"/>
-            <path d="M19 4.5l-2.5 2.5"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="24" height="16" rx="2"/>
+            <polyline points="2,6 14,16 26,6"/>
+            <circle cx="7" cy="27" r="2"/>
+            <circle cx="14" cy="27" r="2"/>
+            <circle cx="21" cy="27" r="2"/>
+            <line x1="7" y1="22" x2="7" y2="25"/>
+            <line x1="14" y1="22" x2="14" y2="25"/>
+            <line x1="21" y1="22" x2="21" y2="25"/>
           </svg>
         </div>
         <div class="card-title t-orange">BCC Mode <span class="badge-coming">Coming Soon</span></div>
@@ -588,10 +605,10 @@
     <div class="feature-grid" id="grid-xp">
 
       <div class="feature-card">
-        <div class="card-icon ic-purple">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M11 3a8 8 0 010 16z" fill="currentColor" stroke="none"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="16" cy="16" r="12"/>
+            <path d="M16,4 A12,12 0 0,1 16,28 Z"/>
           </svg>
         </div>
         <div class="card-title t-purple">Three Visual Themes</div>
@@ -599,10 +616,11 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-purple">
-          <svg viewBox="0 0 22 22" fill="currentColor" stroke="none">
-            <text x="1" y="17" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-weight="900" font-size="15">A</text>
-            <text x="13" y="17" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-weight="900" font-size="9">A</text>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="9" x2="28" y2="9"/>
+            <line x1="4" y1="16" x2="22" y2="16"/>
+            <line x1="4" y1="23" x2="16" y2="23"/>
           </svg>
         </div>
         <div class="card-title t-purple">Dynamic Type Support</div>
@@ -610,11 +628,12 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-purple">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="10" width="12" height="10" rx="2"/>
-            <path d="M8 10V7a3 3 0 016 0v3"/>
-            <circle cx="11" cy="15" r="1.5" fill="currentColor" stroke="none"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="15" width="18" height="14" rx="3"/>
+            <path d="M11,15 L11,10 A5,5 0 0,1 21,10 L21,15"/>
+            <circle cx="16" cy="21" r="1.5"/>
+            <line x1="16" y1="22.5" x2="16" y2="25"/>
           </svg>
         </div>
         <div class="card-title t-purple">Private by Design</div>
@@ -622,11 +641,13 @@
       </div>
 
       <div class="feature-card">
-        <div class="card-icon ic-purple">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="4" width="18" height="13" rx="2"/>
-            <line x1="2" y1="18" x2="20" y2="18"/>
-            <rect x="6" y="8" width="10" height="5" rx="1"/>
+        <div class="card-illo">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="13" height="20" rx="2"/>
+            <circle cx="8.5" cy="21.5" r="1.2"/>
+            <rect x="12" y="6" width="18" height="12" rx="1"/>
+            <line x1="9" y1="20" x2="30" y2="20"/>
+            <path d="M12,18 L10,20 M30,18 L30,20"/>
           </svg>
         </div>
         <div class="card-title t-purple">Mac &amp; iPad Support</div>
