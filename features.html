@@ -182,16 +182,44 @@
     @media (max-width: 860px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .feature-grid { grid-template-columns: 1fr; } }
 
+    /* ── CARD COLOR DRIFT ── */
+    @keyframes color-drift {
+      0%   { background: #FEF8E7; }
+      20%  { background: #FDEEE8; }
+      40%  { background: #EDF9EF; }
+      60%  { background: #EAF3FB; }
+      80%  { background: #F4EFF9; }
+      100% { background: #FEF8E7; }
+    }
+    #grid-core  .feature-card:nth-child(1) { animation-delay:    0s; }
+    #grid-core  .feature-card:nth-child(2) { animation-delay: -7.5s; }
+    #grid-core  .feature-card:nth-child(3) { animation-delay:  -15s; }
+    #grid-core  .feature-card:nth-child(4) { animation-delay:-22.5s; }
+    #grid-power .feature-card:nth-child(1) { animation-delay:   -3s; }
+    #grid-power .feature-card:nth-child(2) { animation-delay:   -9s; }
+    #grid-power .feature-card:nth-child(3) { animation-delay:  -15s; }
+    #grid-power .feature-card:nth-child(4) { animation-delay:  -21s; }
+    #grid-power .feature-card:nth-child(5) { animation-delay:  -27s; }
+    #grid-modes .feature-card:nth-child(1) { animation-delay:   -5s; }
+    #grid-modes .feature-card:nth-child(2) { animation-delay:-12.5s; }
+    #grid-modes .feature-card:nth-child(3) { animation-delay:  -20s; }
+    #grid-modes .feature-card:nth-child(4) { animation-delay:-27.5s; }
+    #grid-xp    .feature-card:nth-child(1) { animation-delay: -1.5s; }
+    #grid-xp    .feature-card:nth-child(2) { animation-delay:  -10s; }
+    #grid-xp    .feature-card:nth-child(3) { animation-delay:-17.5s; }
+    #grid-xp    .feature-card:nth-child(4) { animation-delay:  -25s; }
+
     /* ── CARD ── */
     .feature-card {
-      background: #fff;
+      animation: color-drift 30s linear infinite;
+      will-change: background;
       padding: 28px 26px 26px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       position: relative;
     }
-    .feature-card:hover { background: #faf9fe; }
+    .feature-card:hover { filter: brightness(0.96); }
 
     /* ── CARD ICON ── */
     .card-icon {
@@ -221,7 +249,7 @@
     /* ── CARD DESC ── */
     .card-desc {
       font-size: 13px;
-      color: #777;
+      color: #1A1A1A;
       line-height: 1.75;
     }
 
