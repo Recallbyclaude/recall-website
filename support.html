@@ -68,31 +68,105 @@
     gtag('config', 'G-29KJDLZTQ1');
   </script>
 
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --frame: 18px;
+      --nav-h: 56px;
+      --border: 1px solid #2a2a2a;
+    }
+
+    .recall-font { font-family: 'Bungee Shade', cursive; }
+
+    /* ── NAV ───────────────────────────── */
+    nav {
+      position: fixed;
+      top: var(--frame);
+      left: var(--frame);
+      right: var(--frame);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: #000;
+      border-bottom: var(--border);
+      z-index: 800;
+    }
+    .nav-logo { font-size: 22px; color: #fff; line-height: 1; text-decoration: none; flex-shrink: 0; min-width: 80px; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: #999;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:not(.nav-cta) { border: 1px solid transparent; padding: 5px 10px; }
+    .nav-links a.active { border-color: #fff; color: #fff; }
+    .nav-cta {
+      background: #fff;
+      color: #000 !important;
+      padding: 7px 18px;
+      font-size: 11px !important;
+      font-weight: 700;
+      letter-spacing: 2px !important;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: #fff; }
+
+    /* ── MOBILE MENU ───────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: calc(var(--frame) + var(--nav-h));
+      left: var(--frame); right: var(--frame);
+      background: #000;
+      border-bottom: var(--border);
+      border-left: var(--border);
+      border-right: var(--border);
+      z-index: 799;
+      flex-direction: column;
+      padding: 24px 28px;
+      gap: 20px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 13px; letter-spacing: 2px; color: #999; text-decoration: none; text-transform: uppercase; }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-menu .nav-cta { color: #000 !important; display: inline-block; width: fit-content; }
+
+    /* ── BODY ──────────────────────────── */
     body {
       background: #000;
       color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      padding: 60px 32px 80px;
-      max-width: 720px;
-      margin: 0 auto;
+      padding-top: calc(var(--frame) + var(--nav-h) + 60px);
+      padding-bottom: 80px;
+      overflow-x: hidden;
       line-height: 1.75;
     }
 
-    a { color: #fff; }
-
-    .back {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #666;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 48px;
+    /* ── PAGE WRAP ─────────────────────── */
+    .page-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
     }
-    .back:hover { color: #fff; }
+
+    a { color: #fff; }
 
     h1 {
       font-size: 32px;
@@ -218,220 +292,305 @@
     }
     .note strong { color: #888; }
 
-    hr { border: none; border-top: 1px solid #1a1a1a; margin: 48px 0; }
+    hr { border: none; border-top: 1px solid #E8E8EA; margin: 48px 0; }
 
     .contact-block { margin-top: 16px; }
     .contact-block a { color: #fff; }
     .contact-block a:hover { opacity: 0.7; }
+
+    /* ── FOOTER ────────────────────────── */
+    footer {
+      max-width: 720px;
+      margin: 60px auto 0;
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: var(--border);
+      position: relative;
+      z-index: 1;
+    }
+    .footer-logo { font-size: 18px; color: #333; }
+    .footer-links { display: flex; gap: 24px; align-items: center; }
+    .footer-links a { font-size: 10px; letter-spacing: 2px; color: #444; text-decoration: none; text-transform: uppercase; }
+    .footer-links a:hover { color: #fff; }
+    .footer-cta { background: #fff; color: #000; padding: 9px 18px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; }
+
+    :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+    /* ── RESPONSIVE ────────────────────── */
+    @media (max-width: 720px) {
+      :root { --frame: 10px; --nav-h: 52px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-wrap { padding: 0 20px; }
+      .toc ol { grid-template-columns: 1fr; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+    }
   </style>
+  <link rel="stylesheet" href="/css/light.css">
 </head>
 <body>
-  <a href="/" class="back">← Back to Recall</a>
 
-  <h1>Help &amp; Support</h1>
-  <p class="subtitle">Everything you need to know about using Recall Contacts.</p>
+  <nav>
+    <a href="/" class="nav-logo recall-font">#Recall</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/#features">Features</a>
+      <a href="/#screenshots">Screenshots</a>
+      <a href="/#how-it-works">Tutorial</a>
+      <a href="/#signup">Connect</a>
+      <a href="/blog/">Articles</a>
+      <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <div class="toc">
-    <div class="toc-label">Contents</div>
-    <ol>
-      <li><a href="#getting-started">Getting Started</a></li>
-      <li><a href="#main-screen">The Main Screen</a></li>
-      <li><a href="#adding-contact">Adding a Contact</a></li>
-      <li><a href="#contact-detail">Contact Detail</a></li>
-      <li><a href="#swipe-to-tag">Swipe to Tag</a></li>
-      <li><a href="#quick-recall">Quick Recall</a></li>
-      <li><a href="#qr-code">QR Code</a></li>
-      <li><a href="#settings">Settings</a></li>
-      <li><a href="#permissions">Permissions</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ol>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#about">About</a>
+    <a href="/#features">Features</a>
+    <a href="/#screenshots">Screenshots</a>
+    <a href="/#how-it-works">Tutorial</a>
+    <a href="/#signup">Connect</a>
+    <a href="/blog/">Articles</a>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="nav-cta">Get the App</a>
   </div>
 
-  <!-- 1. Getting Started -->
-  <div class="section">
-    <span class="section-anchor" id="getting-started"></span>
-    <h2>Getting Started</h2>
+  <div class="page-wrap">
 
-    <h3>First launch</h3>
-    <p>When you open Recall for the first time, a short tutorial walks you through the core ideas — tagging, Smart Groups, Quick Recall, and Swipe to Tag. You can replay it any time from <strong>Settings → How to Use the App</strong>.</p>
+    <h1>Help &amp; Support</h1>
+    <p class="subtitle">Everything you need to know about using Recall Contacts.</p>
 
-    <h3>Adding your contacts</h3>
-    <p>Recall needs access to your iPhone contacts. On first launch you'll be prompted. After that, go to <strong>Settings → Select Contacts to Add</strong> to import from your address book, or tap <strong>ADD</strong> in the nav bar to create a contact manually.</p>
+    <div class="toc">
+      <div class="toc-label">Contents</div>
+      <ol>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#main-screen">The Main Screen</a></li>
+        <li><a href="#adding-contact">Adding a Contact</a></li>
+        <li><a href="#contact-detail">Contact Detail</a></li>
+        <li><a href="#swipe-to-tag">Swipe to Tag</a></li>
+        <li><a href="#quick-recall">Quick Recall</a></li>
+        <li><a href="#qr-code">QR Code</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#permissions">Permissions</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ol>
+    </div>
+
+    <!-- 1. Getting Started -->
+    <div class="section">
+      <span class="section-anchor" id="getting-started"></span>
+      <h2>Getting Started</h2>
+
+      <h3>First launch</h3>
+      <p>When you open Recall for the first time, a short tutorial walks you through the core ideas — tagging, Smart Groups, Quick Recall, and Swipe to Tag. You can replay it any time from <strong>Settings → How to Use the App</strong>.</p>
+
+      <h3>Adding your contacts</h3>
+      <p>Recall needs access to your iPhone contacts. On first launch you'll be prompted. After that, go to <strong>Settings → Select Contacts to Add</strong> to import from your address book, or tap <strong>ADD</strong> in the nav bar to create a contact manually.</p>
+    </div>
+
+    <!-- 2. The Main Screen -->
+    <div class="section">
+      <span class="section-anchor" id="main-screen"></span>
+      <h2>The Main Screen</h2>
+
+      <p>The screen is split into two sections:</p>
+      <ul>
+        <li><strong>Top — Hashtag Cloud:</strong> Every tag you've ever used appears as a chip. Tap one to filter your contacts. Tap multiple tags to narrow results further — only contacts with <em>all</em> selected tags appear.</li>
+        <li><strong>Bottom — Contact List:</strong> Your contacts, sorted alphabetically or by Last Used. Toggle between the two at the top of the list.</li>
+      </ul>
+      <p>The coloured <strong>Smart Group</strong> buttons (VIP, Work, Family, Parents, Friends) appear above the tag cloud when enabled — tap one to instantly filter by that category.</p>
+    </div>
+
+    <!-- 3. Adding a Contact -->
+    <div class="section">
+      <span class="section-anchor" id="adding-contact"></span>
+      <h2>Adding a Contact</h2>
+
+      <p>Tap <strong>ADD</strong> in the nav bar. The create screen has:</p>
+      <ol>
+        <li><strong>TAKE SELFIE</strong> banner — tap it to take a photo with the front camera. Long-press the banner to choose from your library instead.</li>
+        <li><strong>Tag field</strong> — type a tag or tap one of the coloured suggestion chips. Tags are how you'll find this person later.</li>
+        <li><strong>First Name, Last Name, Phone, Email</strong> — use the <strong>Next</strong> key on the keyboard to move between fields.</li>
+        <li><strong>Notes</strong> — free-form text. Great for context: where you met, what you talked about, mutual connections.</li>
+      </ol>
+      <p>Tap <strong>SAVE</strong> in the top-right when you're done.</p>
+    </div>
+
+    <!-- 4. Contact Detail -->
+    <div class="section">
+      <span class="section-anchor" id="contact-detail"></span>
+      <h2>Contact Detail</h2>
+
+      <p>Tap any contact to open their detail screen.</p>
+      <ul>
+        <li><strong>Call or Text</strong> — the CALL and TEXT buttons appear at the top if a phone number exists. CALL gives you options for regular call, FaceTime Video, or FaceTime Audio.</li>
+        <li><strong>Tags</strong> — add or remove hashtags at any time. Start typing to see autocomplete suggestions from your existing tag library.</li>
+        <li><strong>Notes</strong> — tap the notes field to edit. If Date Stamp is on, a formatted date button appears below so you can log when you last spoke.</li>
+        <li><strong>Edit Contact</strong> — tap this to edit name, phone, email, and other fields. Changes are saved back to your iPhone contacts automatically.</li>
+        <li><strong>Share Contact</strong> — generates a vCard. A toggle lets you choose whether to include hashtags in the shared file.</li>
+        <li><strong>Delete Contact</strong> — removes the contact. Requires confirmation.</li>
+      </ul>
+    </div>
+
+    <!-- 5. Swipe to Tag -->
+    <div class="section">
+      <span class="section-anchor" id="swipe-to-tag"></span>
+      <h2>Swipe to Tag</h2>
+
+      <p>Found in <strong>Settings → Swipe to Tag</strong>. This is the fastest way to tag a batch of contacts you haven't organised yet.</p>
+      <ul>
+        <li><strong>Swipe right</strong> to tag the contact — a tag input appears so you can add hashtags, then it moves to the next card.</li>
+        <li><strong>Swipe left</strong> to skip and add the contact to your Review list.</li>
+      </ul>
+      <p>Keep going until you've worked through all untagged contacts.</p>
+    </div>
+
+    <!-- 6. Quick Recall -->
+    <div class="section">
+      <span class="section-anchor" id="quick-recall"></span>
+      <h2>Quick Recall</h2>
+
+      <p>Tap <strong>QUICK RECALL</strong> in the nav bar. This screen shows only your most important contacts — filtered by the Smart Group buttons at the top. Tap VIP, Family, Work, Parents, or Friends (or a combination) to see just those people, with CALL and TEXT buttons right there.</p>
+    </div>
+
+    <!-- 7. QR Code -->
+    <div class="section">
+      <span class="section-anchor" id="qr-code"></span>
+      <h2>QR Code</h2>
+
+      <p>Tap <strong>QR CODE</strong> in the nav bar to open your personal QR card. Fill in the fields you want to share (name, phone, email, website, LinkedIn, Instagram, hashtags) and toggle each one on or off. The QR code updates live. You can share it, copy it to clipboard, or save it to your camera roll.</p>
+    </div>
+
+    <!-- 8. Settings -->
+    <div class="section">
+      <span class="section-anchor" id="settings"></span>
+      <h2>Settings</h2>
+
+      <h3>Power User Mode</h3>
+      <p>Unlocks advanced features. Enabled by default. Toggle it off for a simpler experience.</p>
+
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Smart Groups</td>
+            <td>Adds VIP, Work, Family, Parents, Friends filter buttons across the app. Each group can be toggled individually.</td>
+          </tr>
+          <tr>
+            <td>Startup Screen</td>
+            <td>Choose which screen opens when you launch the app: Home, Quick Recall, or QR Code.</td>
+          </tr>
+          <tr>
+            <td>Kids &amp; Parents Mode</td>
+            <td>Adds a "Kids' Names" field when a contact is tagged with #parents. Kids' names appear in the Quick Recall list so you always have context.</td>
+          </tr>
+          <tr>
+            <td>Sort by First Name</td>
+            <td>On by default. Turn off to sort by last name instead.</td>
+          </tr>
+          <tr>
+            <td>Date Stamp</td>
+            <td>Adds a one-tap date button in the notes field so you can log the date you last spoke.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Paper Mode (Dyslexic-Friendly)</h3>
+      <p>Switches the whole app to a cream background with wider letter spacing and a more readable font. Designed for users who find white screens or tight text difficult to read.</p>
+
+      <h3>Refresh &amp; Re-index</h3>
+      <ul>
+        <li><strong>Refresh Contacts</strong> — syncs with your iPhone address book to pull in any changes made in the native Contacts app.</li>
+        <li><strong>Re-index Contacts</strong> — rebuilds Recall's tag search index. Use this if tags seem out of sync or search results look wrong.</li>
+      </ul>
+    </div>
+
+    <!-- 9. Permissions -->
+    <div class="section">
+      <span class="section-anchor" id="permissions"></span>
+      <h2>Permissions</h2>
+
+      <p>Recall works best with <strong>Full Access</strong> to your contacts. If you see a warning banner:</p>
+      <ul>
+        <li><strong>Limited Access</strong> — you've only shared some contacts. Tap <strong>Select Contacts</strong> to expand access, or go to <strong>Settings app → Privacy &amp; Security → Contacts → Recall</strong>.</li>
+        <li><strong>Denied</strong> — go to <strong>Settings app → Privacy &amp; Security → Contacts → Recall</strong> and toggle access on.</li>
+      </ul>
+
+      <div class="note">All contact data stays on your device. Recall never uploads your contacts anywhere.</div>
+    </div>
+
+    <!-- 10. FAQ -->
+    <div class="section">
+      <span class="section-anchor" id="faq"></span>
+      <h2>FAQ</h2>
+
+      <h3>Why can't I see all my contacts?</h3>
+      <p>Check your permission status in <strong>Settings → Contact Access</strong>. If it shows Limited or Denied, follow the steps in the Permissions section above.</p>
+
+      <h3>My tags disappeared / search isn't working</h3>
+      <p>Go to <strong>Settings → Re-index Contacts</strong>. This rebuilds the tag index and usually fixes it.</p>
+
+      <h3>Can I use Recall without giving it access to my full contacts?</h3>
+      <p>Yes. Tap <strong>ADD</strong> to create contacts manually inside Recall without syncing your address book.</p>
+
+      <h3>My tags aren't appearing on another device</h3>
+      <p>Recall writes every hashtag back into the notes field of your Apple Contacts record. If you have iCloud Contacts enabled, those tags sync automatically across all your devices via iCloud.</p>
+
+      <h3>What happens if I delete Recall?</h3>
+      <p>Your hashtags remain in the notes field of your Apple Contacts. You don't lose any data — they're stored in your contact records, not inside the app.</p>
+
+      <h3>Does Recall replace my iPhone contacts app?</h3>
+      <p>No. Recall layers on top of your existing Apple Contacts. You keep using the native Phone app for calls. Recall is for finding and organising.</p>
+
+      <h3>How do I share Recall with someone?</h3>
+      <p>Go to <strong>Settings → Share Recall</strong> to share the App Store link.</p>
+    </div>
+
+    <hr>
+
+    <h2>Still need help?</h2>
+    <div class="contact-block">
+      <p>Send a message and we'll get back to you.</p>
+      <p>Paul Barbera<br>
+      <a href="mailto:paul@paulbarbera.com">paul@paulbarbera.com</a></p>
+    </div>
+
+    <hr>
+    <p style="font-size:12px; color:#999;">© 2026 Recall Contacts. All rights reserved.</p>
+
   </div>
 
-  <!-- 2. The Main Screen -->
-  <div class="section">
-    <span class="section-anchor" id="main-screen"></span>
-    <h2>The Main Screen</h2>
+  <footer>
+    <div class="footer-logo recall-font">#Recall</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/team.html">Meet the Team</a>
+      <a href="/support">Support</a>
+      <a href="https://buymeacoffee.com/paulsh" target="_blank" rel="noopener">Buy me a coffee</a>
+    </div>
+    <a href="https://apps.apple.com/us/app/recall-contacts/id6758255331" target="_blank" class="footer-cta">App Store</a>
+  </footer>
 
-    <p>The screen is split into two sections:</p>
-    <ul>
-      <li><strong>Top — Hashtag Cloud:</strong> Every tag you've ever used appears as a chip. Tap one to filter your contacts. Tap multiple tags to narrow results further — only contacts with <em>all</em> selected tags appear.</li>
-      <li><strong>Bottom — Contact List:</strong> Your contacts, sorted alphabetically or by Last Used. Toggle between the two at the top of the list.</li>
-    </ul>
-    <p>The coloured <strong>Smart Group</strong> buttons (VIP, Work, Family, Parents, Friends) appear above the tag cloud when enabled — tap one to instantly filter by that category.</p>
-  </div>
+  <script>
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburgerBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { mobileMenu.classList.remove('open'); });
+    });
+  </script>
 
-  <!-- 3. Adding a Contact -->
-  <div class="section">
-    <span class="section-anchor" id="adding-contact"></span>
-    <h2>Adding a Contact</h2>
-
-    <p>Tap <strong>ADD</strong> in the nav bar. The create screen has:</p>
-    <ol>
-      <li><strong>TAKE SELFIE</strong> banner — tap it to take a photo with the front camera. Long-press the banner to choose from your library instead.</li>
-      <li><strong>Tag field</strong> — type a tag or tap one of the coloured suggestion chips. Tags are how you'll find this person later.</li>
-      <li><strong>First Name, Last Name, Phone, Email</strong> — use the <strong>Next</strong> key on the keyboard to move between fields.</li>
-      <li><strong>Notes</strong> — free-form text. Great for context: where you met, what you talked about, mutual connections.</li>
-    </ol>
-    <p>Tap <strong>SAVE</strong> in the top-right when you're done.</p>
-  </div>
-
-  <!-- 4. Contact Detail -->
-  <div class="section">
-    <span class="section-anchor" id="contact-detail"></span>
-    <h2>Contact Detail</h2>
-
-    <p>Tap any contact to open their detail screen.</p>
-    <ul>
-      <li><strong>Call or Text</strong> — the CALL and TEXT buttons appear at the top if a phone number exists. CALL gives you options for regular call, FaceTime Video, or FaceTime Audio.</li>
-      <li><strong>Tags</strong> — add or remove hashtags at any time. Start typing to see autocomplete suggestions from your existing tag library.</li>
-      <li><strong>Notes</strong> — tap the notes field to edit. If Date Stamp is on, a formatted date button appears below so you can log when you last spoke.</li>
-      <li><strong>Edit Contact</strong> — tap this to edit name, phone, email, and other fields. Changes are saved back to your iPhone contacts automatically.</li>
-      <li><strong>Share Contact</strong> — generates a vCard. A toggle lets you choose whether to include hashtags in the shared file.</li>
-      <li><strong>Delete Contact</strong> — removes the contact. Requires confirmation.</li>
-    </ul>
-  </div>
-
-  <!-- 5. Swipe to Tag -->
-  <div class="section">
-    <span class="section-anchor" id="swipe-to-tag"></span>
-    <h2>Swipe to Tag</h2>
-
-    <p>Found in <strong>Settings → Swipe to Tag</strong>. This is the fastest way to tag a batch of contacts you haven't organised yet.</p>
-    <ul>
-      <li><strong>Swipe right</strong> to tag the contact — a tag input appears so you can add hashtags, then it moves to the next card.</li>
-      <li><strong>Swipe left</strong> to skip and add the contact to your Review list.</li>
-    </ul>
-    <p>Keep going until you've worked through all untagged contacts.</p>
-  </div>
-
-  <!-- 6. Quick Recall -->
-  <div class="section">
-    <span class="section-anchor" id="quick-recall"></span>
-    <h2>Quick Recall</h2>
-
-    <p>Tap <strong>QUICK RECALL</strong> in the nav bar. This screen shows only your most important contacts — filtered by the Smart Group buttons at the top. Tap VIP, Family, Work, Parents, or Friends (or a combination) to see just those people, with CALL and TEXT buttons right there.</p>
-  </div>
-
-  <!-- 7. QR Code -->
-  <div class="section">
-    <span class="section-anchor" id="qr-code"></span>
-    <h2>QR Code</h2>
-
-    <p>Tap <strong>QR CODE</strong> in the nav bar to open your personal QR card. Fill in the fields you want to share (name, phone, email, website, LinkedIn, Instagram, hashtags) and toggle each one on or off. The QR code updates live. You can share it, copy it to clipboard, or save it to your camera roll.</p>
-  </div>
-
-  <!-- 8. Settings -->
-  <div class="section">
-    <span class="section-anchor" id="settings"></span>
-    <h2>Settings</h2>
-
-    <h3>Power User Mode</h3>
-    <p>Unlocks advanced features. Enabled by default. Toggle it off for a simpler experience.</p>
-
-    <table class="feature-table">
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>What it does</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Smart Groups</td>
-          <td>Adds VIP, Work, Family, Parents, Friends filter buttons across the app. Each group can be toggled individually.</td>
-        </tr>
-        <tr>
-          <td>Startup Screen</td>
-          <td>Choose which screen opens when you launch the app: Home, Quick Recall, or QR Code.</td>
-        </tr>
-        <tr>
-          <td>Kids &amp; Parents Mode</td>
-          <td>Adds a "Kids' Names" field when a contact is tagged with #parents. Kids' names appear in the Quick Recall list so you always have context.</td>
-        </tr>
-        <tr>
-          <td>Sort by First Name</td>
-          <td>On by default. Turn off to sort by last name instead.</td>
-        </tr>
-        <tr>
-          <td>Date Stamp</td>
-          <td>Adds a one-tap date button in the notes field so you can log the date you last spoke.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Paper Mode (Dyslexic-Friendly)</h3>
-    <p>Switches the whole app to a cream background with wider letter spacing and a more readable font. Designed for users who find white screens or tight text difficult to read.</p>
-
-    <h3>Refresh &amp; Re-index</h3>
-    <ul>
-      <li><strong>Refresh Contacts</strong> — syncs with your iPhone address book to pull in any changes made in the native Contacts app.</li>
-      <li><strong>Re-index Contacts</strong> — rebuilds Recall's tag search index. Use this if tags seem out of sync or search results look wrong.</li>
-    </ul>
-  </div>
-
-  <!-- 9. Permissions -->
-  <div class="section">
-    <span class="section-anchor" id="permissions"></span>
-    <h2>Permissions</h2>
-
-    <p>Recall works best with <strong>Full Access</strong> to your contacts. If you see a warning banner:</p>
-    <ul>
-      <li><strong>Limited Access</strong> — you've only shared some contacts. Tap <strong>Select Contacts</strong> to expand access, or go to <strong>Settings app → Privacy &amp; Security → Contacts → Recall</strong>.</li>
-      <li><strong>Denied</strong> — go to <strong>Settings app → Privacy &amp; Security → Contacts → Recall</strong> and toggle access on.</li>
-    </ul>
-
-    <div class="note">All contact data stays on your device. Recall never uploads your contacts anywhere.</div>
-  </div>
-
-  <!-- 10. FAQ -->
-  <div class="section">
-    <span class="section-anchor" id="faq"></span>
-    <h2>FAQ</h2>
-
-    <h3>Why can't I see all my contacts?</h3>
-    <p>Check your permission status in <strong>Settings → Contact Access</strong>. If it shows Limited or Denied, follow the steps in the Permissions section above.</p>
-
-    <h3>My tags disappeared / search isn't working</h3>
-    <p>Go to <strong>Settings → Re-index Contacts</strong>. This rebuilds the tag index and usually fixes it.</p>
-
-    <h3>Can I use Recall without giving it access to my full contacts?</h3>
-    <p>Yes. Tap <strong>ADD</strong> to create contacts manually inside Recall without syncing your address book.</p>
-
-    <h3>My tags aren't appearing on another device</h3>
-    <p>Recall writes every hashtag back into the notes field of your Apple Contacts record. If you have iCloud Contacts enabled, those tags sync automatically across all your devices via iCloud.</p>
-
-    <h3>What happens if I delete Recall?</h3>
-    <p>Your hashtags remain in the notes field of your Apple Contacts. You don't lose any data — they're stored in your contact records, not inside the app.</p>
-
-    <h3>Does Recall replace my iPhone contacts app?</h3>
-    <p>No. Recall layers on top of your existing Apple Contacts. You keep using the native Phone app for calls. Recall is for finding and organising.</p>
-
-    <h3>How do I share Recall with someone?</h3>
-    <p>Go to <strong>Settings → Share Recall</strong> to share the App Store link.</p>
-  </div>
-
-  <hr>
-
-  <h2>Still need help?</h2>
-  <div class="contact-block">
-    <p>Send a message and we'll get back to you.</p>
-    <p>Paul Barbera<br>
-    <a href="mailto:paul@paulbarbera.com">paul@paulbarbera.com</a></p>
-  </div>
-
-  <hr>
-  <p style="font-size:12px; color:#444;">© 2026 Recall Contacts. All rights reserved.</p>
 </body>
 </html>
