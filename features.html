@@ -182,46 +182,16 @@
     @media (max-width: 860px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .feature-grid { grid-template-columns: 1fr; } }
 
-    /* ── CARD COLOR DRIFT ── */
-    @keyframes color-drift {
-      0%   { background: #FEF8E7; }
-      20%  { background: #FDEEE8; }
-      40%  { background: #EDF9EF; }
-      60%  { background: #EAF3FB; }
-      80%  { background: #F4EFF9; }
-      100% { background: #FEF8E7; }
-    }
-
-    /* stagger: each card at a different phase of the cycle */
-    #grid-core  .feature-card:nth-child(1) { animation-delay:    0s; }
-    #grid-core  .feature-card:nth-child(2) { animation-delay: -7.5s; }
-    #grid-core  .feature-card:nth-child(3) { animation-delay:  -15s; }
-    #grid-core  .feature-card:nth-child(4) { animation-delay:-22.5s; }
-    #grid-power .feature-card:nth-child(1) { animation-delay:   -3s; }
-    #grid-power .feature-card:nth-child(2) { animation-delay:   -9s; }
-    #grid-power .feature-card:nth-child(3) { animation-delay:  -15s; }
-    #grid-power .feature-card:nth-child(4) { animation-delay:  -21s; }
-    #grid-power .feature-card:nth-child(5) { animation-delay:  -27s; }
-    #grid-modes .feature-card:nth-child(1) { animation-delay:   -5s; }
-    #grid-modes .feature-card:nth-child(2) { animation-delay:-12.5s; }
-    #grid-modes .feature-card:nth-child(3) { animation-delay:  -20s; }
-    #grid-modes .feature-card:nth-child(4) { animation-delay:-27.5s; }
-    #grid-xp    .feature-card:nth-child(1) { animation-delay: -1.5s; }
-    #grid-xp    .feature-card:nth-child(2) { animation-delay:  -10s; }
-    #grid-xp    .feature-card:nth-child(3) { animation-delay:-17.5s; }
-    #grid-xp    .feature-card:nth-child(4) { animation-delay:  -25s; }
-
     /* ── CARD ── */
     .feature-card {
-      animation: color-drift 30s linear infinite;
-      will-change: background;
+      background: #fff;
       padding: 28px 26px 26px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       position: relative;
     }
-    .feature-card:hover { filter: brightness(0.95); }
+    .feature-card:hover { background: #faf9fe; }
 
     /* ── CARD ICON ── */
     .card-icon {
@@ -349,6 +319,13 @@
     }
   </style>
   <link rel="stylesheet" href="/css/light.css">
+  <style>
+  body {
+    background-image: linear-gradient(135deg, #FFDFDF 0%, #EACEF5 45%, #C5DCEF 100%) !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+  }
+  </style>
 </head>
 <body>
 
