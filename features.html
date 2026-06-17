@@ -182,17 +182,46 @@
     @media (max-width: 860px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 520px) { .feature-grid { grid-template-columns: 1fr; } }
 
+    /* ── CARD COLOR DRIFT ── */
+    @keyframes color-drift {
+      0%   { background: #FEF8E7; }
+      20%  { background: #FDEEE8; }
+      40%  { background: #EDF9EF; }
+      60%  { background: #EAF3FB; }
+      80%  { background: #F4EFF9; }
+      100% { background: #FEF8E7; }
+    }
+
+    /* stagger: each card at a different phase of the cycle */
+    #grid-core  .feature-card:nth-child(1) { animation-delay:    0s; }
+    #grid-core  .feature-card:nth-child(2) { animation-delay: -7.5s; }
+    #grid-core  .feature-card:nth-child(3) { animation-delay:  -15s; }
+    #grid-core  .feature-card:nth-child(4) { animation-delay:-22.5s; }
+    #grid-power .feature-card:nth-child(1) { animation-delay:   -3s; }
+    #grid-power .feature-card:nth-child(2) { animation-delay:   -9s; }
+    #grid-power .feature-card:nth-child(3) { animation-delay:  -15s; }
+    #grid-power .feature-card:nth-child(4) { animation-delay:  -21s; }
+    #grid-power .feature-card:nth-child(5) { animation-delay:  -27s; }
+    #grid-modes .feature-card:nth-child(1) { animation-delay:   -5s; }
+    #grid-modes .feature-card:nth-child(2) { animation-delay:-12.5s; }
+    #grid-modes .feature-card:nth-child(3) { animation-delay:  -20s; }
+    #grid-modes .feature-card:nth-child(4) { animation-delay:-27.5s; }
+    #grid-xp    .feature-card:nth-child(1) { animation-delay: -1.5s; }
+    #grid-xp    .feature-card:nth-child(2) { animation-delay:  -10s; }
+    #grid-xp    .feature-card:nth-child(3) { animation-delay:-17.5s; }
+    #grid-xp    .feature-card:nth-child(4) { animation-delay:  -25s; }
+
     /* ── CARD ── */
     .feature-card {
-      background: #fff;
+      animation: color-drift 30s linear infinite;
+      will-change: background;
       padding: 28px 26px 26px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      transition: background 0.18s ease;
       position: relative;
     }
-    .feature-card:hover { background: #faf9fe; }
+    .feature-card:hover { filter: brightness(0.95); }
 
     /* ── CARD ICON ── */
     .card-icon {
@@ -361,7 +390,7 @@
       <div class="section-label">Core</div>
       <div class="section-rule"></div>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid" id="grid-core">
 
       <div class="feature-card">
         <div class="card-icon ic-green">
@@ -423,7 +452,7 @@
       <div class="section-label">Power</div>
       <div class="section-rule"></div>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid" id="grid-power">
 
       <div class="feature-card">
         <div class="card-icon ic-gold">
@@ -501,7 +530,7 @@
       <div class="section-label">Modes</div>
       <div class="section-rule"></div>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid" id="grid-modes">
 
       <div class="feature-card">
         <div class="card-icon ic-orange">
@@ -551,7 +580,7 @@
       <div class="section-label">Experience</div>
       <div class="section-rule"></div>
     </div>
-    <div class="feature-grid">
+    <div class="feature-grid" id="grid-xp">
 
       <div class="feature-card">
         <div class="card-icon ic-purple">
