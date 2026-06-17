@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude</title>
+  <style>
+    :root {
+      --bg: #F8F8F8;
+      --surface: #FFFFFF;
+      --border: #E8E8EA;
+      --text: #1A1A1A;
+      --text2: #555;
+      --text3: #999;
+      --grad: linear-gradient(135deg, #FFDFDF 0%, #EACEF5 45%, #C5DCEF 100%);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    /* ── Header ───────────────────────────────────────────────── */
+    header {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .header-logo {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--grad);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    select, .btn-ghost {
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text2);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 12px;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1.4;
+    }
+
+    select {
+      padding-right: 28px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    select:focus, .btn-ghost:focus { border-color: #aaa; }
+    .btn-ghost:hover { background: rgba(0,0,0,0.04); }
+
+    .btn-key {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text3);
+    }
+    .btn-key:hover { background: rgba(0,0,0,0.04); color: var(--text2); }
+
+    /* ── Messages ─────────────────────────────────────────────── */
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .messages-inner {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 32px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-height: 100%;
+    }
+
+    /* ── Empty state ──────────────────────────────────────────── */
+    .empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .empty-orb {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--grad);
+      margin-bottom: 4px;
+    }
+
+    .empty-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .empty-sub {
+      font-size: 14px;
+      color: var(--text3);
+      line-height: 1.5;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .suggestion {
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .suggestion:hover { border-color: #aaa; color: var(--text); }
+
+    /* ── Message row ──────────────────────────────────────────── */
+    .message {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .message.user { flex-direction: row-reverse; }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .message.user .avatar {
+      background: var(--text);
+      color: #fff;
+    }
+
+    .message.assistant .avatar {
+      background: var(--grad);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .bubble {
+      max-width: min(calc(100% - 44px), 580px);
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .message.user .bubble {
+      background: var(--text);
+      color: #fff;
+      border-radius: 18px 18px 4px 18px;
+      padding: 10px 15px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .message.assistant .bubble {
+      padding-top: 2px;
+    }
+
+    /* ── Markdown inside assistant bubble ─────────────────────── */
+    .bubble p { margin-bottom: 10px; }
+    .bubble p:last-child { margin-bottom: 0; }
+
+    .bubble h1, .bubble h2, .bubble h3 {
+      font-weight: 700;
+      margin: 16px 0 6px;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .bubble h1:first-child,
+    .bubble h2:first-child,
+    .bubble h3:first-child { margin-top: 0; }
+    .bubble h1 { font-size: 18px; }
+    .bubble h2 { font-size: 16px; }
+    .bubble h3 { font-size: 15px; }
+
+    .bubble ul, .bubble ol {
+      padding-left: 22px;
+      margin-bottom: 10px;
+    }
+    .bubble li { margin-bottom: 4px; }
+    .bubble li:last-child { margin-bottom: 0; }
+
+    .bubble strong { font-weight: 600; }
+    .bubble em { font-style: italic; }
+
+    .bubble a { color: #007AFF; text-decoration: none; }
+    .bubble a:hover { text-decoration: underline; }
+
+    .bubble code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: rgba(0,0,0,0.06);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    .bubble pre {
+      background: #1C1C1E;
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    .bubble pre code {
+      font-size: 13px;
+      background: none;
+      padding: 0;
+      color: #E8E8EA;
+      border-radius: 0;
+    }
+
+    .bubble blockquote {
+      border-left: 3px solid var(--border);
+      padding-left: 14px;
+      color: var(--text2);
+      margin: 10px 0;
+    }
+
+    .bubble table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .bubble th, .bubble td {
+      border: 1px solid var(--border);
+      padding: 7px 12px;
+      text-align: left;
+    }
+    .bubble th { background: rgba(0,0,0,0.03); font-weight: 600; }
+
+    .bubble hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 16px 0;
+    }
+
+    /* ── Streaming cursor ─────────────────────────────────────── */
+    .streaming::after {
+      content: '▋';
+      animation: blink 0.8s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ── Input area ───────────────────────────────────────────── */
+    .input-area {
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 10px 16px 14px;
+      flex-shrink: 0;
+    }
+
+    .input-row {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .input-box {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--surface);
+      padding: 9px 14px;
+      transition: border-color 0.15s;
+    }
+    .input-box:focus-within { border-color: #bbb; }
+
+    textarea {
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text);
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      flex: 1;
+      min-height: 24px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    textarea::placeholder { color: var(--text3); }
+
+    .send-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: var(--text);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .send-btn:disabled { opacity: 0.25; cursor: default; }
+    .send-btn:not(:disabled):hover { background: #333; }
+
+    /* ── Modal ────────────────────────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    .overlay.hidden { display: none; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 32px 28px 24px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.16);
+    }
+
+    .modal-orb {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--grad);
+      margin: 0 auto 18px;
+    }
+
+    .modal h2 {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: var(--text3);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .modal input[type="password"],
+    .modal input[type="text"] {
+      font-family: var(--font);
+      font-size: 14px;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 11px 14px;
+      outline: none;
+      color: var(--text);
+      background: var(--bg);
+      margin-bottom: 10px;
+    }
+    .modal input:focus { border-color: #bbb; }
+
+    .btn-primary {
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 100px;
+      background: var(--text);
+      color: #fff;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .btn-primary:hover { background: #333; }
+
+    .modal-note {
+      font-size: 12px;
+      color: var(--text3);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .modal-note a {
+      color: var(--text3);
+      text-decoration: underline;
+    }
+
+    /* ── Toast ────────────────────────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1C1C1E;
+      color: #fff;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .header-title { display: none; }
+      .messages-inner { padding: 20px 12px 8px; }
+      .input-area { padding: 8px 12px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-logo">✦</div>
+  <span class="header-title">Claude</span>
+  <div class="header-controls">
+    <select id="modelSelect" title="Model">
+      <option value="claude-haiku-4-5-20251001">Haiku — Fast</option>
+      <option value="claude-sonnet-4-6" selected>Sonnet</option>
+      <option value="claude-opus-4-8">Opus — Best</option>
+    </select>
+    <button class="btn-ghost" onclick="newChat()">New chat</button>
+    <button class="btn-key" onclick="showKeyModal()" title="API key">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <circle cx="5.5" cy="5.5" r="3.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8.5 8.5L13 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Messages -->
+<div class="messages" id="messages">
+  <div class="messages-inner" id="inner"></div>
+</div>
+
+<!-- Input -->
+<div class="input-area">
+  <div class="input-row">
+    <div class="input-box">
+      <textarea id="ta" placeholder="Ask anything…" rows="1"
+        oninput="grow(this); updateBtn()"
+        onkeydown="onKey(event)"></textarea>
+    </div>
+    <button class="send-btn" id="sendBtn" onclick="send()" disabled aria-label="Send">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 12V2M2 7l5-5 5 5" stroke="white" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- API Key modal -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-orb"></div>
+    <h2>Set your API key</h2>
+    <p class="modal-sub">Stored only in your browser.<br>Never sent anywhere except Anthropic.</p>
+    <input type="password" id="keyInput" placeholder="sk-ant-…" autocomplete="off"
+      onkeydown="if(event.key==='Enter') saveKey()" />
+    <button class="btn-primary" onclick="saveKey()">Save & start</button>
+    <p class="modal-note">
+      Get a key at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>
+    </p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+<script>
+  // ── State ──────────────────────────────────────────────────────
+  let apiKey = localStorage.getItem('cc_key') || '';
+  let history = [];   // [{role, content}]
+  let busy = false;
+
+  // ── Marked config ──────────────────────────────────────────────
+  marked.setOptions({ breaks: true, gfm: true });
+
+  // ── Boot ───────────────────────────────────────────────────────
+  renderEmpty();
+  if (!apiKey) showOverlay(true);
+  document.getElementById('ta').focus();
+
+  // ── Empty state ────────────────────────────────────────────────
+  function renderEmpty() {
+    document.getElementById('inner').innerHTML = `
+      <div class="empty">
+        <div class="empty-orb"></div>
+        <div class="empty-title">What's on your mind?</div>
+        <div class="empty-sub">Fast. Focused. Nothing extra.</div>
+        <div class="suggestions">
+          <button class="suggestion" onclick="prefill(this)">Summarise something</button>
+          <button class="suggestion" onclick="prefill(this)">Help me write</button>
+          <button class="suggestion" onclick="prefill(this)">Debug my code</button>
+          <button class="suggestion" onclick="prefill(this)">Brainstorm ideas</button>
+        </div>
+      </div>`;
+  }
+
+  function prefill(btn) {
+    const ta = document.getElementById('ta');
+    ta.value = btn.textContent;
+    ta.focus();
+    grow(ta);
+    updateBtn();
+  }
+
+  // ── New chat ───────────────────────────────────────────────────
+  function newChat() {
+    history = [];
+    renderEmpty();
+    const ta = document.getElementById('ta');
+    ta.value = '';
+    ta.style.height = 'auto';
+    updateBtn();
+    ta.focus();
+  }
+
+  // ── Input helpers ──────────────────────────────────────────────
+  function grow(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 180) + 'px';
+  }
+
+  function updateBtn() {
+    document.getElementById('sendBtn').disabled =
+      !document.getElementById('ta').value.trim() || busy;
+  }
+
+  function onKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!document.getElementById('sendBtn').disabled) send();
+    }
+  }
+
+  // ── Send ───────────────────────────────────────────────────────
+  async function send() {
+    if (busy) return;
+    const ta = document.getElementById('ta');
+    const text = ta.value.trim();
+    if (!text) return;
+
+    if (!apiKey) { showOverlay(true); return; }
+
+    ta.value = '';
+    ta.style.height = 'auto';
+
+    history.push({ role: 'user', content: text });
+    appendMsg('user', escHtml(text));
+
+    busy = true;
+    updateBtn();
+
+    const bubble = appendMsg('assistant', '');
+    bubble.classList.add('streaming');
+    let full = '';
+
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: document.getElementById('modelSelect').value,
+          max_tokens: 8192,
+          stream: true,
+          messages: history,
+        }),
+      });
+
+      if (!r.ok) {
+        const e = await r.json().catch(() => ({}));
+        throw new Error(e.error?.message || `HTTP ${r.status}`);
+      }
+
+      const reader = r.body.getReader();
+      const dec = new TextDecoder();
+      let buf = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        const lines = buf.split('\n');
+        buf = lines.pop();
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const raw = line.slice(6);
+          if (raw === '[DONE]') continue;
+          try {
+            const ev = JSON.parse(raw);
+            if (ev.type === 'content_block_delta' && ev.delta?.type === 'text_delta') {
+              full += ev.delta.text;
+              bubble.innerHTML = marked.parse(full);
+              scrollEnd();
+            }
+          } catch {}
+        }
+      }
+
+      bubble.classList.remove('streaming');
+      bubble.innerHTML = marked.parse(full);
+      history.push({ role: 'assistant', content: full });
+
+    } catch (err) {
+      bubble.classList.remove('streaming');
+      bubble.innerHTML = `<span style="color:#D1433B">${escHtml(err.message)}</span>`;
+      history.pop();
+    } finally {
+      busy = false;
+      updateBtn();
+      scrollEnd();
+      ta.focus();
+    }
+  }
+
+  // ── DOM helpers ────────────────────────────────────────────────
+  function appendMsg(role, html) {
+    const inner = document.getElementById('inner');
+    // remove empty state if present
+    const empty = inner.querySelector('.empty');
+    if (empty) empty.remove();
+
+    const row = document.createElement('div');
+    row.className = `message ${role}`;
+
+    const icon = role === 'user' ? 'Y' : '✦';
+    row.innerHTML = `
+      <div class="avatar">${icon}</div>
+      <div class="bubble">${html}</div>`;
+    inner.appendChild(row);
+    scrollEnd();
+    return row.querySelector('.bubble');
+  }
+
+  function scrollEnd() {
+    const el = document.getElementById('messages');
+    el.scrollTop = el.scrollHeight;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // ── API Key modal ──────────────────────────────────────────────
+  function showKeyModal() { showOverlay(false); }
+
+  function showOverlay(focus) {
+    const ov = document.getElementById('overlay');
+    ov.classList.remove('hidden');
+    document.getElementById('keyInput').value = apiKey;
+    if (focus) setTimeout(() => document.getElementById('keyInput').focus(), 80);
+  }
+
+  function saveKey() {
+    const v = document.getElementById('keyInput').value.trim();
+    if (!v) { toast('Paste your API key first'); return; }
+    if (!v.startsWith('sk-ant-')) { toast('Key should start with sk-ant-'); return; }
+    apiKey = v;
+    localStorage.setItem('cc_key', v);
+    document.getElementById('overlay').classList.add('hidden');
+    document.getElementById('ta').focus();
+  }
+
+  // close modal on backdrop click
+  document.getElementById('overlay').addEventListener('click', function(e) {
+    if (e.target === this && apiKey) this.classList.add('hidden');
+  });
+
+  // ── Toast ──────────────────────────────────────────────────────
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.classList.remove('show'), 2800);
+  }
+</script>
+</body>
+</html>
