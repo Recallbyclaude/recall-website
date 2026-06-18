@@ -440,6 +440,83 @@
     .connect-quote p { font-size: 17px; color: var(--text-2); line-height: 1.8; margin-bottom: 14px; font-style: italic; }
     .connect-quote span { font-size: 11px; letter-spacing: 3px; color: var(--text-3); text-transform: uppercase; }
 
+    /* ── HOMEPAGE FEATURE CARDS ── */
+    @keyframes card-wash {
+      0%   { background-color: #F5C84A; }
+      20%  { background-color: #E8835A; }
+      40%  { background-color: #6BC87A; }
+      60%  { background-color: #8BB8D6; }
+      80%  { background-color: #C9ABD4; }
+      100% { background-color: #F5C84A; }
+    }
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.09);
+      border: 1px solid rgba(0,0,0,0.09);
+      margin-top: 40px;
+    }
+    @media (max-width: 860px) { .feat-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .feat-grid { grid-template-columns: 1fr; } }
+    #hf-grid .feat-card:nth-child(1) { --dur: 28s; --delay:   0s; }
+    #hf-grid .feat-card:nth-child(2) { --dur: 35s; --delay:  -8s; }
+    #hf-grid .feat-card:nth-child(3) { --dur: 22s; --delay: -14s; }
+    #hf-grid .feat-card:nth-child(4) { --dur: 40s; --delay:  -3s; }
+    #hf-grid .feat-card:nth-child(5) { --dur: 32s; --delay:  -7s; }
+    #hf-grid .feat-card:nth-child(6) { --dur: 25s; --delay: -19s; }
+    #hf-grid .feat-card:nth-child(7) { --dur: 45s; --delay: -11s; }
+    #hf-grid .feat-card:nth-child(8) { --dur: 20s; --delay:  -5s; }
+    #hf-grid .feat-card:nth-child(9) { --dur: 38s; --delay: -22s; }
+    .feat-card {
+      background: #fafaf8;
+      padding: 28px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    .feat-card > * { position: relative; z-index: 1; }
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #F5C84A;
+      -webkit-mask-image: radial-gradient(ellipse 120% 110% at 45% 40%, black 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse 120% 110% at 45% 40%, black 0%, transparent 75%);
+      opacity: 0.52;
+      pointer-events: none;
+      animation: card-wash var(--dur, 30s) linear infinite;
+      animation-delay: var(--delay, 0s);
+    }
+    .feat-card:hover::before { opacity: 0.68; transition: opacity 0.4s ease; }
+    .feat-card-illo { color: #1A1A1A; margin-bottom: 6px; }
+    .feat-card-illo svg { width: 36px; height: 36px; opacity: 0.55; display: block; }
+    .feat-card-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.1px;
+      color: #1A1A1A;
+    }
+    .feat-card-desc { font-size: 13px; color: #555; line-height: 1.75; }
+    .ft-green  { color: #2e8c44; }
+    .ft-gold   { color: #9a7000; }
+    .ft-orange { color: #b04820; }
+    .ft-purple { color: #703a88; }
+    .feat-see-all {
+      display: inline-block;
+      margin-top: 28px;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-3);
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(0,0,0,0.15);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .feat-see-all:hover { color: var(--text); border-color: var(--text); }
+
     /* ── FOOTER ── */
     footer {
       background: #fff;
@@ -561,68 +638,132 @@
       <div class="section-label">Features</div>
       <h2 class="section-title" id="features-heading">Everything Recall does.</h2>
 
-      <div class="features-grid">
-        <div class="feature">
-          <div class="feature-num">01</div>
-          <h3 class="feature-title">Search by #hashtag</h3>
-          <p class="feature-desc">Type what you remember — a place, a moment, a name fragment. Recall finds the person instantly.</p>
+      <div class="feat-grid" id="hf-grid">
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13" cy="12" r="8"/>
+              <line x1="19" y1="18" x2="27" y2="26"/>
+              <line x1="9" y1="10" x2="17" y2="10"/>
+              <line x1="9" y1="14" x2="17" y2="14"/>
+              <line x1="11" y1="7" x2="10" y2="17"/>
+              <line x1="15" y1="7" x2="14" y2="17"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-green">Search by #Hashtag</div>
+          <div class="feat-card-desc">Type what you remember — a place, a moment, a relationship — and Recall finds the right person instantly. No spelling required.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">02</div>
-          <h3 class="feature-title">Swipe to tag</h3>
-          <p class="feature-desc">Add a hashtag to any contact in one swipe. No forms. No typing. Just tag and go.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="18" height="24" rx="2"/>
+              <line x1="6" y1="12" x2="16" y2="12"/>
+              <line x1="6" y1="16" x2="12" y2="16"/>
+              <line x1="22" y1="14" x2="30" y2="14"/>
+              <polyline points="26,10 30,14 26,18"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-green">Swipe to Tag</div>
+          <div class="feat-card-desc">Add hashtags to contacts in one swipe. A card-style flow makes bulk tagging fast — swipe right to tag, left to skip.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">03</div>
-          <h3 class="feature-title">Smart groups</h3>
-          <p class="feature-desc">Every tag is a group. #NYC. #WORK. #rooftopbar. Contacts organise themselves around what you remember.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="7" cy="24" r="3"/>
+              <circle cx="16" cy="7" r="3"/>
+              <circle cx="25" cy="24" r="3"/>
+              <line x1="9.5" y1="22" x2="14" y2="10"/>
+              <line x1="18" y1="10" x2="22.5" y2="22"/>
+              <line x1="10" y1="24" x2="22" y2="24"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-gold">Smart Groups</div>
+          <div class="feat-card-desc">Every hashtag becomes a live Smart Group automatically. Tap <strong>#NYC</strong> to see everyone tagged with it. No manual management ever.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">04</div>
-          <h3 class="feature-title">Parent Mode</h3>
-          <p class="feature-desc">Attach your kids' names directly to their profile. Sarah — [Luca, Ella]. You already know. You just need the reminder.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3,22 L8,9 L16,16 L24,9 L29,22"/>
+              <line x1="3" y1="22" x2="29" y2="22"/>
+              <line x1="4" y1="26" x2="28" y2="26"/>
+              <circle cx="8" cy="9" r="1.5"/>
+              <circle cx="16" cy="16" r="1.5"/>
+              <circle cx="24" cy="9" r="1.5"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-gold">Super Tags</div>
+          <div class="feat-card-desc">Five colour-coded priority tags built in from day one: <strong>VIP, Family, Work, Parents, Friends</strong>. Your most important people, always visible.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">05</div>
-          <h3 class="feature-title">Super Tags</h3>
-          <p class="feature-desc">Five priority shortcuts built in: VIP, FAMILY, WORK, PARENTS, FRIENDS. Instant filter for the people who matter most.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19,3 L10,16 L16,16 L13,29 L22,16 L16,16 Z"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-gold">Quick Recall</div>
+          <div class="feat-card-desc">One-tap access to Call, FaceTime, Message, WhatsApp, Email, or Share. The right action is always one tap away.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">06</div>
-          <h3 class="feature-title">Browse by last used</h3>
-          <p class="feature-desc">See who you were in touch with most recently. Your native contacts app can't do this. Recall can.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="16" cy="16" r="12"/>
+              <polyline points="16,8 16,16 21,19"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-gold">Browse by Last Used</div>
+          <div class="feat-card-desc">Sort contacts by recency to keep active relationships at the top. Your native Contacts app can't do this. Recall can.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">07</div>
-          <h3 class="feature-title">Swipe to review &amp; delete</h3>
-          <p class="feature-desc">The same swipe that tags also lets you review and delete. The best way to finally clean up your address book.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="10" cy="7" r="4"/>
+              <path d="M3,28 Q10,18 17,28"/>
+              <circle cx="22" cy="11" r="3"/>
+              <path d="M16,28 Q22,21 28,28"/>
+              <line x1="14" y1="20" x2="18" y2="21"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-orange">Parent Mode</div>
+          <div class="feat-card-desc">Attach children's names to school parent contacts. Search <strong>#Luca</strong> to find that child's parent instantly. You know the kid — Recall connects you to the adult.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">08</div>
-          <h3 class="feature-title">Highly customisable</h3>
-          <p class="feature-desc">Turn features on or turn them all off. Build exactly the contacts app that fits how you work.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="15" width="18" height="14" rx="3"/>
+              <path d="M11,15 L11,10 A5,5 0 0,1 21,10 L21,15"/>
+              <circle cx="16" cy="21" r="1.5"/>
+              <line x1="16" y1="22.5" x2="16" y2="25"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-purple">Private by Design</div>
+          <div class="feat-card-desc">No account. No email required. Your data stays in Apple Contacts via iCloud — on Apple's servers, not ours. Delete Recall and your tags remain.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">09</div>
-          <h3 class="feature-title">Find anyone by context</h3>
-          <p class="feature-desc">Remember the ramen bar but not the name? Search #ramen or #tokyo. Done.</p>
+
+        <div class="feat-card">
+          <div class="feat-card-illo">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="13" height="20" rx="2"/>
+              <circle cx="8.5" cy="21.5" r="1.2"/>
+              <rect x="12" y="6" width="18" height="12" rx="1"/>
+              <line x1="9" y1="20" x2="30" y2="20"/>
+              <path d="M12,18 L10,20 M30,18 L30,20"/>
+            </svg>
+          </div>
+          <div class="feat-card-title ft-purple">Mac &amp; iPad Support</div>
+          <div class="feat-card-desc">Runs natively on Mac via Catalyst and iPad. Full keyboard navigation on Mac. One purchase — iPhone, iPad, and Mac.</div>
         </div>
-        <div class="feature">
-          <div class="feature-num">10</div>
-          <h3 class="feature-title">Works with your existing contacts</h3>
-          <p class="feature-desc">Recall layers on top of your iPhone contacts. Nothing moves. Nothing breaks. Your data stays yours.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">11</div>
-          <h3 class="feature-title">Private by design</h3>
-          <p class="feature-desc">No account required. No cloud sync. No data harvested. Everything stays on your device.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">12</div>
-          <h3 class="feature-title">Works for every kind of mind</h3>
-          <p class="feature-desc">Recall was built because Paul is dyslexic and needed it. But context-first thinking isn't a disability — it's just how most people actually remember.</p>
-        </div>
+
       </div>
+
+      <a href="/features" class="feat-see-all">See all 17 features →</a>
 
       <div class="faq-section" id="faq">
         <div class="section-label">FAQ</div>
